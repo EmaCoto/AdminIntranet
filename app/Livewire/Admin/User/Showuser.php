@@ -3,31 +3,23 @@
 namespace App\Livewire\Admin\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class Showuser extends Component
 {
-    public $users, $selectedUser;
-    public $open = false;
-    public $search;
+    public $users;
 
-    public function mount()
-    {
+    public function mount(){
         $this->users = User::all();
     }
-    public function openmodal($userId)
-    {
-        $this->selectedUser = User::find($userId);
-        $this->open = true;
-    }
-
     public function deleteUser($id)
     {
-       User::find($id)->delete();
+        User::find($id)->delete();
         return redirect()->to('admin/showuser');
     }
 
+    #[On('render')]
     public function render()
     {
         return view('livewire.admin.user.showuser');
