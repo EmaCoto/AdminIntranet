@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Admin\User;
 
-use App\Models\User;
+
+use App\Models\UsersIntranet;
 use Livewire\Component;
 
 class InfoUser extends Component
@@ -13,7 +14,7 @@ class InfoUser extends Component
     public function mount($userId)
     {
         $this->userId = $userId;
-        $this->user = User::find($userId);
+        $this->user = UsersIntranet::find($userId);
 
     }
     public function render()

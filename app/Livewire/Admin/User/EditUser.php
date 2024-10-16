@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\User;
 
-use App\Models\User;
+use App\Models\UsersIntranet;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,28 +10,28 @@ class EditUser extends Component
 {
     use WithFileUploads;
     public $open = false;
-    public $name, $email;
+    public $user_login, $user_email;
     public $userId, $user;
 
     public function mount($userId)
     {
         $this->userId = $userId;
-        $this->user = User::find($userId);
+        $this->user = UsersIntranet::find($userId);
 
-        $this->name = $this->user->name;
-        $this->email = $this->user->email;
+        $this->user_login = $this->user->user_login;
+        $this->user_email = $this->user->user_email;
     }
 
     public function update()
     {
         // $this->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string',
+        //     'user_login' => 'required|string|max:255',
+        //     'user_email' => 'required|string',
         // ]);
 
-        $user = User::find($this->userId);
-        $user->name = $this->name;
-        $user->email = $this->email;
+        $user = UsersIntranet::find($this->userId);
+        $user->user_login = $this->user_login;
+        $user->user_email = $this->user_email;
 
         $user->save();
         $this->reset('open');

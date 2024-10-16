@@ -12,11 +12,11 @@
                 <div class="flex flex-col items-center">
                     <div class="w-[80%]">
                         <label class="text-base font-bold uppercase">Nombre</label>
-                        <x-input wire:model='name' type="text" class="w-full"/>
+                        <x-input wire:model='user_login' type="text" class="w-full"/>
                     </div>
                     <div class="w-[80%] pt-4">
                         <label class="text-base font-bold uppercase">Email</label>
-                        <textarea wire:model='email' name="description" id="contentEval" class="border-gray-300 focus:border-[#088395] focus:ring-[#088395] rounded-md shadow-sm w-full h-48 resize-none overflow-hidden"></textarea>
+                        <textarea wire:model='user_email' name="description" id="contentEval" class="border-gray-300 focus:border-[#088395] focus:ring-[#088395] rounded-md shadow-sm w-full h-48 resize-none overflow-hidden"></textarea>
                     </div>
                 </div>
             </form>

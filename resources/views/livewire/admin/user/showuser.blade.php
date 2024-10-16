@@ -9,23 +9,23 @@
                     </div>
                     <div class="bg-gray-100 p-2 rounded-t-lg shadow-lg text-center w-full">
                         <div class="pt-4">
-                            <span class="user-name font-bold text-sm block truncate">{{ $user->name }}</span>
+                            <span class="user-name font-bold text-sm block truncate">{{ $user->user_login }}</span>
                         </div>
                         <div>
-                            <span class="user-email font-bold text-xs block truncate">{{ $user->email }}</span>
+                            <span class="user-email font-bold text-xs block truncate">{{ $user->user_email }}</span>
                         </div>
                     </div>
                 </li>
                 <div class="h-full items-end border-t-2">
                     <div class="grid grid-cols-2">
-                        <div wire:ignore class="w-full border-l">
-                            @livewire('admin.user.info-user', ['userId' => $user->id], key('info-user-'.$user->id))
+                        <div class="w-full border-l">
+                            @livewire('admin.user.info-user', ['userId' => $user->ID], key('info-user-'.$user->ID))
                         </div>
-                        <div wire:ignore class="w-full border-l">
-                            @livewire('admin.user.edit-user', ['userId' => $user->id], key('edit-user-'.$user->id))
+                        <div class="w-full border-l">
+                            @livewire('admin.user.edit-user', ['userId' => $user->ID], key('edit-user-'.$user->ID))
                         </div>
                     </div>
-                    <button wire:click="deleteUser({{ $user->id }})" class="bg-[#B33031] rounded-b-lg p-1 text-white text-sm hover:scale-90 duration-300 active:bg-gray-600 w-full">
+                    <button wire:click="deleteUser({{ $user->ID }})" class="bg-[#B33031] rounded-b-lg p-1 text-white text-sm hover:scale-90 duration-300 active:bg-gray-600 w-full">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>

@@ -9,9 +9,8 @@
 
         <x-slot name="content">
             <div>
-                <span class="user-name font-bold text-sm block truncate">{{ $user->name }}</span>
-                <span class="user-email font-bold text-xs block truncate">{{ $user->email }}</span>
-
+                <span class="user-email font-bold text-xs block truncate">{{ $user->user_login }}</span>
+                <span class="user-name font-bold text-sm block truncate">{{ $user->user_email }}</span>
             </div>
         </x-slot>
 
