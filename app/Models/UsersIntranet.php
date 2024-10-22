@@ -14,4 +14,10 @@ class UsersIntranet extends Model
     protected $table = 'dxv_users';
     protected $primaryKey = 'ID'; // Asegúrate de que "ID" sea la clave primaria
     public $timestamps = false;
+
+    // Relación con el modelo UsersIntranetExtendido
+    public function profileData()
+    {
+        return $this->hasMany(UsersIntranetExtendido::class, 'user_id', 'ID');
+    }
 }

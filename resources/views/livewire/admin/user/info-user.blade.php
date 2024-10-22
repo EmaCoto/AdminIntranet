@@ -4,14 +4,31 @@
     </button>
     <x-dialog-modal maxWidth="5xl" wire:model="open">
         <x-slot name="title">
-            <h1 class="bg-[#088395] w-full text-white text-2xl p-4">Información del usuario</h1>
+            <h1 class="bg-[#11163D] w-[40%] text-white text-xl p-2 rounded-l-lg rounded-r-full uppercase">Información del usuario</h1>
         </x-slot>
 
         <x-slot name="content">
-            <div>
-                <span class="user-email font-bold text-xs block truncate">{{ $user->user_login }}</span>
-                <span class="user-name font-bold text-sm block truncate">{{ $user->user_email }}</span>
+            <div class="text-black">
+                <div class="w-full">
+                    <img src="{{ asset('img/photo.jpg') }}" alt="" class="w-40 h-40 rounded-full shadow-lg shadow-blue-900 mx-auto">
+                </div>
+
+                <!-- Separador -->
+                <h1 class="mt-7 text-3xl font-extrabold text-center"><span class="text-transparent bg-clip-text bg-gradient-to-r to-[#B33031] from-[#11163D]">Datos</span></h1>
+                <hr class="border-t-2 border-gray-400 w-[70%] mx-auto">
+
+                <div class="grid grid-cols-2 py-2 justify-items-start text-left w-[70%] mx-auto gap-x-5 gap-y-2">
+                    <div class="flex items-center w-full">
+                        <p class="font-semibold uppercase">Nombre:</p>
+                        <span class="ml-2 bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 w-full">{{ $user->display_name }}</span>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <p class="font-semibold uppercase">Email:</p>
+                        <span class="ml-2 bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 w-full">{{ $user->user_email }}</span>
+                    </div>
+                </div>
             </div>
+
         </x-slot>
 
         <x-slot name="footer">

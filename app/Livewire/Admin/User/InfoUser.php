@@ -15,7 +15,6 @@ class InfoUser extends Component
     {
         $this->userId = $userId;
         $this->user = UsersIntranet::find($userId);
-
     }
     public function render()
     {

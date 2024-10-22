@@ -8,12 +8,12 @@
                         <img src="{{ asset('img/photo.jpg') }}" alt="" class="w-16 h-16 rounded-full shadow-lg shadow-blue-900">
                     </div>
                     <div class="bg-gray-100 p-2 rounded-t-lg shadow-lg text-center w-full">
-                        <div class="pt-4">
-                            <span class="user-name font-bold text-sm block truncate">{{ $user->user_login }}</span>
-                        </div>
-                        <div>
-                            <span class="user-email font-bold text-xs block truncate">{{ $user->user_email }}</span>
-                        </div>
+                        @if($user->profileData->isNotEmpty())
+                            <div class="mt-4">
+                                <p class="user-name font-bold text-sm block truncate">{{ $user->profileData->where('field_id', 1)->first()?->value }} {{ $user->profileData->where('field_id', 2)->first()?->value }}</p>
+                                <div></div>
+                            </div>
+                        @endif
                     </div>
                 </li>
                 <div class="h-full items-end border-t-2">
@@ -33,5 +33,7 @@
         @empty
             <p class="text-white">No se encontraron usuarios.</p>
         @endforelse
+
+
     </div>
 </x-content-admin>
