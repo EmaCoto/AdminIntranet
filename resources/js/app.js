@@ -1,22 +1,26 @@
 import './bootstrap';
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const userItems = document.querySelectorAll('.user-item');
 
-    searchInput.addEventListener('keyup', function() {
-        const searchTerm = searchInput.value.toLowerCase();
+    window.addEventListener('swal:confirm', event => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Llama a la función deleteUser en Livewire
+                Livewire.emit('deleteUser', event.detail.id);
 
-        userItems.forEach(function(userItem) {
-            const userName = userItem.querySelector('.user-name').textContent.toLowerCase();
-            const userEmail = userItem.querySelector('.user-email').textContent.toLowerCase();
-
-            // Mostrar u ocultar según el término de búsqueda
-            if (userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
-                userItem.style.display = ''; // Mostrar usuario
-            } else {
-                userItem.style.display = 'none'; // Ocultar usuario
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
             }
         });
     });
-});
+
 

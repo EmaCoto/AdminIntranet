@@ -15,7 +15,14 @@ class Showuser extends Component
     {
         $this->users = UsersIntranet::with(['profileData' => function ($query) {
             $query->orderBy('field_id'); // Ordenar por el campo que corresponde al tipo de dato
-        }])->limit(1)->get();
+        }])->limit(10)->get();
+    }
+
+    public function confirmDeletion($ID)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'id' => $ID
+        ]);
     }
 
     public function deleteUser($ID)
@@ -23,7 +30,7 @@ class Showuser extends Component
         UsersIntranet::find($ID)->delete();
         return redirect()->route('showuser');
     }
-
+    
     #[On('render')]
     public function render()
     {
