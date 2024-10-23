@@ -11,7 +11,7 @@
                         @if($user->profileData->isNotEmpty())
                             <div class="mt-4">
                                 <p class="user-name font-bold text-sm block truncate">{{ $user->profileData->where('field_id', 1)->first()?->value }} {{ $user->profileData->where('field_id', 2)->first()?->value }}</p>
-                                <div></div>
+                                <p class="user-name text-sm block truncate">{{ $user->profileData->where('field_id', 50)->first()?->value }}</p>
                             </div>
                         @endif
                     </div>

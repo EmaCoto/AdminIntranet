@@ -15,7 +15,7 @@ class Showuser extends Component
     {
         $this->users = UsersIntranet::with(['profileData' => function ($query) {
             $query->orderBy('field_id'); // Ordenar por el campo que corresponde al tipo de dato
-        }])->limit(10)->get();
+        }])->limit(1)->get();
     }
 
     public function deleteUser($ID)

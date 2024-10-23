@@ -5,49 +5,85 @@
 
     <x-dialog-modal maxWidth="5xl" wire:model='open'>
         <x-slot name='title'>
-            <h1 class="bg-[#088395] text-white text-2xl p-2 pl-6">Editar Compañero</h1>
+            <h1 class="bg-[#11163D] w-[40%] text-white text-xl p-2 rounded-l-lg rounded-r-full uppercase">Editar Compañero</h1>
         </x-slot>
         <x-slot name='content'>
-            <form class="text-black">
-                <div class="w-full">
-                    <img src="{{ asset('img/photo.jpg') }}" alt="" class="w-40 h-40 rounded-full shadow-lg shadow-blue-900 mx-auto">
+            <form class="text-black grid grid-cols-2 gap-2">
+                <div class="mb-4">
+                    <label for="nombre" class="block text-sm font-medium uppercase">Nombre</label>
+                    <input type="text" id="nombre" wire:model="nombre" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('nombre') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 
-                <!-- Separador -->
-                <h1 class="mt-7 text-3xl font-extrabold text-center"><span class="text-transparent bg-clip-text bg-gradient-to-r to-[#B33031] from-[#11163D]">Datos</span></h1>
-                <hr class="border-t-2 border-gray-400 w-[70%] mx-auto">
+                <div class="mb-4">
+                    <label for="apellido" class="block text-sm font-medium uppercase">Apellidos</label>
+                    <input type="text" id="apellido" wire:model="apellido" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('apellido') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
 
-                <div class="grid grid-cols-2 py-2 justify-items-start text-left w-[70%] mx-auto gap-x-5 gap-y-2">
-                    <div class="flex items-center w-full">
-                        <p class="font-semibold uppercase">Nombre:</p>
-                        <span class="ml-2 bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 w-full">{{ $user->display_name }}</span>
-                    </div>
-                    <div class="flex items-center w-full">
-                        <p class="font-semibold uppercase">Email:</p>
-                        <span class="ml-2 bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 w-full">{{ $user->user_email }}</span>
-                    </div>
+                <div class="mb-4">
+                    <label for="etiqueta" class="block text-sm font-medium uppercase">Departamento</label>
+                    <select name="etiqueta" id="etiqueta" wire:model="etiqueta" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                        <option value="" class="text-gray-500">Selecciona una etiqueta</option>
+                        @foreach($etiquetaOptions as $value => $label)
+                            <option value="{{ $value }}" {{ $etiqueta == $value ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    @error('etiqueta') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
+
+                <div class="mb-4">
+                    <label for="usuario" class="block text-sm font-medium uppercase">Nombre de Usuario</label>
+                    <input type="text" id="usuario" wire:model="usuario" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('usuario') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="ubicacion" class="block text-sm font-medium uppercase">Ubicación</label>
+                    <select name="ubicacion" id="ubicacion" wire:model="ubicacion" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                        <option value="" class="text-gray-500">Selecciona una ubicación</option>
+                        @foreach($ubicacionOptions as $value => $label)
+                            <option value="{{ $value }}" {{ $ubicacion == $value ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    @error('ubicacion') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="cloud" class="block text-sm font-medium uppercase">Número de Cloudtalk</label>
+                    <input type="text" id="cloud" wire:model="cloud" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('cloud') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="numero" class="block text-sm font-medium uppercase">Número de WhatsApp</label>
+                    <input type="text" id="numero" wire:model="numero" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('numero') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="correo" class="block text-sm font-medium uppercase">Correo Corporativo</label>
+                    <input type="text" id="correo" wire:model="correo" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('correo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="date" class="block text-sm font-medium uppercase">Fecha de Cumpleaños</label>
+                    <input type="datetime" id="date" wire:model="date" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                    @error('date') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                </div>
+
+                @if (session()->has('message'))
+                    <div class="text-green-500 mt-3">
+                        {{ session('message') }}
+                    </div>
+                @endif
             </form>
-            <form class="mx-auto grid grid-cols-2 w-[70%] gap-x-5 gap-y-2 py-2">
-                <div class="flex flex-col items-center w-full">
-                    <!-- Campo de nombre con el estilo actualizado -->
-                    <div class="w-full">
-                        <label class="text-base font-semibold uppercase">Nombre</label>
-                        <x-input wire:model='user_login' type="text" class="w-full bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 focus:border-[#11163D] focus:ring-[#11163D]"/>
-                    </div>
-                </div>
-                <div class="flex flex-col items-center w-full">
-                    <!-- Campo de email con el estilo actualizado -->
-                    <div class="w-full">
-                        <label class="text-base font-semibold uppercase">Email</label>
-                        <textarea wire:model='user_email' name="description" id="contentEval" class="bg-gray-300 rounded-lg py-1 px-2 border-2 border-gray-400 w-full h-48 resize-none overflow-hidden focus:border-[#11163D] focus:ring-[#11163D]"></textarea>
-                    </div>
-                </div>
-            </form>
+
         </x-slot>
         <x-slot name='footer'>
-            <button wire:click='update' class="bg-[#088395] rounded-lg px-6 py-1 text-white text-lg mx-2">Editar</button>
-            <button wire:click='$toggle("open")' class="bg-gray-700 rounded-lg px-6 py-1 text-white text-lg mx-2">Cerrar</button>
+            <button wire:click='updateUser' class="bg-[#11163D] rounded-lg px-6 py-1 text-white text-lg mx-2">Editar</button>
+            <button wire:click='$toggle("open")' class="bg-gray-600 rounded-lg px-6 py-1 text-white text-lg mx-2">Cerrar</button>
         </x-slot>
     </x-dialog-modal>
 </div>
