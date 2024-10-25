@@ -18,19 +18,13 @@ class Showuser extends Component
         }])->limit(10)->get();
     }
 
-    public function confirmDeletion($ID)
-    {
-        $this->dispatchBrowserEvent('swal:confirm', [
-            'id' => $ID
-        ]);
-    }
-
     public function deleteUser($ID)
     {
+        // Eliminar el usuario
         UsersIntranet::find($ID)->delete();
         return redirect()->route('showuser');
     }
-    
+
     #[On('render')]
     public function render()
     {

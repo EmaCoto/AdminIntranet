@@ -6,7 +6,6 @@
     display: none;
 }
 
-/* From Uiverse.io by dylanharriscameron */
 .card {
   position: relative;
   width: 200px;
@@ -68,4 +67,25 @@
   100% {
     transform: translate(-100%, -100%) translate3d(0, 0, 0);
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #B33031;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
