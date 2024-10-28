@@ -89,3 +89,17 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+
+.content-scroll {
+    overflow-y: scroll; /* Permite el desplazamiento vertical */
+}
+
+.content-scroll::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en navegadores WebKit */
+}
+
+.content-scroll {
+    -ms-overflow-style: none;  /* Oculta la barra de desplazamiento en IE y Edge */
+    scrollbar-width: none;     /* Oculta la barra de desplazamiento en Firefox */
+}

@@ -3,6 +3,8 @@
 namespace App\Livewire\Admin\User;
 
 use App\Models\UsersIntranet;
+use App\Models\UsersIntranetExtendido;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -20,8 +22,13 @@ class Showuser extends Component
 
     public function deleteUser($ID)
     {
-        // Eliminar el usuario
-        UsersIntranet::find($ID)->delete();
+        DB::transaction(function () use ($ID) {
+            // Eliminar todos los registros en UsersIntranetExtendido relacionados al usuario
+            UsersIntranetExtendido::where('user_id', $ID)->delete();
+            // Eliminar el usuario en UsersIntranet
+            UsersIntranet::findOrFail($ID)->delete();
+        });
+
         return redirect()->route('showuser');
     }
 

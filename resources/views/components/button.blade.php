@@ -11,5 +11,5 @@
         </svg>
     </span>
     <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-200"></span>
-    <span class="relative text-base font-semibold">Log in</span>
+    <span class="relative text-base font-semibold">Registrar</span>
 </button>
