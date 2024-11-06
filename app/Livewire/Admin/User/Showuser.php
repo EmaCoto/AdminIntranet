@@ -29,7 +29,7 @@ class Showuser extends Component
             UsersIntranet::findOrFail($ID)->delete();
         });
 
-        return redirect()->route('showuser');
+        $this->dispatch('render');
     }
 
     #[On('render')]

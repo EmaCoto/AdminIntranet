@@ -23,7 +23,7 @@
                   <p class="text-2xl font-bold">Empleado</p>
                 </div>
                 <div class="flex justify-end w-full">
-                    <a href="#" class="duration-300 hover:bg-gray-50 hover:border hover:border-[#B33031] hover:text-[#B33031] bg-[#B33031] font-semibold text-white px-3 py-2 flex items-center gap-3 rounded-lg">Registrar
+                    <a href="{{ route('customer-register') }}" class="duration-300 hover:bg-gray-50 hover:border hover:border-[#B33031] hover:text-[#B33031] bg-[#B33031] font-semibold text-white px-3 py-2 flex items-center gap-3 rounded-lg">Registrar
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                 </div>
