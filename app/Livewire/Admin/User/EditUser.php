@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Admin\User;
 
-use App\Models\UsersIntranet;
-use App\Models\UsersIntranetExtendido;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
 
 class EditUser extends Component
 {
@@ -17,23 +15,23 @@ class EditUser extends Component
 
     public function mount($userId)
     {
-        // Cargar datos del usuario
-        $this->user = UsersIntranet::with('profileData')->find($userId);
+        $this->userId = $userId;
 
-        // Asignar los valores de los campos personalizados si existen
-        $this->nombre = optional($this->user->profileData->where('field_id', 1)->first())->value;
-        $this->apellido = optional($this->user->profileData->where('field_id', 2)->first())->value;
-        $this->usuario = optional($this->user->profileData->where('field_id', 3)->first())->value;
-        $this->etiqueta = optional($this->user->profileData->where('field_id', 50)->first())->value;
-        $this->ubicacion = optional($this->user->profileData->where('field_id', 53)->first())->value;
-        $this->cloud = optional($this->user->profileData->where('field_id', 77)->first())->value;
-        $this->numero = optional($this->user->profileData->where('field_id', 76)->first())->value;
-        $this->correo = optional($this->user->profileData->where('field_id', 78)->first())->value;
-        $this->date = optional($this->user->profileData->where('field_id', 212)->first())->value;
+        // Cargar datos del usuario de forma directa sin el modelo
+        $this->user = DB::connection('wordpress')->table('dxv_users')->where('ID', $this->userId)->first();
+        $profileData = DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $this->userId)->get();
 
+        $this->nombre = optional($profileData->where('field_id', 1)->first())->value;
+        $this->apellido = optional($profileData->where('field_id', 2)->first())->value;
+        $this->usuario = optional($profileData->where('field_id', 3)->first())->value;
+        $this->etiqueta = optional($profileData->where('field_id', 50)->first())->value;
+        $this->ubicacion = optional($profileData->where('field_id', 53)->first())->value;
+        $this->cloud = optional($profileData->where('field_id', 77)->first())->value;
+        $this->numero = optional($profileData->where('field_id', 76)->first())->value;
+        $this->correo = optional($profileData->where('field_id', 78)->first())->value;
+        $this->date = optional($profileData->where('field_id', 212)->first())->value;
 
-
-        // Aquí defines las opciones que se mostrarán en el select
+        // Opciones de select
         $this->etiquetaOptions = [
             'IT Sistemas' => 'IT Sistemas',
             'Legal USCIS' => 'Legal USCIS',
@@ -65,75 +63,49 @@ class EditUser extends Component
 
     public function updateUser()
     {
-        // Validación de los campos
         $this->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:20',
             'usuario' => 'required|string|max:50',
             'etiqueta' => 'required',
             'ubicacion' => 'required',
+            'cloud' => 'required',
             'numero' => 'required',
             'correo' => 'required',
             'date' => 'required',
         ]);
 
-        // Actualizar los campos personalizados
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 1],
-            ['value' => $this->nombre]
-        );
+        // Actualizar campos en `dxv_bp_xprofile_data` de forma directa
+        $fields = [
+            1 => $this->nombre,
+            2 => $this->apellido,
+            3 => $this->usuario,
+            50 => $this->etiqueta,
+            53 => $this->ubicacion,
+            77 => $this->cloud,
+            76 => $this->numero,
+            78 => $this->correo,
+            212 => $this->date,
+        ];
 
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 2],
-            ['value' => $this->apellido]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 3],
-            ['value' => $this->usuario]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 50],
-            ['value' => $this->etiqueta]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 53],
-            ['value' => $this->ubicacion]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 77],
-            ['value' => $this->cloud]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 76],
-            ['value' => $this->numero]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 78],
-            ['value' => $this->correo]
-        );
-
-        UsersIntranetExtendido::updateOrCreate(
-            ['user_id' => $this->userId, 'field_id' => 212],
-            ['value' => $this->date]
-        );
-
-        // Redireccionar o emitir un evento de éxito
+        foreach ($fields as $field_id => $value) {
+            DB::connection('wordpress')->table('dxv_bp_xprofile_data')->updateOrInsert(
+                ['user_id' => $this->userId, 'field_id' => $field_id],
+                [
+                    'value' => $value,
+                    'last_updated' => now(), // Asigna la fecha y hora actual
+                ]
+            );
+        }
         session()->flash('message', 'Usuario actualizado correctamente.');
+        $this->reset('open');
         $this->dispatch('render');
     }
 
     public function render()
     {
         return view('livewire.admin.user.edit-user', [
-            'etiquetaOptions' => $this->etiquetaOptions, // Pasar las opciones a la vista
+            'etiquetaOptions' => $this->etiquetaOptions, 'ubicacionOptions' => $this->ubicacionOptions
         ]);
     }
 }
-
-

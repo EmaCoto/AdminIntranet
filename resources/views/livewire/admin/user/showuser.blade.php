@@ -8,10 +8,10 @@
                         <img src="{{ asset('img/photo.jpg') }}" alt="" class="w-16 h-16 rounded-full shadow-lg shadow-blue-900">
                     </div>
                     <div class="bg-white p-2 rounded-t-lg shadow-lg text-center w-full">
-                        @if($user->profileData->isNotEmpty())
+                        @if($user->first_name || $user->last_name || $user->job_title)
                             <div class="mt-4">
-                                <p class="user-name font-bold text-sm block truncate">{{ $user->profileData->where('field_id', 1)->first()?->value }} {{ $user->profileData->where('field_id', 2)->first()?->value }}</p>
-                                <p class="user-name text-sm block truncate">{{ $user->profileData->where('field_id', 50)->first()?->value }}</p>
+                                <p class="user-name font-bold text-sm block truncate">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                <p class="user-name text-sm block truncate">{{ $user->job_title }}</p>
                             </div>
                         @endif
                     </div>
