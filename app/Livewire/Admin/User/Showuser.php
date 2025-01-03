@@ -10,6 +10,7 @@ class Showuser extends Component
 {
     public $users;
 
+    #[On('render')]
     public function mount()
     {
         $this->users = DB::connection('wordpress')
@@ -37,6 +38,11 @@ class Showuser extends Component
             ->get();
     }
 
+    #[On('message')]
+    public function message(){
+        session()->flash('message', 'Usuario actualizado correctamente.');
+    }
+
     public function deleteUser($ID)
     {
         DB::transaction(function () use ($ID) {
@@ -54,8 +60,8 @@ class Showuser extends Component
 
 
     }
-    
-    #[On('render')]
+
+
     public function render()
     {
         return view('livewire.admin.user.showuser', ['users' => $this->users]);

@@ -5,4 +5,10 @@
         </div>
         <input type="text" id="searchInput" class="pl-10 w-full focus:ring-[#11163D] focus:bg-white rounded-lg border h-10" placeholder="Buscar..." type="search">
     </div>
+
+    @if (session()->has('message'))
+        <div class="text-green-500 mt-3">
+            {{ session('message') }}
+        </div>
+    @endif
 </div>

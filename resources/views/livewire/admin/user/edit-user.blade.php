@@ -79,12 +79,6 @@
                         @error('date') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-                @if (session()->has('message'))
-                    <div class="text-green-500 mt-3">
-                        {{ session('message') }}
-                    </div>
-                @endif
             </form>
 
         </x-slot>
