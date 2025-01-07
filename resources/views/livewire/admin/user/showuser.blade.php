@@ -1,4 +1,4 @@
-<x-content-admin>
+<x-content-admin :users="$users">
     <div id="userList" class="grid grid-cols-5">
         {{-- Mostrar usuarios --}}
         @forelse ($users as $user)

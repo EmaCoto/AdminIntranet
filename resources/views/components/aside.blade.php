@@ -1,4 +1,4 @@
-<aside id="separator-sidebar" class="w-[15%] h-[89.1vh] transition-transform -translate-x-full sm:translate-x-0 text-white" aria-label="Sidebar">
+<aside id="separator-sidebar" class="w-[15%] h-[89.9vh] transition-transform -translate-x-full sm:translate-x-0 text-white" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
             <div class="flex items-center text-gray-400">

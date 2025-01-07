@@ -4,10 +4,13 @@
         <x-search-admin />
         
 
-        <div class="overflow-hidden h-[75.5vh] rounded-lg border border-gray-200">
+        <div class="overflow-hidden h-[70vh] rounded-lg border border-gray-200">
             <div class="overflow-y-auto h-full content-scroll">
                 {{ $slot }}
             </div>
+        </div>
+        <div class="mt-4">
+            {{$users->links()}}
         </div>
     </div>
 </div>

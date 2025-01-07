@@ -4,16 +4,31 @@ namespace App\Livewire\Admin\User;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class Showuser extends Component
 {
-    public $users;
+    use WithPagination; // Habilitar paginación en Livewire
 
-    #[On('render')]
-    public function mount()
+    public function deleteUser($ID)
     {
-        $this->users = DB::connection('wordpress')
+        DB::transaction(function () use ($ID) {
+            DB::connection('wordpress')->table('dxv_usermeta')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_friends')->where('initiator_user_id', $ID)->orWhere('friend_user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_messages_messages')->where('sender_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_messages_recipients')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_notifications')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_activity')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_bp_groups_members')->where('user_id', $ID)->delete();
+            DB::connection('wordpress')->table('dxv_users')->where('ID', $ID)->delete();
+        });
+        session()->flash('message', 'Usuario eliminado correctamente');
+    }
+
+    public function render()
+    {
+        $users = DB::connection('wordpress')
             ->table('dxv_users')
             ->leftJoin('dxv_bp_xprofile_data as profile_data_1', function ($join) {
                 $join->on('dxv_users.ID', '=', 'profile_data_1.user_id')
@@ -34,36 +49,9 @@ class Showuser extends Component
                 'profile_data_2.value as last_name',
                 'profile_data_50.value as job_title'
             )
-            ->limit(12)
-            ->get();
-    }
+            ->orderBy('ID', 'desc')
+            ->paginate(30);
 
-    #[On('message')]
-    public function message(){
-        session()->flash('message', 'Usuario actualizado correctamente.');
-    }
-
-    public function deleteUser($ID)
-    {
-        DB::transaction(function () use ($ID) {
-            // Eliminar datos en tablas de BuddyBoss utilizando la conexión a la base de datos de WordPress
-            DB::connection('wordpress')->table('dxv_usermeta')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_friends')->where('initiator_user_id', $ID)->orWhere('friend_user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_messages_messages')->where('sender_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_messages_recipients')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_notifications')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_activity')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_groups_members')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_users')->where('ID', $ID)->delete();
-        });
-
-
-    }
-
-
-    public function render()
-    {
-        return view('livewire.admin.user.showuser', ['users' => $this->users]);
+        return view('livewire.admin.user.showuser', compact('users'));
     }
 }

@@ -63,28 +63,3 @@
     </div>
 
 </x-content>
-
-<button href="https://bajozerohelado.com/">
-    <div class="svg-wrapper-1">
-        <div class="svg-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="32">
-                <!-- Cuerpo de la paleta -->
-                <path d="M32 4C25 4 20 9 20 16V40C20 45.5 24 50 29 50H35C40 50 44 45.5 44 40V16C44 9 39 4 32 4Z" fill="#FF6F61" stroke="#E94E3E" stroke-width="2"/>
-
-                <!-- Línea de mordida -->
-                <path d="M32 12C30 12 28 14 28 16C28 18 30 20 32 20C34 20 36 18 36 16C36 14 34 12 32 12Z" fill="white"/>
-
-                <!-- Palito -->
-                <rect x="28" y="48" width="8" height="14" rx="2" ry="2" fill="#D1C27C" stroke="#B09865" stroke-width="2"/>
-
-                <!-- Sombras del cuerpo de la paleta -->
-                <path d="M22 32H42V36C42 40 38 44 34 44H30C26 44 22 40 22 36V32Z" fill="rgba(0,0,0,0.1)"/>
-
-                <!-- Detalle de brillo -->
-                <circle cx="36" cy="24" r="2" fill="white" opacity="0.6"/>
-                <circle cx="28" cy="16" r="2" fill="white" opacity="0.6"/>
-            </svg>
-        </div>
-  </div>
-  <span>Volver al inicio</span>
-</button>

@@ -1,3 +1,2 @@
 <x-content>
-    
 </x-content>
