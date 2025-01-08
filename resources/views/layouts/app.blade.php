@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'Hurus') }}</title>
 
         <!-- Fonts -->
-
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -43,6 +43,7 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     </body>
 </html>

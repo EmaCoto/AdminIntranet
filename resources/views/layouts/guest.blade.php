@@ -8,6 +8,7 @@
         <title>{{ config('app.name', 'Hurus') }}</title>
 
         <!-- Fonts -->
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,5 +26,6 @@
         </div>
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     </body>
 </html>

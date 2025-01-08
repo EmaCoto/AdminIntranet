@@ -97,7 +97,8 @@ class EditUser extends Component
                 ]
             );
         }
-        $this->dispatch('message');
+        session()->flash('message', 'Usuario actualizado correctamente');
+        // dd(session()->get('message'));
         $this->dispatch('render');
         $this->reset('open');
     }

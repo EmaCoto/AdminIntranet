@@ -41,7 +41,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
-                    <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
+                    <p class="text-sm text-white leading-5 mr-10">
                         <span>{!! __('Showing') !!}</span>
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
                         <span>{!! __('to') !!}</span>
@@ -78,7 +78,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                             {{-- "Three Dots" Separator --}}
                             @if (is_string($element))
                                 <span aria-disabled="true">
-                                    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5 dark:bg-gray-800 dark:border-gray-600 dark:bg-gray-800 dark:border-gray-600">{{ $element }}</span>
+                                    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5 dark:border-gray-600 dark:bg-gray-800">{{ $element }}</span>
                                 </span>
                             @endif
 
