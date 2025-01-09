@@ -10,7 +10,7 @@
         <x-slot name='content'>
             <form>
                 <div class="card mx-auto">
-                    <div class="bg"><img src="{{ asset('img/photo.jpg') }}" alt="" class="mx-auto"></div>
+                    <div class="bg"><img src="{{ asset('img/photo.webp') }}" alt="" class="mx-auto"></div>
                     <div class="blob"></div>
                 </div>
 
@@ -83,7 +83,7 @@
 
         </x-slot>
         <x-slot name='footer'>
-            <button wire:click='updateUser' class="relative inline-flex items-center justify-center px-8 mx-8 py-2.5 overflow-hidden tracking-tighter text-white bg-[#11163D] rounded-md group">
+            <button wire:loading.remove wire:click='updateUser' class="relative inline-flex items-center justify-center px-8 mx-8 py-2.5 overflow-hidden tracking-tighter text-white bg-[#11163D] rounded-md group">
                 <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#2e3ba3] rounded-full group-hover:w-56 group-hover:h-56"></span>
                 <span class="absolute bottom-0 left-0 h-full -ml-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-full opacity-100 object-stretch" viewBox="0 0 487 487">
@@ -98,6 +98,9 @@
                 <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-200"></span>
                 <span class="relative text-base font-semibold">Editar</span>
             </button>
+            <div wire:loading class="px-8 mx-8 py-2.5">
+                <i class="fa-solid fa-spinner animate-spin"></i>
+            </div>
             {{-- botón cerrar modal --}}
             <x-close />
             {{-- botón cerrar modal --}}

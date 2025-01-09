@@ -36,7 +36,7 @@
         </div>
         
 
-        <div class="overflow-hidden h-[70vh] rounded-lg border border-gray-200">
+        <div class="overflow-hidden h-[70vh] rounded-lg border border-gray-200 p-4">
             <div class="overflow-y-auto h-full content-scroll">
                 {{ $slot }}
             </div>

@@ -2,10 +2,10 @@
     <div id="userList" class="grid grid-cols-5">
         {{-- Mostrar usuarios --}}
         @forelse ($users as $user)
-            <ul class="user-item h-48 rounded-lg hover:shadow-xl hover:bg-gray-400 m-1 flex flex-col justify-between p-2">
+            <ul class="user-item h-48 rounded-lg hover:shadow-xl hover:bg-gray-400 m-1 flex flex-col justify-between py-1 px-[6px]">
                 <li class="flex flex-col items-center">
                     <div class="-mb-4 z-10">
-                        <img src="{{ asset('img/photo.jpg') }}" alt="" class="w-16 h-16 rounded-full shadow-lg shadow-blue-900">
+                        <img src="{{ asset('img/photo.webp') }}" alt="" class="w-16 h-16 rounded-full shadow-lg shadow-blue-900">
                     </div>
                     <div class="bg-white p-2 rounded-t-lg shadow-lg text-center w-full">
                         @if($user->first_name || $user->last_name || $user->job_title)

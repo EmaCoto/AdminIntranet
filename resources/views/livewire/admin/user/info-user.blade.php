@@ -10,7 +10,7 @@
         <x-slot name="content">
             <div class="text-black">
                 <div class="card mx-auto">
-                    <div class="bg"><img src="{{ asset('img/photo.jpg') }}" alt="" class="mx-auto"></div>
+                    <div class="bg"><img src="{{ asset('img/photo.webp') }}" alt="" class="mx-auto"></div>
                     <div class="blob"></div>
                 </div>
 
