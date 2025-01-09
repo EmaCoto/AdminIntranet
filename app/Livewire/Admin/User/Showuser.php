@@ -40,33 +40,21 @@ class Showuser extends Component
     {
         $users = DB::connection('wordpress')
             ->table('dxv_users')
-            ->leftJoin('dxv_bp_xprofile_data as profile_data_1', function ($join) {
-                $join->on('dxv_users.ID', '=', 'profile_data_1.user_id')
-                    ->where('profile_data_1.field_id', 1);
-            })
-            ->leftJoin('dxv_bp_xprofile_data as profile_data_2', function ($join) {
-                $join->on('dxv_users.ID', '=', 'profile_data_2.user_id')
-                    ->where('profile_data_2.field_id', 2);
-            })
-            ->leftJoin('dxv_bp_xprofile_data as profile_data_50', function ($join) {
-                $join->on('dxv_users.ID', '=', 'profile_data_50.user_id')
-                    ->where('profile_data_50.field_id', 50);
-            })
             ->select(
                 'dxv_users.ID',
                 'dxv_users.user_login',
-                'profile_data_1.value as first_name',
-                'profile_data_2.value as last_name',
-                'profile_data_50.value as job_title'
+                DB::raw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 1 LIMIT 1) AS first_name'),
+                DB::raw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 2 LIMIT 1) AS last_name'),
+                DB::raw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) AS job_title')
             )
             ->when(!empty($this->search), function ($query) {
                 $query->where(function ($query) {
-                    $query->where('profile_data_1.value', 'like', "%{$this->search}%")
-                          ->orWhere('profile_data_2.value', 'like', "%{$this->search}%");
+                    $query->whereRaw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 1 LIMIT 1) LIKE ?', ["%{$this->search}%"])
+                          ->orWhereRaw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 2 LIMIT 1) LIKE ?', ["%{$this->search}%"]);
                 });
             })
             // ->orderBy('ID', 'desc')
-            ->paginate(30);
+            ->paginate(10);
 
         return view('livewire.admin.user.showuser', compact('users'));
     }
