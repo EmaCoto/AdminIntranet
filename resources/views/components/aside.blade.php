@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('publicidad') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-bullhorn flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Publicidad</span>
                 </a>

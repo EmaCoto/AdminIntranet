@@ -10,7 +10,7 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './node_modules/flowbite/**/*.js',  // Asegúrate de incluir Flowbite en content
+        './node_modules/flowbite/**/*.js',
     ],
 
     theme: {
@@ -24,6 +24,6 @@ export default {
     plugins: [
         forms,
         typography,
-        flowbitePlugin,  // Añadir Flowbite como plugin
+        flowbitePlugin,
     ],
 };

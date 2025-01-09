@@ -34,8 +34,6 @@ class AdminRegister extends Component
         ]);
         $this->reset();
         session()->flash('message', 'Registro exitoso.');
-
-        // Redirige o realiza otra acción después del registro
     }
 
     public function render()

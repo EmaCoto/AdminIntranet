@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin\Publicidad;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Showuser extends Component
+class Publicidad extends Component
 {
     use WithPagination;
 
@@ -46,15 +46,17 @@ class Showuser extends Component
                 DB::raw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 2 LIMIT 1) AS last_name'),
                 DB::raw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) AS job_title')
             )
+            
             ->when(!empty($this->search), function ($query) {
                 $query->where(function ($query) {
                     $query->whereRaw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 1 LIMIT 1) LIKE ?', ["%{$this->search}%"])
                           ->orWhereRaw('(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 2 LIMIT 1) LIKE ?', ["%{$this->search}%"]);
                 });
             })
+            ->having('job_title', 'LIKE', '%Publicidad%')
             // ->orderBy('ID', 'desc')
             ->paginate(10);
 
-        return view('livewire.admin.user.showuser', compact('users'));
+        return view('livewire.admin.publicidad.publicidad', compact('users'));
     }
 }
