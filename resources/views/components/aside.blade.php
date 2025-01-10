@@ -28,55 +28,55 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('uscis') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-scale-balanced flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Legal USCIS</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('asilos') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-house-chimney-user flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Asilos</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('servihuellas') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-fingerprint flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Servi Huellas</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('traduccion') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-language flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Traducción</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('redaccion') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-pen-nib flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Redacción</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('documentos') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-regular fa-folder-open flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Documentos</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('permisos') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-regular fa-calendar-check flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Permisos</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('cortes') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-gavel flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Cortes</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
+                <a href="{{ route('asignacion') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-solid fa-thumbtack flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Asignación</span>
                 </a>
