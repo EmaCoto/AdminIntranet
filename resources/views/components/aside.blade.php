@@ -12,7 +12,7 @@
                 </a>
             </li>
             <div class="flex items-center text-gray-400">
-                <h1 class="text-sm font-bold">Empleados</h1>
+                <h1 class="text-sm font-bold">Departamentos</h1>
                 <div class="flex-1 border-t border-gray-400 ml-4"></div>
             </div>
             <li>
@@ -58,15 +58,25 @@
                 </a>
             </li>
             <li>
+                <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Manejo de documentos
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
                 <a href="{{ route('documentos') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-regular fa-folder-open flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Documentos</span>
+                    <i class="fa-regular fa-circle-question text-xs w-full text-right" data-tooltip-target="tooltip-default"></i>
                 </a>
             </li>
             <li>
+                <div id="tooltip-default-2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Permisos de Trabajo
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
                 <a href="{{ route('permisos') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-100 group active:text-blue-500 hover:scale-110 transition duration-500 hover:text-gray-600">
                     <i class="fa-regular fa-calendar-check flex-shrink-0 w-5 h-5 group-active:text-blue-500"></i>
                     <span class="ml-1">Permisos</span>
+                    <i class="fa-regular fa-circle-question text-xs w-full text-right" data-tooltip-target="tooltip-default-2"></i>
                 </a>
             </li>
             <li>
