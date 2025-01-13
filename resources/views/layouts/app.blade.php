@@ -21,7 +21,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#B33031]">
+        <div class="min-h-screen bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#1c2464]">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

@@ -1,5 +1,5 @@
 <x-content>
-    <h1 class="font-extrabold text-center text-gray-50 uppercase text-4xl mt-3">¿Quiéres hacer un nuevo registro?</h1>
+    <h1 class="font-extrabold text-center text-gray-50 uppercase text-4xl mt-3">¿Quieres hacer un nuevo registro?</h1>
     <div class="flex items-center">
         <div class="flex-grow border-t border-gray-300"></div>
         <span class="mx-4 text-xl font-bold text-[#B33031]">Elige el formulario</span>
@@ -33,7 +33,7 @@
         </div>
         <div class="grid grid-cols-2">
             <div class="h-full flex flex-col text-center text-gray-50 px-10">
-                <h2 class="font-bold text-2xl">Agregar Administrador a la Plataforma</h2>
+                <h2 class="font-bold text-2xl">Agregar Administrador de Hurus</h2>
                 <p class="text-gray-400">"Añade un perfil de administrador. Completa los datos necesarios para activar el acceso y permisos en el sistema."</p>
             </div>
             <div class="h-full flex flex-col text-center text-gray-50 px-10">

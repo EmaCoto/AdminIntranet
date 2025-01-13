@@ -38,7 +38,7 @@ class CustomerRegister extends Component
         // Crear el usuario
         UsersIntranet::create([
             'user_login' => $this->user_login,
-            'user_pass' => Hash::make($this->user_pass), // Hashear la contraseña
+            'user_pass' => Hash::make($this->user_pass),
             'user_nicename' => $this->user_nicename,
             'user_email' => $this->user_email,
             'user_url' => $this->user_url,

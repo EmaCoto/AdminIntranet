@@ -17,7 +17,7 @@ class EditUser extends Component
     {
         $this->userId = $userId;
 
-        // Cargar datos del usuario de forma directa sin el modelo
+        // Cargar datos del usuario
         $this->user = DB::connection('wordpress')->table('dxv_users')->where('ID', $this->userId)->first();
         $profileData = DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $this->userId)->get();
 
@@ -31,48 +31,29 @@ class EditUser extends Component
         $this->correo = optional($profileData->where('field_id', 78)->first())->value;
         $this->date = optional($profileData->where('field_id', 212)->first())->value;
 
-        // Opciones de select
-        $this->etiquetaOptions = [
-            'IT Sistemas' => 'IT Sistemas',
-            'Legal USCIS' => 'Legal USCIS',
-            'Publicidad' => 'Publicidad',
-        ];
+        // Cargar opciones de "etiqueta" desde la base de datos
+        $this->etiquetaOptions = DB::connection('wordpress')
+            ->table('dxv_bp_xprofile_data')
+            ->where('field_id', 50)
+            ->pluck('value', 'value')
+            ->toArray();
 
-        $this->ubicacionOptions = [
-            'Cúcuta' => 'Cúcuta',
-            'Barranquilla' => 'Barranquilla',
-            'Bogotá' => 'Bogotá',
-            'Pereira' => 'Pereira',
-            'Medellín' => 'Medellín',
-            'Florencia' => 'Florencia',
-            'Yopal' => 'Yopal',
-            'Pasto' => 'Pasto',
-            'San Andrés' => 'San Andrés',
-            'Gainesville' => 'Gainesville',
-            'Tampa' => 'Tampa',
-            'Kissimmee' => 'Kissimmee',
-            'Orlando' => 'Orlando',
-            'Houston' => 'Houston',
-            'Renton' => 'Renton',
-            'Argentina' => 'Argentina',
-            'México' => 'México',
-            'Puerto Rico' => 'Puerto Rico',
-            'Costa Rica' => 'Costa Rica',
-        ];
+        // Cargar opciones de "ubicación" desde la base de datos
+        $this->ubicacionOptions = DB::connection('wordpress')
+            ->table('dxv_bp_xprofile_data')
+            ->where('field_id', 53)
+            ->pluck('value', 'value')
+            ->toArray();
     }
+
 
     public function updateUser()
     {
         $this->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:20',
-            'usuario' => 'required|string|max:50',
-            'etiqueta' => 'required',
-            'ubicacion' => 'required',
-            'cloud' => 'required',
-            'numero' => 'required',
-            'correo' => 'required',
-            'date' => 'required',
+            'nombre' => 'string|max:255',
+            'apellido' => 'string|max:20',
+            'usuario' => 'string|max:50',
+            'cloud' => 'nullable',
         ]);
 
         // Actualizar campos en `dxv_bp_xprofile_data` de forma directa
