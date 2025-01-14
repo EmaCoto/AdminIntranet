@@ -1,8 +1,11 @@
 <div>
     <div>
         <!-- Botón para abrir el modal -->
-        <button wire:click="$toggle('open')" class="">
+        <button wire:click="$toggle('open')" class="relative">
             <i class="fa-solid fa-bell text-[#B23B3B]"></i>
+            @if($hasUnread)
+                <span class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></span>
+            @endif
         </button>
     
         <!-- Modal de notificaciones -->

@@ -81,6 +81,7 @@ class EditUser extends Component
                     'user_id' => $this->userId,
                     'title' => 'Cambio de departamento',
                     'message' => $this->nombre . ' ha sido cambiado de departamento a: ' . $value,
+                    'is_read' => false,
                 ]);
             }
         }
