@@ -10,15 +10,9 @@ class Notification extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'type',
-        'message',
-        'is_read',
+        'user_id', 'title', 'message', 'is_read',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(UsersIntranet::class, 'user_id', 'ID');
-    }
+    
 
 }

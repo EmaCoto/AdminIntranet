@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\User;
 
 use Illuminate\Support\Facades\DB;
+use App\Models\Notification;
 use Livewire\Component;
 
 class EditUser extends Component
@@ -46,7 +47,6 @@ class EditUser extends Component
             ->toArray();
     }
 
-
     public function updateUser()
     {
         $this->validate([
@@ -72,16 +72,24 @@ class EditUser extends Component
         foreach ($fields as $field_id => $value) {
             DB::connection('wordpress')->table('dxv_bp_xprofile_data')->updateOrInsert(
                 ['user_id' => $this->userId, 'field_id' => $field_id],
-                [
-                    'value' => $value,
-                    'last_updated' => now(), // Asigna la fecha y hora actual
-                ]
+                ['value' => $value, 'last_updated' => now()]
             );
+
+            // Generar notificación si se edita el campo 50
+            if ($field_id === 50) {
+                Notification::create([
+                    'user_id' => $this->userId,
+                    'title' => 'Cambio de departamento',
+                    'message' => $this->nombre . ' ha sido cambiado de departamento a: ' . $value,
+                ]);
+            }
         }
+
         $this->dispatch('render');
         $this->reset('open');
         session()->flash('messageuser', 'Usuario actualizado correctamente');
     }
+
 
     public function render()
     {

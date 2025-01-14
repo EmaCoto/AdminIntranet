@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // No clave foránea
-            $table->string('type');
-            $table->string('message');
-            $table->boolean('is_read')->default(false);
+            $table->unsignedBigInteger('user_id'); // ID del usuario asociado
+            $table->string('title'); // Título de la notificación
+            $table->text('message')->nullable(); // Mensaje de la notificación
+            $table->boolean('is_read')->default(false); // Para identificar si se leyó
             $table->timestamps();
         });
-        
     }
-
 
     /**
      * Reverse the migrations.

@@ -16,7 +16,7 @@
                         {{ __('Panel Administrativo') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
-                        {{ __('Empleados') }}
+                        {{ __('Personal') }}
                     </x-nav-link>
                 </div>
             </div>
