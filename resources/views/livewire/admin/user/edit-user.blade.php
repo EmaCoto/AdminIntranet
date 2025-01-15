@@ -72,12 +72,6 @@
                         <input type="text" id="correo" wire:model="correo" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                         @error('correo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
-
-                    <div class="">
-                        <label for="date" class="block text-sm font-medium uppercase">Fecha de Cumpleaños</label>
-                        <input type="datetime" id="date" wire:model="date" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                        @error('date') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                    </div>
                 </div>
             </form>
 

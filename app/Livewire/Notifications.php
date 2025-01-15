@@ -8,6 +8,8 @@ use App\Models\Notification;
 class Notifications extends Component
 {
     public $open = false;
+    protected $listeners = ['render'];
+
 
     public function updatedOpen($value)
     {

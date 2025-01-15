@@ -57,9 +57,4 @@ class UsersIntranetExtendido extends Model
         return $query->where('field_id', 78);
     }
 
-    public function scopeDate($query)
-    {
-        return $query->where('field_id', 212);
-    }
-
 }
