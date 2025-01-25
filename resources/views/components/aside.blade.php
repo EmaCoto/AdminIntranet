@@ -90,6 +90,17 @@
                     <span class="ml-1">Asignacion</span>
                 </a>
             </li>
+            <div class="flex items-center text-gray-400">
+                <h1 class="text-sm font-bold">Organigramas</h1>
+                <div class="flex-1 border-t border-gray-400 ml-4"></div>
+            </div>
+            <li>
+                <a href="{{ route('organigrama') }}" class="flex items-center p-2 rounded-lg {{ request()->routeIs('asignacion') ? 'bg-gray-100 text-gray-600 scale-110' : 'hover:bg-gray-100 hover:scale-110 hover:text-gray-600'}} group active:text-gray-500 transition duration-500">
+                    <i class="fa-solid fa-thumbtack flex-shrink-0 w-5 h-5 {{ request()->routeIs('asignacion') ? 'text-gray-500' : 'group-active:text-blue-500' }}"></i>
+                    <span class="ml-1">Organigrama</span>
+                </a>
+            </li>
+            
         </ul>
     </div>
 </aside>
