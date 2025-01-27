@@ -3,7 +3,7 @@
         <i class="fa-solid fa-pen-to-square"></i>
     </button>
 
-    <x-dialog-modal maxWidth="5xl" wire:model='open'>
+    <x-dialog-modal maxWidth="3xl" wire:model='open'>
         <x-slot name='title'>
             <h1 class="bg-[#11163D] w-[40%] text-white text-xl p-2 rounded-l-lg rounded-r-full uppercase">Editar Compañero</h1>
         </x-slot>
@@ -93,7 +93,7 @@
                     </svg>
                 </span>
                 <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-200"></span>
-                <span class="relative text-base font-semibold">Editar</span>
+                <span class="relative text-base font-semibold">Guardar</span>
             </button>
             {{-- botón cerrar modal --}}
             <x-close />

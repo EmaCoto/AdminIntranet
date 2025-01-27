@@ -14,6 +14,7 @@ use App\Livewire\Admin\Servihuellas\Servihuellas;
 use App\Livewire\Admin\Traduccion\Traduccion;
 use App\Livewire\Admin\Redaccion\Redaccion;
 use App\Livewire\Admin\Organigramas\Organigrama;
+use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\ManejoDeDocumentos\ManejoDeDocumentos;
 use App\Livewire\Admin\PermisosDeTrabajo\PermisosDeTrabajo;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,4 @@ Route::get('admin/permisos-de-trabajo', PermisosDeTrabajo::class)->name('permiso
 Route::get('admin/cortes', Cortes::class)->name('cortes');
 Route::get('admin/asignacion', Asignacion::class)->name('asignacion');
 Route::get('admin/organigrama', Organigrama::class)->name('organigrama');
+Route::get('admin/organigramas', OrgranigramaBolitas::class)->name('organigramas');

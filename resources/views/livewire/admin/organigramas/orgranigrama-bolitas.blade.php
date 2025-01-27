@@ -18,19 +18,22 @@
             </div>
     
             {{-- Usuarios en este nivel --}}
-            <div class="grid grid-cols-4 justify-center gap-8 gap-y-12">
+            <div class="grid grid-cols-5 justify-center gap-8">
                 @foreach ($group as $user)
                 <div>
-                    <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[235px] h-[62px] p-2 relative shadow-lg border">
+                    <div class="flex flex-col items-center justify-around w-[200px] h-44 p-2 bg-white rounded-md shadow-md">
                         <!-- Imagen del usuario -->
-                        <x-photo-showuser-organi :user="$user"/>
-                        <!-- Información del usuario -->
-                        <div class="ml-10 w-full">
-                            <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
+                        <div class="relative w-16 h-16 rounded-full mb-2">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-16 h-16 rounded-full">
+                            <!-- Bordes personalizados -->
+                            <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-l-[#2973B2] border-t-[#2973B2] border-b-[#2973B2] border-r-white pointer-events-none"></div>
                         </div>
-                    </div>
-                    <div class="flex justify-end mr-5 -translate-y-3">
-                        <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize text-center rounded-md z-40">{{ $user->job_title }}</p>
+                        <!-- Información del usuario -->
+                        <div class="w-full text-center">
+                            <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }}</p>
+                            <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->last_name }}</p>
+                        </div>
+                        <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize rounded-md">{{ $user->job_title }}</p>
                     </div>
                 </div>
                 @endforeach
@@ -47,3 +50,4 @@
         @endforelse
     </div>
 </x-content-organi>
+

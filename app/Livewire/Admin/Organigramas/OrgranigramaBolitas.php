@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Organigramas;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Organigrama extends Component
+class OrgranigramaBolitas extends Component
 {
     protected $listeners = ['render'];
 
@@ -34,7 +34,6 @@ class Organigrama extends Component
             ->groupBy('job_title'); // Agrupar por `job_title`.
 
         $jobTitles = array_keys($jobOrder); // Extraer las etiquetas de job_title en el orden definido.
-
-        return view('livewire.admin.organigramas.organigrama', compact('users', 'jobTitles'));
+        return view('livewire.admin.organigramas.orgranigrama-bolitas', compact('users', 'jobTitles'));
     }
 }
