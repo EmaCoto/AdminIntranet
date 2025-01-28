@@ -1,38 +1,185 @@
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="p-8">
     <!-- Estadísticas Resumidas -->
-    <div class="grid grid-cols-1 gap-4">
-        <div class="p-4 bg-white shadow rounded-lg">
+    <div class="grid grid-cols-4 gap-6 gap-x-16">
+        <div class="p-4 bg-gradient-to-r from-[#82bbe3] to-[#139DFF] shadow rounded-lg text-white">
             <h3 class="text-lg font-bold">Total de Empleados</h3>
             <p class="text-2xl">{{ $totalEmployees }}</p>
         </div>
 
-        <div class="p-4 bg-white shadow rounded-lg">
-            <h3 class="text-lg font-bold">Empleados Nuevos (Últimos 30 días)</h3>
+        <div class="p-4 bg-gradient-to-r from-[#3dba90] to-[#00E396] shadow rounded-lg text-white">
+            <h3 class="text-lg font-bold">Nuevos (Últimos 30 días)</h3>
             <p class="text-2xl">{{ $newEmployees }}</p>
         </div>
 
-        <div class="p-4 bg-white shadow rounded-lg">
+        <div class="p-4 bg-gradient-to-r from-[#f8bb7a] to-[#FD818D] shadow rounded-lg text-white">
             <h3 class="text-lg font-bold">Empleados Retirados</h3>
             <p class="text-2xl">{{ $retiredEmployees }}</p>
         </div>
 
-        <div class="p-4 bg-white shadow rounded-lg">
+        <div class="p-4 bg-gradient-to-r from-cyan-500 to-blue-500 shadow rounded-lg text-white">
             <h3 class="text-lg font-bold">Departamentos</h3>
             <p class="text-2xl">{{ $totalDepartments }}</p>
-        </div>
-
-        <div class="p-4 bg-white shadow rounded-lg">
-            <h3 class="text-lg font-bold">Cambios en Departamentos</h3>
-            <p class="text-2xl">{{ $jobTitleChanges }}</p>
         </div>
     </div>
 
     <!-- Gráfica -->
-    <div class="p-4 bg-white shadow rounded-lg">
-        <h3 class="text-lg font-bold text-center mb-4">Estadísticas de Empleados</h3>
-        <div id="chart"></div>
+    <div class="grid grid-cols-2 gap-6 my-6">
+        <div class="p-4 shadow rounded-lg">
+            <h3 class="text-lg font-bold text-center mb-4">Estadísticas de Empleados</h3>
+            <div id="chart"></div>
+        </div>
+        <div class="p-4 shadow rounded-lg">
+            <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
+            <div id="chart-2"></div>
+        </div>
+        <div class="p-4 shadow rounded-lg">
+            <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
+            <div id="chart-3"></div>
+        </div>
     </div>
+    
 
+    <script>
+
+        /* Primer Gráfica*/
+        var totalEmployees = @json($totalEmployees);
+        var newEmployees = @json($newEmployees);
+        var retiredEmployees = @json($retiredEmployees);
+        var totalDepartments = @json($totalDepartments);
+        var jobTitleChanges = @json($jobTitleChanges);
+
+
+        var options = {
+        series: [
+            {
+            name: 'Total Empleados',
+            data: [totalEmployees]
+            },
+            {
+            name: 'Empleados Nuevos',
+            data: [newEmployees]
+            },
+            {
+            name: 'Empleados Retirados',
+            data: [retiredEmployees]
+            },
+            {
+            name: 'Departamentos',
+            data: [totalDepartments]
+            },
+            {
+            name: 'Cambios en Departamentos',
+            data: [jobTitleChanges]
+            }
+        ],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            borderRadius: 5
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: ['Total']
+        },
+        yaxis: {
+            title: {
+            text: 'Cantidad'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+            formatter: function (val) {
+                return val + " empleados";
+            }
+            }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+
+    <script>
+        /* Segunda Gráfica*/
+        var options = {
+          series: [44, 55, 67, 83],
+          chart: {
+          height: 350,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            dataLabels: {
+              name: {
+                fontSize: '22px',
+              },
+              value: {
+                fontSize: '16px',
+              },
+              total: {
+                show: true,
+                label: 'Total',
+                formatter: function (w) {
+                  // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                  return 249
+                }
+              }
+            }
+          }
+        },
+        labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart-2"), options);
+        chart.render();
+      
+    </script>
+
+    <script>
+        /* Tercer Gráfica*/
+        var options = {
+            series: [{
+            name: 'series1',
+            data: [31, 40, 28, 51, 42, 109, 100]
+            }, {
+            name: 'series2',
+            data: [11, 32, 45, 32, 34, 52, 41]
+            }],
+            chart: {
+            height: 350,
+            type: 'area'
+            },
+            dataLabels: {
+            enabled: false
+            },
+            stroke: {
+            curve: 'smooth'
+            },
+            xaxis: {
+            type: 'datetime',
+            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            },
+            tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+            },
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart-3"), options);
+            chart.render();
+    </script>
 </div>
 
 

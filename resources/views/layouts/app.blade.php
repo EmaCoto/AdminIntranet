@@ -14,6 +14,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
@@ -22,7 +23,7 @@
     <body class="font-sans antialiased overflow-hidden">
         <x-banner />
 
-        <div class="min-h-screen bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#1c2464]">
+        <div class="h-[100vh] bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#1c2464] content-scroll">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

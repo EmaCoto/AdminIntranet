@@ -37,11 +37,6 @@ class Grafico extends Component
             ->where('field_id', 50)
             ->distinct('value')
             ->count('value');
-
-        // Cambios en el campo 50
-        // $this->jobTitleChanges = DB::connection('wordpress')
-        //     ->table('job_title_changes') // Asegúrate de crear esta tabla
-        //     ->count();
     }
 
     public function render()
