@@ -1,6 +1,6 @@
 <x-content>
 
-    <h1 class="font-extrabold text-center text-gray-50 uppercase text-4xl mt-3">información sobre Hurus</h1>
+    <h1 class="font-extrabold text-center text-slate-700 uppercase text-4xl mt-3">información sobre Hurus</h1>
     <div class="flex items-center mb-5">
         <div class="flex-grow border-t border-gray-300"></div>
         <span class="mx-4 text-xl font-bold text-[#B33031]">Exclusiva</span>

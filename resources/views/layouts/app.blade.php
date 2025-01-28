@@ -19,7 +19,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased overflow-hidden">
         <x-banner />
 
         <div class="min-h-screen bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#1c2464]">
@@ -43,6 +43,32 @@
         @stack('modals')
 
         @livewireScripts
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggles = document.querySelectorAll('[data-toggle]');
+          
+                toggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const targetId = toggle.getAttribute('data-target');
+                        const list = document.getElementById(targetId);
+                        const icon = toggle.querySelector('.arrow-icon');
+          
+                        // Toggle visibility and apply smooth height transition
+                        if (list.classList.contains('hidden')) {
+                            list.classList.remove('hidden');
+                            list.classList.add('visible');
+                            icon.classList.add('up');
+                            toggle.classList.add('active');
+                        } else {
+                            list.classList.add('hidden');
+                            list.classList.remove('visible');
+                            icon.classList.remove('up');
+                            toggle.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        </script>
+        
     </body>
 </html>

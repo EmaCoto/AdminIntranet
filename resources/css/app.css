@@ -103,3 +103,42 @@
     -ms-overflow-style: none;  /* Oculta la barra de desplazamiento en IE y Edge */
     scrollbar-width: none;     /* Oculta la barra de desplazamiento en Firefox */
 }
+
+/* ASIDE */
+
+
+  /* Estilos generales */  
+  #nav-link, #button-link {
+      color: #314158;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  #nav-link:hover, #button-link:hover {
+      background-color: #e5e5e5;
+      color: black;
+  }
+  #nav-link.active, #button-link.active {
+      background-color: #d4d4d4;
+  }
+  .ul-nav {
+      overflow: hidden;
+      transition: height 0.3s ease;
+  }
+  .ul-nav.hidden {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+  }
+  .ul-nav.visible {
+      height: auto;
+      opacity: 1;
+      pointer-events: auto;
+  }
+  .arrow-icon {
+      transition: transform 0.3s ease;
+  }
+  .arrow-icon.up {
+      transform: rotate(180deg);
+  }

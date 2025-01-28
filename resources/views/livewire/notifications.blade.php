@@ -1,40 +1,33 @@
-<div>
-    <div>
-        <!-- Botón para abrir el modal -->
-        <button wire:click="$toggle('open')" class="relative">
-            <i class="fa-solid fa-bell text-[#B23B3B]"></i>
-            @if($hasUnread)
-                <span class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full"></span>
+<div class="relative">
+    <!-- Botón de la campanita -->
+    <button wire:click="$toggle('open')" class="relative focus:outline-none">
+        <i class="fa-regular fa-bell text-gray-500 text-xl"></i>
+        @if($hasUnread)
+            <span class="absolute animate-ping top-0 right-0 w-2 h-2 bg-[#B23B3B] rounded-full"></span>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-[#B23B3B] rounded-full"></span>
+        @endif
+    </button>
+
+    <!-- Dropdown de notificaciones -->
+    <div x-data="{ open: @entangle('open') }" x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-72 bg-white border rounded-lg shadow-lg z-50" x-cloak>
+        <div class="p-2 font-bold bg-[#fafbfd] border-b text-sm h-10 items-center text-gray-400">Notificaciones</div>
+        <div class="p-4 max-h-80 overflow-y-auto">
+            @if($notifications->isNotEmpty())
+                <ul class="space-y-4">
+                    @foreach($notifications as $notification)
+                        <li class="text-sm border-b">
+                            <h2 class="font-bold text-[#B23B3B]">{{ $notification->title }}</h2>
+                            <p class="text-gray-600">{{ $notification->message }}</p>
+                            <span class="text-gray-400">{{ $notification->created_at->diffForHumans() }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="text-gray-500">No hay notificaciones disponibles.</p>
             @endif
-        </button>
-    
-        <!-- Modal de notificaciones -->
-        <x-dialog-modal maxWidth="3xl" wire:model='open'>
-            <x-slot name='title'>
-                <h1 class="bg-[#B23B3B] w-[30%] text-white text-xl p-2 rounded-l-lg rounded-r-full uppercase">Notificaciones</h1>
-            </x-slot>
-            <x-slot name='content'>
-                @if($notifications->isNotEmpty())
-                    <ul class="space-y-4">
-                        @foreach($notifications as $notification)
-                            <li class="p-4 bg-gray-100 rounded-md shadow-md">
-                                <h2 class="font-bold text-lg">{{ $notification->title }}</h2>
-                                <p class="text-gray-600">{{ $notification->message }}</p>
-                                <span class="text-sm text-gray-400">{{ $notification->created_at->diffForHumans() }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-gray-500">No hay notificaciones disponibles.</p>
-                @endif
-            </x-slot>
-            <x-slot name='footer'>
-                <div wire:loading class="px-8 mx-8 py-2.5">
-                    <i class="fa-solid fa-spinner animate-spin"></i>
-                </div>
-                <!-- botón cerrar modal -->
-                <x-close />
-            </x-slot>
-        </x-dialog-modal>
+        </div>
+        <div class="p-2 text-right border-t bg-[#fafbfd]">
+            <button @click="open = false" class="text-sm text-[#152B59]">Cerrar</button>
+        </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="flex w-full bg-[#11163D]">
+<div class="flex w-full bg-[#fafbfd]">
     <x-aside />
     <div class="w-[85%] p-2 border-l border-gray-200">
         <div class="flex justify-between items-center p-2">
