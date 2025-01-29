@@ -57,4 +57,24 @@ class UsersIntranetExtendido extends Model
         return $query->where('field_id', 78);
     }
 
+    public function scopeCorreoPersonal($query)
+    {
+        return $query->where('field_id', 302);
+    }
+
+    public function scopePais($query)
+    {
+        return $query->where('field_id', 288);
+    }
+
+    public function scopeFechaIngreso($query)
+    {
+        return $query->where('field_id', 324);
+    }
+
+    public function scopeModalidad($query)
+    {
+        return $query->where('field_id', 325);
+    }
+
 }

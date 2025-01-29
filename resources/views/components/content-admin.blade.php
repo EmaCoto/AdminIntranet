@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="mt-4 w-full flex justify-end">
-            <div wire:loading class="text-white">
+            <div wire:loading>
                 <p>procesando...</p>
             </div>
             <div wire:loading.remove>

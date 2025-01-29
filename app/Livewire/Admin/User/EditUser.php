@@ -10,9 +10,11 @@ class EditUser extends Component
 {
     public $open = false;
     public $userId, $user;
-    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $cloud;
+    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad;
     public $etiquetaOptions = [];
     public $ubicacionOptions = [];
+    public $paisOptions = [];
+    public $modalidadOptions = [];
 
     public function mount($userId)
     {
@@ -30,6 +32,9 @@ class EditUser extends Component
         $this->cloud = optional($profileData->where('field_id', 77)->first())->value;
         $this->numero = optional($profileData->where('field_id', 76)->first())->value;
         $this->correo = optional($profileData->where('field_id', 78)->first())->value;
+        $this->personalCorreo = optional($profileData->where('field_id', 302)->first())->value;
+        $this->pais = optional($profileData->where('field_id', 288)->first())->value;
+        $this->modalidad = optional($profileData->where('field_id', 325)->first())->value;
 
         // Cargar opciones de "etiqueta" desde la base de datos
         $this->etiquetaOptions = DB::connection('wordpress')
@@ -44,16 +49,28 @@ class EditUser extends Component
             ->where('field_id', 53)
             ->pluck('value', 'value')
             ->toArray();
+
+        $this->paisOptions = DB::connection('wordpress')
+        ->table('dxv_bp_xprofile_data')
+        ->where('field_id', 288)
+        ->pluck('value', 'value')
+        ->toArray();
+
+        $this->modalidadOptions = DB::connection('wordpress')
+        ->table('dxv_bp_xprofile_data')
+        ->where('field_id', 325)
+        ->pluck('value', 'value')
+        ->toArray();
     }
 
     public function updateUser()
     {
-        $this->validate([
-            'nombre' => 'string|max:255',
-            'apellido' => 'string|max:20',
-            'usuario' => 'string|max:50',
-            'cloud' => 'nullable',
-        ]);
+        // $this->validate([
+        //     'nombre' => 'string|max:255',
+        //     'apellido' => 'string|max:20',
+        //     'usuario' => 'string|max:50',
+        //     'cloud' => 'nullable',
+        // ]);
 
         // Actualizar campos en `dxv_bp_xprofile_data` de forma directa
         $fields = [
@@ -65,6 +82,7 @@ class EditUser extends Component
             77 => $this->cloud,
             76 => $this->numero,
             78 => $this->correo,
+            302 => $this->personalCorreo,
         ];
 
         foreach ($fields as $field_id => $value) {

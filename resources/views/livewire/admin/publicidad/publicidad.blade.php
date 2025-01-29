@@ -2,10 +2,10 @@
     <div id="userList" class="grid grid-cols-5">
         {{-- Mostrar usuarios --}}
         @forelse ($users as $user)
-            <ul class="user-item h-48 rounded-lg hover:shadow-xl hover:bg-gray-400 m-1 flex flex-col justify-between py-1 px-[6px]">
+            <ul class="user-item h-48 rounded-lg hover:shadow-xl hover:bg-[#fafbfd] m-1 flex flex-col justify-between py-1 px-[6px]">
                 <li class="flex flex-col items-center">
                     <x-photo-showuser :user="$user"/>
-                    <div class="bg-white p-2 rounded-t-lg shadow-lg text-center w-full">
+                    <div class="bg-white p-2 rounded-t-lg shadow-lg text-center w-full border">
                         @if($user->first_name || $user->last_name || $user->job_title)
                             <div class="mt-4">
                                 <p class="user-name font-bold text-sm block truncate">{{ $user->first_name }} {{ $user->last_name }}</p>
@@ -14,7 +14,7 @@
                         @endif
                     </div>
                 </li>
-                <div class="h-full items-end border-t-2">
+                <div class="h-full items-end">
                     <div class="grid grid-cols-2">
                         <div class="w-full border-l">
                             @livewire('admin.user.info-user', ['userId' => $user->ID], key('info-user-' . $user->ID . '-' . $loop->index))
