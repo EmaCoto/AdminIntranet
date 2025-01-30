@@ -51,7 +51,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ms-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-button>
             </div>
             @if (session()->has('message'))

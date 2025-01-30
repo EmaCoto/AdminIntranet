@@ -10,12 +10,16 @@ class UsersIntranetExtendido extends Model
     use HasFactory;
 
     protected $connection = 'wordpress';
-
     protected $table = 'dxv_bp_xprofile_data';
     protected $primaryKey = 'id'; // Asegúrate de que "ID" sea la clave primaria
     public $timestamps = false;
 
-    protected $fillable = ['user_id', 'field_id', 'value'];
+    protected $fillable = [
+        'field_id',
+        'user_id',
+        'value',
+        'last_updated',
+    ];
 
     public function scopeNombre($query)
     {

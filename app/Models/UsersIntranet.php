@@ -9,8 +9,8 @@ class UsersIntranet extends Model
 {
 
     use HasFactory;
-    protected $connection = 'wordpress';
 
+    protected $connection = 'wordpress';
     protected $table = 'dxv_users';
     protected $primaryKey = 'ID'; // Asegúrate de que "ID" sea la clave primaria
     public $timestamps = false;
@@ -34,5 +34,11 @@ class UsersIntranet extends Model
     public function profileData()
     {
         return $this->hasMany(UsersIntranetExtendido::class, 'user_id', 'ID');
+    }
+
+    // Relación con la tabla `dxv_usermeta` para manejar información adicional
+    public function meta()
+    {
+        return $this->hasMany(UsersIntranetMeta::class, 'user_id', 'ID');
     }
 }
