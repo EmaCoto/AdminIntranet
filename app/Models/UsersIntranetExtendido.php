@@ -33,27 +33,12 @@ class UsersIntranetExtendido extends Model
 
     public function scopeUsuario($query)
     {
-        return $query->where('field_id', 50);
+        return $query->where('field_id', 3);
     }
 
-    public function scopeEtiqueta($query)
+    public function scopeOutlook($query)
     {
-        return $query->where('field_id', 50);
-    }
-
-    public function scopeUbicacion($query)
-    {
-        return $query->where('field_id', 53);
-    }
-
-    public function scopeCloud($query)
-    {
-        return $query->where('field_id', 77);
-    }
-
-    public function scopeNumero($query)
-    {
-        return $query->where('field_id', 76);
+        return $query->where('field_id', 558);
     }
 
     public function scopeCorreo($query)
@@ -66,9 +51,44 @@ class UsersIntranetExtendido extends Model
         return $query->where('field_id', 302);
     }
 
+    public function scopeWhatsAppCorporativo($query)
+    {
+        return $query->where('field_id', 559);
+    }
+
+    public function scopeWhatsApp($query)
+    {
+        return $query->where('field_id', 76);
+    }
+
+    public function scopeCloud($query)
+    {
+        return $query->where('field_id', 77);
+    }
+
     public function scopePais($query)
     {
         return $query->where('field_id', 288);
+    }
+
+    public function scopeUbicacion($query)
+    {
+        return $query->where('field_id', 53);
+    }
+
+    public function scopeArea($query)
+    {
+        return $query->where('field_id', 760);
+    }
+
+    public function scopeEtiqueta($query)
+    {
+        return $query->where('field_id', 50);
+    }
+
+    public function scopeNacimiento($query)
+    {
+        return $query->where('field_id', 212);
     }
 
     public function scopeFechaIngreso($query)

@@ -34,7 +34,13 @@
                     </div>
 
                     <div class="">
-                        <label for="correo" class="block text-sm font-medium uppercase">Correo Corporativo</label>
+                        <label for="outlook" class="block text-sm font-medium uppercase">Correo Outlook Corporativo</label>
+                        <input type="text" id="outlook" wire:model="outlook" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                        @error('outlook') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="">
+                        <label for="correo" class="block text-sm font-medium uppercase">Correo Gmail Corporativo</label>
                         <input type="text" id="correo" wire:model="correo" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                         @error('correo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
@@ -43,6 +49,12 @@
                         <label for="personalCorreo" class="block text-sm font-medium uppercase">Correo Personal</label>
                         <input type="text" id="personalCorreo" wire:model="personalCorreo" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                         @error('personalCorreo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="">
+                        <label for="whatsAppCorporativo" class="block text-sm font-medium uppercase">Número de WhatsApp Corporativo	</label>
+                        <input type="text" id="whatsAppCorporativo" wire:model="whatsAppCorporativo" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                        @error('whatsAppCorporativo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="">
@@ -58,7 +70,7 @@
                     </div>
 
                     <div class="">
-                        <label for="pais" class="block text-sm font-medium uppercase">País</label>
+                        <label for="pais" class="block text-sm font-medium uppercase">País de residencia</label>
                         <select name="pais" id="pais" wire:model="pais" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                             <option value="" class="text-gray-500">Selecciona una ubicación</option>
                             @foreach($paisOptions as $value => $label)
@@ -69,7 +81,7 @@
                     </div>
 
                     <div class="">
-                        <label for="ubicacion" class="block text-sm font-medium uppercase">Cuidad</label>
+                        <label for="ubicacion" class="block text-sm font-medium uppercase">Oficina a la que Perteneces</label>
                         <select name="ubicacion" id="ubicacion" wire:model="ubicacion" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                             <option value="" class="text-gray-500">Selecciona una ubicación</option>
                             @foreach($ubicacionOptions as $value => $label)
@@ -77,6 +89,17 @@
                             @endforeach
                         </select>
                         @error('ubicacion') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="">
+                        <label for="area" class="block text-sm font-medium uppercase">Área a la que pertenece</label>
+                        <select name="area" id="area" wire:model="area" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                            <option value="" class="text-gray-500">Selecciona una ubicación</option>
+                            @foreach($areaOptions as $value => $label)
+                                <option value="{{ $value }}" {{ $area == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        @error('area') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="">
@@ -91,7 +114,7 @@
                     </div>
 
                     <div class="">
-                        <label for="modalidad" class="block text-sm font-medium uppercase">Departamento</label>
+                        <label for="modalidad" class="block text-sm font-medium uppercase">Modalidad</label>
                         <select name="modalidad" id="modalidad" wire:model="modalidad" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                             <option value="" class="text-gray-500">Selecciona una modalidad</option>
                             @foreach($modalidadOptions as $value => $label)
@@ -100,6 +123,18 @@
                         </select>
                         @error('modalidad') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
+
+                    <div class="">
+                        <label for="perfil" class="block text-sm font-medium uppercase">Tipo de Perfil</label>
+                        <select name="perfil" id="perfil" wire:model="perfil" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                            <option value="">Selecciona un tipo de perfil</option>
+                            @foreach($perfilOptions as $id => $name)
+                                <option value="{{ $id }}" {{ $perfil == $id ? 'selected' : '' }}>{{ $name }}</option>
+                            @endforeach
+                        </select>
+                        @error('perfil') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    
                 </div>
             </form>
 
