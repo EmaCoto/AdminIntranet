@@ -20,15 +20,15 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased overflow-hidden">
+    <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="h-[100vh] bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#1c2464] content-scroll">
+        <div class="bg-[#F1F3F5]">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

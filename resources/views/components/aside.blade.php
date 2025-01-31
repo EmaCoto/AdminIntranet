@@ -1,4 +1,4 @@
-<aside id="separator-sidebar" class="w-[18%] h-[89.9vh] transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="separator-sidebar" class="w-[18%] transition-transform -translate-x-full sm:translate-x-0 z-20 border rounded-t-lg ml-10 -mt-12 bg-white" aria-label="Sidebar">
     <div class="h-full p-1 overflow-y-auto content-scroll">
         <div class="py-3 px-1">
             <span class="uppercase text-slate-400 text-xs font-bold">Navegación</span>

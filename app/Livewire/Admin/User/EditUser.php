@@ -11,35 +11,31 @@ class EditUser extends Component
     public $open = false;
     public $userId, $user;
     public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area;
-    public $etiquetaOptions = [];
-    public $ubicacionOptions = [];
-    public $paisOptions = [];
-    public $modalidadOptions = [];
-    public $areaOptions = []; 
-    public $perfilOptions = [];
+    public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [];
 
     public function mount($userId)
     {
         $this->userId = $userId;
-
-        // Cargar datos del usuario
         $this->user = DB::connection('wordpress')->table('dxv_users')->where('ID', $this->userId)->first();
-        $profileData = DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $this->userId)->get();
 
-        $this->nombre = optional($profileData->where('field_id', 1)->first())->value;
-        $this->apellido = optional($profileData->where('field_id', 2)->first())->value;
-        $this->usuario = optional($profileData->where('field_id', 3)->first())->value;
-        $this->outlook  = optional($profileData->where('field_id', 558)->first())->value;
-        $this->correo = optional($profileData->where('field_id', 78)->first())->value;
-        $this->personalCorreo = optional($profileData->where('field_id', 302)->first())->value;
-        $this->whatsAppCorporativo = optional($profileData->where('field_id', 559)->first())->value;
-        $this->numero = optional($profileData->where('field_id', 76)->first())->value;
-        $this->cloud = optional($profileData->where('field_id', 77)->first())->value;
-        $this->pais = optional($profileData->where('field_id', 288)->first())->value;
-        $this->ubicacion = optional($profileData->where('field_id', 53)->first())->value;
-        $this->area = optional($profileData->where('field_id', 760)->first())->value;
-        $this->etiqueta = optional($profileData->where('field_id', 50)->first())->value;
-        $this->modalidad = optional($profileData->where('field_id', 325)->first())->value;
+        $profileData = DB::connection('wordpress')->table('dxv_bp_xprofile_data')
+            ->where('user_id', $this->userId)
+            ->pluck('value', 'field_id');
+
+        $this->nombre = $profileData[1] ?? null;
+        $this->apellido = $profileData[2] ?? null;
+        $this->usuario = $profileData[3] ?? null;
+        $this->outlook = $profileData[558] ?? null;
+        $this->correo = $profileData[78] ?? null;
+        $this->personalCorreo = $profileData[302] ?? null;
+        $this->whatsAppCorporativo = $profileData[559] ?? null;
+        $this->numero = $profileData[76] ?? null;
+        $this->cloud = $profileData[77] ?? null;
+        $this->pais = $profileData[288] ?? null;
+        $this->ubicacion = $profileData[53] ?? null;
+        $this->area = $profileData[760] ?? null;
+        $this->etiqueta = $profileData[50] ?? null;
+        $this->modalidad = $profileData[325] ?? null;
 
         // Cargar opciones de "etiqueta" desde la base de datos
         $this->etiquetaOptions = DB::connection('wordpress')
@@ -73,42 +69,38 @@ class EditUser extends Component
         ->pluck('value', 'value')
         ->toArray();
 
-            // ✅ Filtrar solo los términos que sean "tipo de perfil"
         $this->perfilOptions = DB::connection('wordpress')
             ->table('dxv_terms as t')
             ->join('dxv_term_taxonomy as tt', 't.term_id', '=', 'tt.term_id')
-            ->where('tt.taxonomy', 'bp_member_type') // 🔹 Asegúrate de que esta sea la taxonomía correcta en tu BD
+            ->where('tt.taxonomy', 'bp_member_type')
             ->pluck('t.name', 't.term_id')
             ->toArray();
 
-        // ✅ Obtener el perfil actual del usuario desde `dxv_term_relationships`
         $this->perfil = DB::connection('wordpress')
             ->table('dxv_term_relationships as tr')
             ->join('dxv_term_taxonomy as tt', 'tr.term_taxonomy_id', '=', 'tt.term_taxonomy_id')
             ->where('tr.object_id', $this->userId)
-            ->where('tt.taxonomy', 'bp_member_type') // 🔹 Filtra solo los términos de tipo de perfil
-            ->value('tt.term_id'); // ✅ Obtiene el ID real del término en lugar de `term_taxonomy_id`
-
-        // ✅ Manejar el caso en que el usuario no tenga tipo de perfil asignado
-        if (!$this->perfil) {
-            $this->perfil = array_key_first($this->perfilOptions); // 🔹 Seleccionar el primer tipo de perfil por defecto
-        }
+            ->where('tt.taxonomy', 'bp_member_type')
+            ->value('tt.term_id') ?? array_key_first($this->perfilOptions);
     }
 
     public function updateUser()
     {
-        
-        // Actualizar campos en `dxv_bp_xprofile_data` de forma directa
         $fields = [
             1 => $this->nombre,
             2 => $this->apellido,
             3 => $this->usuario,
-            50 => $this->etiqueta,
-            53 => $this->ubicacion,
-            77 => $this->cloud,
-            76 => $this->numero,
+            558 => $this->outlook,
             78 => $this->correo,
             302 => $this->personalCorreo,
+            559 => $this->whatsAppCorporativo,
+            76 => $this->numero,
+            77 => $this->cloud,
+            288 => $this->pais,
+            53 => $this->ubicacion,
+            760 => $this->area,
+            50 => $this->etiqueta,
+            325 => $this->modalidad,
         ];
 
         foreach ($fields as $field_id => $value) {
@@ -117,18 +109,16 @@ class EditUser extends Component
                 ['value' => $value, 'last_updated' => now()]
             );
 
-            // Generar notificación si se edita el campo 50
             if ($field_id === 50) {
                 Notification::create([
                     'user_id' => $this->userId,
                     'title' => 'Cambio de departamento',
-                    'message' => $this->nombre . ' ha sido cambiado de departamento a: ' . $value,
+                    'message' => "{$this->nombre} ha sido cambiado de departamento a: {$value}",
                     'is_read' => false,
                 ]);
             }
         }
 
-         // ✅ ACTUALIZAR EL TIPO DE PERFIL EN `dxv_term_relationships`
         DB::connection('wordpress')->table('dxv_term_relationships')
             ->updateOrInsert(
                 ['object_id' => $this->userId],
@@ -136,8 +126,7 @@ class EditUser extends Component
                     ->table('dxv_term_taxonomy')
                     ->where('term_id', $this->perfil)
                     ->where('taxonomy', 'bp_member_type')
-                    ->value('term_taxonomy_id')
-                ]
+                    ->value('term_taxonomy_id')]
             );
 
         $this->dispatch('render');
@@ -145,15 +134,14 @@ class EditUser extends Component
         session()->flash('messageuser', 'Usuario actualizado correctamente');
     }
 
-
     public function render()
     {
         return view('livewire.admin.user.edit-user', [
-            'etiquetaOptions' => $this->etiquetaOptions, 
+            'etiquetaOptions' => $this->etiquetaOptions,
             'ubicacionOptions' => $this->ubicacionOptions,
             'modalidadOptions' => $this->modalidadOptions,
             'paisOptions' => $this->paisOptions,
-            'perfilOptions' => $this->perfilOptions
+            'perfilOptions' => $this->perfilOptions,
         ]);
     }
 }
