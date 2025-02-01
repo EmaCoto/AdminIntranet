@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Profile Settings') }}
-        </h2>
+        <div class="flex items-center gap-3">
+            <a href="{{ route('dashboard') }}" class="px-3 py-1 text-white text-xl font-semibold hover:shadow-md rounded-lg hover:bg-gradient-to-b from-[#2973B2] to-[#152B59]"><i class="fa-solid fa-arrow-left-long mr-2 h-full"></i>Volver</a>
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                {{ __('Profile Settings') }}
+            </h2>
+        </div>
     </x-slot>
 
     <div>

@@ -1,4 +1,4 @@
-<aside id="separator-sidebar" class="w-[18%] transition-transform -translate-x-full sm:translate-x-0 z-20 border rounded-t-lg ml-10 -mt-12 bg-white" aria-label="Sidebar">
+<aside id="separator-sidebar" class="w-[242px] transition-transform -translate-x-full sm:translate-x-0 z-20 border rounded-t-lg ml-10 -mt-12 bg-white" aria-label="Sidebar">
     <div class="h-full p-1 overflow-y-auto content-scroll">
         <div class="my-6">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -19,6 +19,18 @@
         <div class="py-3 px-1">
             <span class="uppercase text-slate-400 text-xs font-bold">Navegación</span>
         </div>
+
+        <!-- Nuevo Registro -->
+        <section class="mb-1">
+            <ul class="font-medium ul-nav">
+                <li>
+                    <a href="{{ route('dashboard') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        <i class="fa-solid fa-chart-column w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
         
         <!-- Nuevo Registro -->
         <section class="mb-1">
@@ -64,18 +76,29 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                <button data-toggle="menu" data-target="organigramas-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
-                    <span class="flex items-center">
-                        <img src="{{ asset('img/icon/git-merge.svg') }}" alt="" class="w-5 h-5">
-                        <span class="ml-3">Organigramas</span>
-                    </span>
-                    <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
-                </button>
+                    <button data-toggle="menu" data-target="organigramas-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full">
+                        <span class="flex items-center">
+                            <img src="{{ asset('img/icon/git-merge.svg') }}" alt="" class="w-5 h-5">
+                            <span class="ml-3">Organigramas</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
+                    </button>
+                    <ul id="organigramas-list" class="hidden ml-5 py-1">
+                        <li>
+                            <button data-toggle="menu" data-target="organigramas-listas" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full">
+                                <span class="flex items-center">
+                                    <img src="{{ asset('img/icon/git-merge.svg') }}" alt="" class="w-5 h-5">
+                                    <span class="ml-3">Organigrama</span>
+                                </span>
+                                <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
+                            </button>
+                            <ul id="organigramas-listas" class="hidden py-1 ul-nav">
+                                <li><a href="{{ route('organigrama') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigrama') ? 'active' : '' }}">Organigrama 1</a></li>
+                                <li><a href="{{ route('organigramas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigramas') ? 'active' : '' }}">Organigrama 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-                <ul id="organigramas-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('organigrama') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigrama') ? 'active' : '' }}">Organigrama 1</a></li>
-                    <li><a href="{{ route('organigramas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigramas') ? 'active' : '' }}">Organigrama 2</a></li>
-                </ul>
             </ul>
         </section>
 
@@ -118,26 +141,6 @@
                     <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Notes</a></li>
                     <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">storage</a></li>
                     <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Calendar</a></li>
-                </ul>
-            </ul>
-        </section>
-
-        <!-- Payment -->
-        <section class="mb-1">
-            <ul class="font-medium ul-nav">
-                <li>
-                <button data-toggle="menu" data-target="payment-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
-                    <span class="flex items-center">
-                        <i class="fa-solid fa-dollar-sign w-5 h-5"></i>
-                        <span class="ml-3">Payment</span>
-                    </span>
-                    <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
-                </button>
-                </li>
-                <ul id="payment-list" class="hidden py-1 ul-nav">
-                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Payment</a></li>
-                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Invoice view</a></li>
-                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Invoice create</a></li>
                 </ul>
             </ul>
         </section>

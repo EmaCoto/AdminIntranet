@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <!-- Gráfica -->
+    <!-- Gráfica y notificaciones -->
     <div class="grid grid-cols-2 gap-6 my-6">
         <div class="p-4 shadow rounded-lg bg-white">
             <h3 class="text-lg font-bold text-center mb-4">Estadísticas de Empleados</h3>
@@ -45,12 +45,12 @@
             <div id="chart-2"></div>
         </div>
         <div class="p-4 shadow rounded-lg bg-white">
-            <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
-            <div id="chart-3"></div>
+            <p class="text-lg font-bold text-center mb-4">Notificaciones</p>
+            <livewire:notifications-dashboard />
         </div>
         <div class="p-4 shadow rounded-lg bg-white">
             <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
-            <div id="chart-4"></div>
+            <div id="chart-3"></div>
         </div>
     </div>
     

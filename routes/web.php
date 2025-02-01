@@ -4,7 +4,6 @@ use App\Livewire\Admin\Asignacion\Asignacion;
 use App\Livewire\Admin\PanelPrincipal;
 use App\Livewire\Admin\Register\AdminRegister;
 use App\Livewire\Admin\Register\CustomerRegister;
-use App\Livewire\Admin\Register\Register;
 use App\Livewire\Admin\User\Showuser;
 use App\Livewire\Admin\Publicidad\Publicidad;
 use App\Livewire\Admin\Legaluscis\Legaluscis;
@@ -24,7 +23,10 @@ Route::redirect('/', '/login');
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 });
-Route::get('admin/register', Register::class)->name('register');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 Route::get('admin/admin-register', AdminRegister::class)->name('admin-register');
 Route::get('admin/customer-register', CustomerRegister::class)->name('customer-register');
 

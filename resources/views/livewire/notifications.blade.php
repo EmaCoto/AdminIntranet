@@ -9,7 +9,7 @@
     </button>
 
     <!-- Dropdown de notificaciones -->
-    <div x-data="{ open: @entangle('open') }" x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-72 bg-white border rounded-lg shadow-lg z-50" x-cloak>
+    <div x-data="{ open: @entangle('open') }" x-show="open" @click.outside="open = false" class="absolute right-0 mt-2 w-72 bg-white border rounded-lg shadow-lg z-50 overflow-hidden" x-cloak>
         <div class="p-2 font-bold bg-[#fafbfd] border-b text-sm h-10 items-center text-gray-400">Notificaciones</div>
         <div class="p-4 max-h-80 overflow-y-auto">
             @if($notifications->isNotEmpty())
@@ -17,7 +17,7 @@
                     @foreach($notifications as $notification)
                         <li class="text-sm border-b">
                             <h2 class="font-bold text-[#B23B3B]">{{ $notification->title }}</h2>
-                            <p class="text-gray-600">{{ $notification->message }}</p>
+                            <p class="text-gray-700">{{ $notification->message }}</p>
                             <span class="text-gray-400">{{ $notification->created_at->diffForHumans() }}</span>
                         </li>
                     @endforeach

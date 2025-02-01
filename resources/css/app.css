@@ -108,18 +108,18 @@
 
 
   /* Estilos generales */  
-  #nav-link, #button-link {
+  #nav-link, #button-link, .button-link {
       color: #314158;
       text-align: center;
       display: flex;
       align-items: center;
       transition: background-color 0.3s ease, transform 0.3s ease;
   }
-  #nav-link:hover, #button-link:hover {
+  #nav-link:hover, #button-link:hover, .button-link:hover {
       background-color: #e5e5e5;
       color: black;
   }
-  #nav-link.active, #button-link.active {
+  #nav-link.active, #button-link.active, .button-link:hover {
       background-color: #d4d4d4;
   }
   .ul-nav {

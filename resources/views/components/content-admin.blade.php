@@ -1,6 +1,6 @@
 <div class="flex w-full bg-[#fafbfd]">
     <x-aside />
-    <div class="w-[85%] p-2 border-l border-gray-200">
+    <div class="w-[80%] p-2 border-l border-gray-200">
         <div class="flex justify-between items-center p-2">
             <div class="relative w-full md:w-1/2 flex">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3">

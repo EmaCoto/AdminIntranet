@@ -47,26 +47,58 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const toggles = document.querySelectorAll('[data-toggle]');
-          
+            
                 toggles.forEach(toggle => {
-                    toggle.addEventListener('click', () => {
+                    toggle.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Evita que el evento cierre otros niveles
+            
                         const targetId = toggle.getAttribute('data-target');
                         const list = document.getElementById(targetId);
                         const icon = toggle.querySelector('.arrow-icon');
-          
-                        // Toggle visibility and apply smooth height transition
-                        if (list.classList.contains('hidden')) {
-                            list.classList.remove('hidden');
-                            list.classList.add('visible');
-                            icon.classList.add('up');
-                            toggle.classList.add('active');
-                        } else {
-                            list.classList.add('hidden');
-                            list.classList.remove('visible');
-                            icon.classList.remove('up');
-                            toggle.classList.remove('active');
+            
+                        const isCurrentlyVisible = !list.classList.contains('hidden');
+            
+                        // Si ya está visible, lo cerramos
+                        if (isCurrentlyVisible) {
+                            closeMenu(list);
+                            return;
                         }
+            
+                        // Cerramos solo los menús del mismo nivel
+                        const parentUl = toggle.closest("ul");
+                        closeMenusAtLevel(parentUl);
+            
+                        // Abrimos el nuevo menú
+                        list.classList.remove('hidden');
+                        icon?.classList.add('up');
+                        toggle.classList.add('active');
                     });
+                });
+            
+                // Función para cerrar un menú y sus submenús
+                function closeMenu(menu) {
+                    menu.classList.add('hidden');
+                    const toggleButton = document.querySelector(`[data-target="${menu.id}"]`);
+                    toggleButton?.classList.remove('active');
+                    toggleButton?.querySelector('.arrow-icon')?.classList.remove('up');
+            
+                    // Cierra también los submenús dentro de este
+                    menu.querySelectorAll("ul").forEach(subMenu => closeMenu(subMenu));
+                }
+            
+                // Cierra solo los menús del mismo nivel sin afectar subniveles abiertos
+                function closeMenusAtLevel(parentUl) {
+                    parentUl.querySelectorAll("ul").forEach(menu => {
+                        closeMenu(menu);
+                    });
+                }
+            
+                // Cerrar solo los menús desplegables al hacer clic fuera, pero NO el aside
+                document.addEventListener('click', (event) => {
+                    const aside = document.querySelector('aside'); // Ajusta este selector según tu estructura
+                    if (!aside.contains(event.target)) {
+                        document.querySelectorAll('.ul-nav ul').forEach(menu => closeMenu(menu));
+                    }
                 });
             });
         </script>
