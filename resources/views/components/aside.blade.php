@@ -1,5 +1,21 @@
 <aside id="separator-sidebar" class="w-[18%] transition-transform -translate-x-full sm:translate-x-0 z-20 border rounded-t-lg ml-10 -mt-12 bg-white" aria-label="Sidebar">
     <div class="h-full p-1 overflow-y-auto content-scroll">
+        <div class="my-6">
+            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+            <div class="flex flex-col items-center text-center">
+                <div class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition p-1 border-[#152B59] border-dashed">
+                    @if (Auth::user()->profile_photo_path)
+                    <img class="h-14 w-14 rounded-full object-cover" src="/storage/{{Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" />
+                    @else
+                    <img class="h-14 w-14 rounded-full object-cover" src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> 
+                    @endif
+                </div>
+                <p class="text-slate-500 mt-2 text-sm">{{ Auth::user()->name }}</p>
+                <p class="text-slate-700 font-bold text-sm">Panel Administrativo</p>
+            </div>
+            @endif
+        </div>
+
         <div class="py-3 px-1">
             <span class="uppercase text-slate-400 text-xs font-bold">Navegación</span>
         </div>
