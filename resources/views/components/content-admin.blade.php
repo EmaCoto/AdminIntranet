@@ -30,9 +30,8 @@
                 {{ $slot }}
             </div>
         </div>
-        <div class="mt-4 w-full flex justify-end">
-            <div wire:loading class="px-8 mx-8 py-2.5 flex items-center">
-                <i class="fa-solid fa-spinner animate-spin"></i>
+        <div class="mt-2 w-full flex justify-end">
+            <div wire:loading>
                 <p>Cargando...</p>
             </div>
             <div wire:loading.remove>

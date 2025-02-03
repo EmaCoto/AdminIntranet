@@ -21,20 +21,22 @@ class Asilos extends Component
     public function deleteUser($ID)
     {
         DB::transaction(function () use ($ID) {
-            DB::connection('wordpress')->table('dxv_usermeta')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_xprofile_data')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_friends')->where('initiator_user_id', $ID)->orWhere('friend_user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_messages_messages')->where('sender_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_messages_recipients')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_notifications')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_activity')->where('user_id', $ID)->delete();
-            DB::connection('wordpress')->table('dxv_bp_groups_members')->where('user_id', $ID)->delete();
+            $tables = [
+                'dxv_usermeta', 'dxv_bp_xprofile_data', 'dxv_bp_friends',
+                'dxv_bp_messages_messages', 'dxv_bp_messages_recipients',
+                'dxv_bp_notifications', 'dxv_bp_activity', 'dxv_bp_groups_members'
+            ];
+
+            foreach ($tables as $table) {
+                DB::connection('wordpress')->table($table)->where('user_id', $ID)->delete();
+            }
+
             DB::connection('wordpress')->table('dxv_users')->where('ID', $ID)->delete();
         });
+
         session()->flash('messageDelete', 'Usuario eliminado correctamente');
     }
 
-    
     public function render()
     {
         $users = DB::connection('wordpress')

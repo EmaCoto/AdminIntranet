@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin\Departamentos;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowUser extends Component
+class Asilo extends Component
 {
     use WithPagination;
 
@@ -77,8 +77,10 @@ class ShowUser extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
+            ->having('job_title', 'LIKE', '%asilo%')
+            // ->orderBy('ID', 'desc')
             ->paginate(10);
     
-        return view('livewire.admin.user.showuser', compact('users'));
-    }    
+        return view('livewire.admin.departamentos.asilo', compact('users'));
+    }
 }

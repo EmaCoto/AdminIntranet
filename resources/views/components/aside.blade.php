@@ -58,16 +58,16 @@
                 </li>
                 <ul id="department-list" class="hidden py-1 ul-nav">
                     <li><a href="{{ route('showuser') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('showuser') ? 'active' : '' }}">Todos</a></li>
-                    <li><a href="{{ route('publicidad') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('publicidad') ? 'active' : '' }}">Publicidad</a></li>
-                    <li><a href="{{ route('uscis') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('uscis') ? 'active' : '' }}">Legal USCIS</a></li>
-                    <li><a href="{{ route('asilos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('asilos') ? 'active' : '' }}">Asilos</a></li>
-                    <li><a href="{{ route('servihuellas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('servihuellas') ? 'active' : '' }}">Servi Huellas</a></li>
-                    <li><a href="{{ route('traduccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('traduccion') ? 'active' : '' }}">Traducción</a></li>
-                    <li><a href="{{ route('redaccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('redaccion') ? 'active' : '' }}">Redaccion</a></li>
-                    <li><a href="{{ route('documentos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('documentos') ? 'active' : '' }}">Manejo de documentos</a></li>
-                    <li><a href="{{ route('permisos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('permisos') ? 'active' : '' }}">Permisos de trbajo</a></li>
-                    <li><a href="{{ route('cortes') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('cortes') ? 'active' : '' }}">Cortes</a></li>
-                    <li><a href="{{ route('asignacion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('asignacion') ? 'active' : '' }}">Asignación</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('publicidad') ? 'active' : '' }}">Publicidad</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('uscis') ? 'active' : '' }}">Legal USCIS</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('asilo') ? 'active' : '' }}">Asilos</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('servihuellas') ? 'active' : '' }}">Servi Huellas</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('traduccion') ? 'active' : '' }}">Traducción</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('redaccion') ? 'active' : '' }}">Redaccion</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('documentos') ? 'active' : '' }}">Manejo de documentos</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('permisos') ? 'active' : '' }}">Permisos de trbajo</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('cortes') ? 'active' : '' }}">Cortes</a></li>
+                    <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('asignacion') ? 'active' : '' }}">Asignación</a></li>
                 </ul>
             </ul>
         </section>
