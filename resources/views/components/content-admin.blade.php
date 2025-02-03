@@ -1,4 +1,10 @@
 <div class="flex w-full bg-[#fafbfd]">
+    <x-slot name="header">
+        <div class=" text-white leading-tight px-56 flex">
+            <span class="mr-1">Bienvenido:</span>
+            <p class="font-semibold">{{ Auth::user()->name }}</p>
+        </div>
+    </x-slot>
     <x-aside />
     <div class="w-[80%] p-2 border-l border-gray-200">
         <div class="flex justify-between items-center p-2">
@@ -6,7 +12,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                     <i class="fa-solid fa-magnifying-glass text-gray-500"></i>
                 </div>
-                <input type="text"  wire:model.lazy="search" class="pl-10 w-full focus:ring-[#11163D] focus:bg-white rounded-lg border h-10" placeholder="Buscar..." type="search">
+                <input type="text"  wire:model.blur.lazy="search" class="pl-10 w-full focus:ring-[#11163D] focus:bg-white rounded-lg border h-10" placeholder="Buscar..." type="search">
                 <button class="ml-4 items-center py-1 px-3 rounded-lg bg-[#B33031] text-white hover:bg-[#b23b3b]">Buscar</button>
             </div>
         
@@ -19,14 +25,15 @@
         </div>
         
 
-        <div class="overflow-hidden h-[70vh] rounded-lg border border-gray-200 p-4">
+        <div class="overflow-hidden h-[70vh] rounded-lg border border-gray-200">
             <div class="overflow-y-auto h-full content-scroll">
                 {{ $slot }}
             </div>
         </div>
         <div class="mt-4 w-full flex justify-end">
-            <div wire:loading>
-                <p>procesando...</p>
+            <div wire:loading class="px-8 mx-8 py-2.5 flex items-center">
+                <i class="fa-solid fa-spinner animate-spin"></i>
+                <p>Cargando...</p>
             </div>
             <div wire:loading.remove>
                 {{$users->links()}}

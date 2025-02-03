@@ -1,5 +1,5 @@
 <div>
-    <button wire:click="$toggle('open')" class="bg-white p-1 text-[#11163D] text-sm hover:scale-90 duration-300 active:bg-gray-600 w-full">
+    <button wire:click="$toggle('open')" class="bg-[#152B59] hover:bg-[#0e1d3c] text-white px-3 py-1 rounded-md">
         <i class="fa-solid fa-pen-to-square"></i>
     </button>
 
@@ -11,9 +11,8 @@
             <form>
                 <div class="text-black grid grid-cols-3 gap-2">
                     <div>
-                        <div class="card mx-auto">
-                            <div class="bg"><img src="{{ asset('img/photo.png') }}" alt="" class="mx-auto"></div>
-                            <div class="blob"></div>
+                        <div>
+                            <img src="{{ asset('img/photo.png') }}" alt="" class="mx-auto">
                         </div>
                         <div class="">
                             <label for="nombre" class="block text-sm font-medium uppercase">Nombre</label>
@@ -33,6 +32,11 @@
                     </div>
 
                     <div>
+                        <div class="">
+                            <label for="cedula" class="block text-sm font-medium uppercase">Cedula o número de identificación</label>
+                            <input type="number" id="cedula" wire:model="cedula" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                            @error('cedula') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        </div>
                         <div class="">
                             <label for="outlook" class="block text-sm font-medium uppercase">Correo Outlook Corporativo</label>
                             <input type="text" id="outlook" wire:model="outlook" class="mt-1 block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
@@ -67,6 +71,16 @@
 
                     <div>
                         <div class="">
+                            <label for="talla" class="block text-sm font-medium uppercase">Talla de camisa</label>
+                            <select name="talla" id="talla" wire:model="talla" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                                <option value="" class="text-gray-500">Selecciona una talla</option>
+                                @foreach($tallaOptions as $value => $label)
+                                    <option value="{{ $value }}" {{ $talla == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @error('talla') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="">
                             <label for="pais" class="block text-sm font-medium uppercase">País de residencia</label>
                             <select name="pais" id="pais" wire:model="pais" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                                 <option value="" class="text-gray-500">Selecciona una ubicación</option>
@@ -99,7 +113,7 @@
                         <div class="">
                             <label for="etiqueta" class="block text-sm font-medium uppercase">Departamento</label>
                             <select name="etiqueta" id="etiqueta" wire:model="etiqueta" class="block w-full mt-1 bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una etiqueta</option>
+                                <option value="" class="text-gray-500">Selecciona un departamento</option>
                                 @foreach($etiquetaOptions as $value => $label)
                                     <option value="{{ $value }}" {{ $etiqueta == $value ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach

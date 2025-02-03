@@ -1,5 +1,5 @@
 <div>
-    <button wire:click="$toggle('open')" class="bg-white p-1 text-[#11163D] text-sm hover:scale-90 duration-300 active:bg-gray-600 w-full">
+    <button wire:click="$toggle('open')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md">
         <i class="fa-solid fa-eye"></i>
     </button>
     <x-dialog-modal maxWidth="5xl" wire:model="open">

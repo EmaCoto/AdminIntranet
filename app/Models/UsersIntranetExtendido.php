@@ -36,6 +36,16 @@ class UsersIntranetExtendido extends Model
         return $query->where('field_id', 3);
     }
 
+    public function scopeCedula($query)
+    {
+        return $query->where('field_id', 999);
+    }
+
+    public function scopeTalla($query)
+    {
+        return $query->where('field_id', 1000);
+    }
+
     public function scopeOutlook($query)
     {
         return $query->where('field_id', 558);

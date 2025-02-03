@@ -10,21 +10,25 @@ class EditUser extends Component
 {
     public $open = false;
     public $userId, $user;
-    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area;
-    public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [];
+    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla;
+    public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [], $tallaOptions = [];
 
     public function mount($userId)
     {
         $this->userId = $userId;
         $this->user = DB::connection('wordpress')->table('dxv_users')->where('ID', $this->userId)->first();
 
-        $profileData = DB::connection('wordpress')->table('dxv_bp_xprofile_data')
+        $profileData = DB::connection('wordpress')
+            ->table('dxv_bp_xprofile_data')
             ->where('user_id', $this->userId)
+            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 325])
             ->pluck('value', 'field_id');
 
         $this->nombre = $profileData[1] ?? null;
         $this->apellido = $profileData[2] ?? null;
         $this->usuario = $profileData[3] ?? null;
+        $this->cedula = $profileData[999] ?? null;
+        $this->talla = $profileData[1000] ?? null;
         $this->outlook = $profileData[558] ?? null;
         $this->correo = $profileData[78] ?? null;
         $this->personalCorreo = $profileData[302] ?? null;
@@ -69,6 +73,12 @@ class EditUser extends Component
         ->pluck('value', 'value')
         ->toArray();
 
+        $this->tallaOptions = DB::connection('wordpress')
+        ->table('dxv_bp_xprofile_data')
+        ->where('field_id', 1000)
+        ->pluck('value', 'value')
+        ->toArray();
+
         $this->perfilOptions = DB::connection('wordpress')
             ->table('dxv_terms as t')
             ->join('dxv_term_taxonomy as tt', 't.term_id', '=', 'tt.term_id')
@@ -90,6 +100,8 @@ class EditUser extends Component
             1 => $this->nombre,
             2 => $this->apellido,
             3 => $this->usuario,
+            999 => $this->cedula,
+            1000 => $this->talla,
             558 => $this->outlook,
             78 => $this->correo,
             302 => $this->personalCorreo,
@@ -140,6 +152,7 @@ class EditUser extends Component
             'etiquetaOptions' => $this->etiquetaOptions,
             'ubicacionOptions' => $this->ubicacionOptions,
             'modalidadOptions' => $this->modalidadOptions,
+            'modalidadOptions' => $this->tallaOptions,
             'paisOptions' => $this->paisOptions,
             'perfilOptions' => $this->perfilOptions,
         ]);

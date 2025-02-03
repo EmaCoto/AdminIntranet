@@ -3,7 +3,7 @@
         <div class="my-6">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div class="flex flex-col items-center text-center">
-                <div class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition p-1 border-[#152B59] border-dashed">
+                <div class="flex text-sm border-2 rounded-full focus:outline-none focus:border-gray-300 transition p-1 border-[#152B59] border-dashed">
                     @if (Auth::user()->profile_photo_path)
                     <img class="h-14 w-14 rounded-full object-cover" src="/storage/{{Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" />
                     @else
