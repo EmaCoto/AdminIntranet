@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class RevisionEnsambleUscis extends Component
+class Acuerdos extends Component
 {
     use WithPagination;
 
@@ -77,10 +77,9 @@ class RevisionEnsambleUscis extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->having('job_title', 'LIKE', 'Revisión y Ensamble USCIS')
+            ->having('job_title', 'LIKE', 'Agentes Comerciales')
             // ->orderBy('ID', 'desc')
             ->paginate(10);
-    
-        return view('livewire.admin.departamentos.revision-ensamble-uscis', compact('users'));
+        return view('livewire.admin.departamentos.acuerdos', compact('users'));
     }
 }

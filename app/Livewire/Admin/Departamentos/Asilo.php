@@ -77,7 +77,7 @@ class Asilo extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->having('job_title', 'LIKE', '%asilo%')
+            ->having('job_title', 'LIKE', 'Asilo')
             // ->orderBy('ID', 'desc')
             ->paginate(10);
     

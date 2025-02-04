@@ -96,6 +96,12 @@ class EditUser extends Component
 
     public function updateUser()
     {
+        $etiquetaAnterior = DB::connection('wordpress')
+        ->table('dxv_bp_xprofile_data')
+        ->where('user_id', $this->userId)
+        ->where('field_id', 50)
+        ->value('value');
+
         $fields = [
             1 => $this->nombre,
             2 => $this->apellido,
@@ -121,15 +127,16 @@ class EditUser extends Component
                 ['value' => $value, 'last_updated' => now()]
             );
 
-            if ($field_id === 50) {
-                Notification::create([
-                    'user_id' => $this->userId,
-                    'title' => 'Cambio de departamento',
-                    'message' => "{$this->nombre} ha sido cambiado de departamento a: {$value}",
-                    'is_read' => false,
-                ]);
-            }
+        // Verificar si el campo 50 cambió antes de registrar la notificación
+        if ($field_id === 50 && $etiquetaAnterior !== $value) {
+            Notification::create([
+                'user_id' => $this->userId,
+                'title' => 'Cambio de departamento',
+                'message' => "{$this->nombre} ha sido cambiado de departamento de '{$etiquetaAnterior}' a '{$value}'",
+                'is_read' => false,
+            ]);
         }
+    }
 
         DB::connection('wordpress')->table('dxv_term_relationships')
             ->updateOrInsert(

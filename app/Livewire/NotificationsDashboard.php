@@ -20,7 +20,7 @@ class NotificationsDashboard extends Component
     public function render()
     {
         // Cargar todas las notificaciones de la base de datos
-        $notifications = Notification::orderBy('created_at', 'desc')->take(50)->get();
+        $notifications = Notification::orderBy('created_at', 'desc')->take(60)->get();
         $hasUnread = Notification::where('is_read', false)->exists();
 
         return view('livewire.notifications-dashboard', compact('notifications', 'hasUnread'));
