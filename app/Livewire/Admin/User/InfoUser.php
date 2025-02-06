@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class InfoUser extends Component
 {
+    protected $listeners = ['render'];
+
     public $open = false;
     public $userId, $user;
     public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla;

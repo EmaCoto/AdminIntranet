@@ -77,7 +77,7 @@ class ShowUser extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->paginate(1);
+            ->paginate(7);
     
         return view('livewire.admin.user.showuser', compact('users'));
     }    
