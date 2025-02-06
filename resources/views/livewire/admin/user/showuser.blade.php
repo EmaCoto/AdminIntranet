@@ -1,7 +1,7 @@
 <x-content-admin :users="$users" :search="$search">
     <div id="userList" class="w-full overflow-hidden">
-        <table class="min-w-full bg-white border border-gray-300">
-            <thead class="bg-gray-100">
+        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+            <thead class="bg-gray-100 sticky top-0 z-20">
                 <tr>
                     <th class="px-4 py-2 border">Foto</th>
                     <th class="px-4 py-2 border">Nombre</th>

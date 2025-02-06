@@ -209,8 +209,8 @@
                                 <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                             </button>
                             <ul id="organigramas-listas" class="hidden py-1 ul-nav">
-                                <li><a href="{{ route('organigrama') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigrama') ? 'active' : '' }}">Organigrama 1</a></li>
-                                <li><a href="{{ route('organigramas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigramas') ? 'active' : '' }}">Organigrama 2</a></li>
+                                <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigrama') ? 'active' : '' }}">Organigrama 1</a></li>
+                                <li><a href="#" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('organigramas') ? 'active' : '' }}">Organigrama 2</a></li>
                             </ul>
                         </li>
                     </ul>

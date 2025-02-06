@@ -132,7 +132,7 @@ class EditUser extends Component
             Notification::create([
                 'user_id' => $this->userId,
                 'title' => 'Cambio de departamento',
-                'message' => "{$this->nombre} ha sido cambiado de departamento de '{$etiquetaAnterior}' a '{$value}'",
+                'message' => "{$this->nombre} {$this->apellido} ha sido cambiado del departamento de '{$etiquetaAnterior}' a '{$value}'",
                 'is_read' => false,
             ]);
         }

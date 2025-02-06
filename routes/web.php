@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Admin\Departamentos\Acuerdos;
-use App\Livewire\Admin\PanelPrincipal;
 use App\Livewire\Admin\Register\AdminRegister;
 use App\Livewire\Admin\Register\CustomerRegister;
 use App\Livewire\Admin\User\Showuser;
@@ -48,8 +47,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 Route::get('/register', function () {return view('register');})->name('register');
 Route::get('admin/admin-register', AdminRegister::class)->name('admin-register');
 Route::get('admin/customer-register', CustomerRegister::class)->name('customer-register');
-
-Route::get('admin', PanelPrincipal::class)->name('admin');
 
 // Departamentos
 Route::get('admin/showuser', Showuser::class)->name('showuser');

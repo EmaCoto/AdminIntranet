@@ -7,8 +7,8 @@
         <x-slot name='title'>
             <div class="flex justify-between items-center">
                 <h1 class="bg-[#11163D] w-fit text-white text-xl p-2 rounded-l-lg rounded-r-full uppercase">Editar Compañero</h1>
-                <button wire:click="$toggle('open')" class="text-xl font-bold text-white bg-[#B33031] rounded-full py-1 px-3">
-                    X
+                <button wire:click="$toggle('open')" class="text-xl font-bold text-white bg-[#B33031] rounded-full p-1 px-2">
+                    <i class="fa-regular fa-circle-xmark"></i>
                 </button>
             </div>
         </x-slot>
