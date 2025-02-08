@@ -35,6 +35,7 @@ use App\Livewire\Admin\Departamentos\Traduccion;
 use App\Livewire\Admin\Departamentos\VentasIms;
 use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\Organigrama;
+use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use Illuminate\Support\Facades\Route;
 
@@ -86,3 +87,4 @@ Route::get('admin/VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('V
 // Organigramas
 Route::get('admin/organigrama', Organigrama::class)->name('organigrama');
 Route::get('admin/organigramas', OrgranigramaBolitas::class)->name('organigramas');
+Route::get('admin/organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');

@@ -44,6 +44,21 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="https://unpkg.com/@panzoom/panzoom@4.0.0/dist/panzoom.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const organigramaContainer = document.querySelector('.organigrama-container');
+                const panzoomInstance = Panzoom(organigramaContainer, {
+                    maxScale: 3, // Zoom máximo
+                    minScale: 0.5, // Zoom mínimo
+                    contain: 'outside' // Permite desplazarse fuera del contenedor
+                });
+
+                // Permitir el zoom con la rueda del mouse
+                organigramaContainer.parentElement.addEventListener('wheel', panzoomInstance.zoomWithWheel);
+            });
+        </script>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const toggles = document.querySelectorAll('[data-toggle]');
