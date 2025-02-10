@@ -37,13 +37,21 @@ use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/login');
-
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+// Middleware de autenticación para la ruta raíz
+Route::get('/', function () {
+    return Auth::check() ? redirect('/dashboard') : redirect('/login');
 });
+
+// Agrupar rutas protegidas con middleware de autenticación
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
 
 Route::get('/register', function () {return view('register');})->name('register');
 Route::get('admin/admin-register', AdminRegister::class)->name('admin-register');
