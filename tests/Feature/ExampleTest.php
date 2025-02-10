@@ -14,6 +14,8 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
+        dd($response->status(), $response->headers->get('Location')); // Agrega esto aquí
+
         $response->assertStatus(200);
     }
 }
