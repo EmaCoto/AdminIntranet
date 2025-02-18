@@ -10,7 +10,7 @@
         @endforeach
     </nav>
 
-    <div class="organigrama-container flex flex-col items-center my-4">
+     <div class="flex flex-col items-center my-4">  {{--organigrama-container --}}
         @forelse ($users as $profileType => $group)
             {{-- Nivel del organigrama --}}
             <div id="{{ Str::slug($profileType) }}" class="job-level flex items-center justify-center mb-8">

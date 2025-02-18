@@ -10,7 +10,7 @@ class EditUser extends Component
 {
     public $open = false;
     public $userId, $user;
-    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla;
+    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso;
     public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [], $tallaOptions = [];
 
     public function mount($userId)
@@ -122,21 +122,23 @@ class EditUser extends Component
         ];
 
         foreach ($fields as $field_id => $value) {
+            $value = $value ?? ''; // Convertir NULL a cadena vacía
+            
             DB::connection('wordpress')->table('dxv_bp_xprofile_data')->updateOrInsert(
                 ['user_id' => $this->userId, 'field_id' => $field_id],
                 ['value' => $value, 'last_updated' => now()]
             );
-
-        // Verificar si el campo 50 cambió antes de registrar la notificación
-        if ($field_id === 50 && $etiquetaAnterior !== $value) {
-            Notification::create([
-                'user_id' => $this->userId,
-                'title' => 'Cambio de departamento',
-                'message' => "{$this->nombre} {$this->apellido} ha sido cambiado del departamento de '{$etiquetaAnterior}' a '{$value}'",
-                'is_read' => false,
-            ]);
+        
+            if ($field_id === 50 && $etiquetaAnterior !== $value) {
+                Notification::create([
+                    'user_id' => $this->userId,
+                    'title' => 'Cambio de departamento',
+                    'message' => "{$this->nombre} {$this->apellido} ha sido cambiado del departamento de '{$etiquetaAnterior}' a '{$value}'",
+                    'is_read' => false,
+                ]);
+            }
         }
-    }
+        
 
         DB::connection('wordpress')->table('dxv_term_relationships')
             ->updateOrInsert(

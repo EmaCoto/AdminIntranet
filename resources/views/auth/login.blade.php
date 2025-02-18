@@ -1,8 +1,7 @@
 <x-guest-layout>
-
     <div class="grid grid-cols-2 min-h-screen">
-        <div style="background-image: url('{{ asset('img/login_photo.png') }}');" class="bg-cover bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#B33031]" >
-            <div class="flex flex-col justify-end h-full text-white px-28 text-justify bg-black bg-opacity-60">
+        <div style="background-image: url('{{ asset('img/img_photo_login.webp') }}');" class="bg-cover bg-gradient-to-b from-[#11163D] via-[#1c2464] to-[#B33031]" >
+            <div class="flex flex-col justify-end h-full text-white px-28 text-justify bg-opacity-60 bg-black">
                 <h1 class="text-center font-bold text-2xl">HURUS</h1>
                 <p class="text-center font-bold text-2xl mb-5">Panel Administrativo</p>
                 <p class="mb-20">Hurus es una plataforma administrativa diseñada para simplificar la gestión de usuarios en tu intranet. Permite crear, editar y eliminar usuarios de forma eficiente, manteniendo un registro detallado del total de usuarios activos en la empresa. Con Hurus, tienes control total sobre la información del personal, facilitando la administración y el monitoreo de sus actividades, todo desde un solo panel centralizado.</p>
@@ -46,5 +45,4 @@
             </form>
         </div>
     </div>
-
 </x-guest-layout>

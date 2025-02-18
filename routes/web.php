@@ -37,6 +37,7 @@ use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
+use App\Livewire\Admin\User\DeleteUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 
 Route::get('/register', function () {return view('register');})->name('register');
+Route::get('/proximamente', function () {return view('proximamente');})->name('proximamente');
 Route::get('admin/admin-register', AdminRegister::class)->name('admin-register');
 Route::get('admin/customer-register', CustomerRegister::class)->name('customer-register');
 
@@ -91,6 +93,7 @@ Route::get('admin/Sistemas', Sistemas::class)->name('Sistemas');
 Route::get('admin/Traduccion', Traduccion::class)->name('Traduccion');
 Route::get('admin/VentasIms', VentasIms::class)->name('VentasIms');
 Route::get('admin/VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('VentasPermisosTrabajo');
+Route::get('admin/DeleteUser', DeleteUser::class)->name('DeleteUser');
 
 // Organigramas
 Route::get('admin/organigrama', Organigrama::class)->name('organigrama');

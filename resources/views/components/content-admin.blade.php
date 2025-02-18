@@ -13,7 +13,7 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fa-solid fa-magnifying-glass text-gray-500"></i>
                     </div>
-                    <input type="text"  wire:model.blur="search" class="pl-10 w-full focus:ring-[#11163D] focus:bg-white rounded-lg border h-10" placeholder="Buscar..." type="search">
+                    <input type="text"  wire:model.change="search" class="pl-10 w-full focus:ring-[#11163D] focus:bg-white rounded-lg border h-10" placeholder="Buscar..." type="search">
                     <button class="ml-4 items-center py-1 px-3 rounded-lg bg-[#B33031] text-white hover:bg-[#b23b3b]">Buscar</button>
                 </div>
                 <div wire:loading>

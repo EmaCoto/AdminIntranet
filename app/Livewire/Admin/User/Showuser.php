@@ -16,26 +16,24 @@ class ShowUser extends Component
     public function resetSearch()
     {
         $this->reset('search');
+        $this->resetPage(); // Resetear la paginación al limpiar la búsqueda
     }
-
+    
+    public function updatingSearch()
+    {
+        $this->resetPage(); // Resetear la paginación cuando cambia el search
+    }
+       
     public function deleteUser($ID)
     {
-        DB::transaction(function () use ($ID) {
-            $tables = [
-                'dxv_usermeta', 'dxv_bp_xprofile_data', 'dxv_bp_friends',
-                'dxv_bp_messages_messages', 'dxv_bp_messages_recipients',
-                'dxv_bp_notifications', 'dxv_bp_activity', 'dxv_bp_groups_members'
-            ];
-
-            foreach ($tables as $table) {
-                DB::connection('wordpress')->table($table)->where('user_id', $ID)->delete();
-            }
-
-            DB::connection('wordpress')->table('dxv_users')->where('ID', $ID)->delete();
-        });
-
-        session()->flash('messageDelete', 'Usuario eliminado correctamente');
-    }
+        DB::connection('wordpress')->table('dxv_bp_xprofile_data')
+            ->updateOrInsert(
+                ['user_id' => $ID, 'field_id' => 50], // Campo 50 = Etiqueta
+                ['value' => 'USUARIO DEPURADO', 'last_updated' => now()]
+            );
+    
+        $this->dispatch('render'); // Para actualizar la vista
+    }    
 
     public function render()
     {
@@ -74,10 +72,12 @@ class ShowUser extends Component
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->where('fn.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
+                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%")
+                            ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->paginate(7);
+            ->whereNotIn('jt.value', ['USUARIO DEPURADO']) 
+            ->paginate(1);
     
         return view('livewire.admin.user.showuser', compact('users'));
     }    

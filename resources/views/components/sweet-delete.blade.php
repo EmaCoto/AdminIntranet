@@ -6,20 +6,20 @@
         const $ID = event.detail.ID
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: 'You wont be able to revert this!',
+            title: '¿Estás seguro?',
+            text: 'No podrás revertirlo.',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: '¡Sí, elimínalo!'
             }).then((result) => {
                 if (result.isConfirmed) {
                 
                 $wire.deleteUser($ID).then(result=>{
                     Swal.fire({
-                        title: 'Deleted!',
-                        text: 'Your file has been deleted.',
+                        title: '¡Borrado!',
+                        text: 'Tu archivo ha sido eliminado',
                         icon: 'success'
                     });
 
@@ -27,8 +27,8 @@
 
                 } else if (result.dismiss === Swal.DismissReason.cancel){
                     Swal.fire({
-                    title: 'Cancelled',
-                    text: 'Your imaginary file is safe :)',
+                    title: 'Cancelar',
+                    text: 'Su archivo imaginario está a salvo',
                     icon: 'error'
                     });
                  }

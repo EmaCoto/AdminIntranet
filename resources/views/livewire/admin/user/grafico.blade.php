@@ -18,10 +18,10 @@
         </div>
 
         <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
-            <h3 class="text-lg font-bold">Empleados Retirados</h3>
+            <h3 class="text-lg font-bold">Vendedores</h3>
             <div class="flex items-center">
-              <img src="{{ asset('img/icon/shrug.png') }}" alt="" class="w-8 h-8 mr-2">
-              <p class="text-2xl">{{ $retiredEmployees }}</p>
+              <img src="{{ asset('img/icon/gerente.png') }}" alt="" class="w-8 h-8 mr-2">
+              <p class="text-2xl">{{ $vendedorCount }}</p>
             </div>
         </div>
 
@@ -36,13 +36,13 @@
 
     <!-- Gráfica y notificaciones -->
     <div class="grid grid-cols-2 gap-6 my-6">
+      <div class="p-4 shadow rounded-lg bg-white">
+          <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
+          <div id="chart-2"></div>
+      </div>
         <div class="p-4 shadow rounded-lg bg-white">
             <h3 class="text-lg font-bold text-center mb-4">Estadísticas de Empleados</h3>
             <div id="chart"></div>
-        </div>
-        <div class="p-4 shadow rounded-lg bg-white">
-            <h3 class="text-lg font-bold text-center mb-4">Estadísticas</h3>
-            <div id="chart-2"></div>
         </div>
         <div class="p-4 shadow rounded-lg bg-white">
             <p class="text-lg font-bold text-center mb-4">Notificaciones</p>
@@ -58,34 +58,29 @@
     <script>
 
         /* Primer Gráfica*/
-        var totalEmployees = @json($totalEmployees);
-        var newEmployees = @json($newEmployees);
-        var retiredEmployees = @json($retiredEmployees);
-        var totalDepartments = @json($totalDepartments);
-        var jobTitleChanges = @json($jobTitleChanges);
+        var coordinadorCount = @json($coordinadorCount);
+        var supervisorCount = @json($supervisorCount);
+        var directorCount = @json($directorCount);
+        var gerenciaCount = @json($gerenciaCount);
 
 
         var options = {
         series: [
             {
-            name: 'Empleados',
-            data: [totalEmployees]
+            name: 'Coordinadores',
+            data: [coordinadorCount]
             },
             {
-            name: 'Empleados Nuevos',
-            data: [newEmployees]
+            name: 'Supervisores',
+            data: [supervisorCount]
             },
             {
-            name: 'Empleados Retirados',
-            data: [retiredEmployees]
+            name: 'Directores',
+            data: [directorCount]
             },
             {
-            name: 'Departamentos',
-            data: [totalDepartments]
-            },
-            {
-            name: 'Cambios en Departamentos',
-            data: [jobTitleChanges]
+            name: 'Subgerentes',
+            data: [gerenciaCount]
             }
         ],
         chart: {
@@ -127,34 +122,58 @@
     </script>
 
     <script>
-        /* Segunda Gráfica*/
+        var directorCount = @json($directorCount);
+        var supervisorCount = @json($supervisorCount);
+        var gerenciaCount = @json($gerenciaCount);
+        var coordinadorCount = @json($coordinadorCount);
+
+
         var options = {
-          series: [44, 55, 67, 83],
+          series: [coordinadorCount, supervisorCount, directorCount, gerenciaCount],
           chart: {
-          height: 350,
+          height: 390,
           type: 'radialBar',
         },
         plotOptions: {
           radialBar: {
+            offsetY: 0,
+            startAngle: 0,
+            endAngle: 270,
+            hollow: {
+              margin: 5,
+              size: '30%',
+              background: 'transparent',
+              image: undefined,
+            },
             dataLabels: {
               name: {
-                fontSize: '22px',
+                show: false,
               },
               value: {
-                fontSize: '16px',
-              },
-              total: {
-                show: true,
-                label: 'Total',
-                formatter: function (w) {
-                  // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                  return 249
-                }
+                show: false,
               }
-            }
+            },
+            barLabels: {
+              enabled: true,
+              useSeriesColors: true,
+              offsetX: -8,
+              fontSize: '16px',
+              formatter: function(seriesName, opts) {
+                return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+              },
+            },
           }
         },
-        labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+        colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+        labels: ['Coordinadores', 'Supervisores', 'Director', 'Subgerente'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            legend: {
+                show: false
+            }
+          }
+        }]
         };
 
         var chart = new ApexCharts(document.querySelector("#chart-2"), options);
@@ -195,52 +214,6 @@
 
             var chart = new ApexCharts(document.querySelector("#chart-3"), options);
             chart.render();
-    </script>
-
-    <script>
-            var options = {
-          series: [{
-          data: [44, 55, 41, 64, 22, 43, 21]
-        }, {
-          data: [53, 32, 33, 52, 13, 44, 32]
-        }],
-          chart: {
-          type: 'bar',
-          height: 430
-        },
-        plotOptions: {
-          bar: {
-            horizontal: true,
-            dataLabels: {
-              position: 'top',
-            },
-          }
-        },
-        dataLabels: {
-          enabled: true,
-          offsetX: -6,
-          style: {
-            fontSize: '12px',
-            colors: ['#fff']
-          }
-        },
-        stroke: {
-          show: true,
-          width: 1,
-          colors: ['#fff']
-        },
-        tooltip: {
-          shared: true,
-          intersect: false
-        },
-        xaxis: {
-          categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007],
-        },
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart-4"), options);
-        chart.render();
-      
     </script>
 </div>
 
