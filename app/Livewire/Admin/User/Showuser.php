@@ -80,6 +80,7 @@ class ShowUser extends Component
                 $query->whereNull('jt.value')
                       ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
             })
+            ->orderBy('ID', 'desc')
             ->paginate(1);
     
         return view('livewire.admin.user.showuser', compact('users'));

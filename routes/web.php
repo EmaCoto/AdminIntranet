@@ -38,6 +38,7 @@ use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\User\DeleteUser;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -99,3 +100,10 @@ Route::get('admin/DeleteUser', DeleteUser::class)->name('DeleteUser');
 Route::get('admin/organigrama', Organigrama::class)->name('organigrama');
 Route::get('admin/organigramas', OrgranigramaBolitas::class)->name('organigramas');
 Route::get('admin/organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
+
+//limpiar caché
+Route::get('/limpiar', function() {
+    Artisan::call('optimize:clear');
+    return 'Caché limpiada con éxito';
+});
+
