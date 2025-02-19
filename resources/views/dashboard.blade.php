@@ -7,7 +7,9 @@
     </x-slot>
 
     <div class="flex">
-        <x-aside />
+        <div class="w-[300px]">
+            <x-aside />
+        </div>
         <div class="overflow-hidden p-8">
             <livewire:admin.user.grafico />
         </div>

@@ -6,10 +6,7 @@
         </div>
     </x-slot>
 
-    <div class="flex">
-        <x-aside />
-        <div class="overflow-hidden p-8 mx-auto">
-            <x-view-register />
-        </div>
-    </div>
+    <x-content class="overflow-hidden p-8 mx-auto">
+        <x-view-register />
+    </x-content>
 </x-app-layout>

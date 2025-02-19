@@ -76,7 +76,10 @@ class ShowUser extends Component
                             ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->whereNotIn('jt.value', ['USUARIO DEPURADO']) 
+            ->where(function ($query) {
+                $query->whereNull('jt.value')
+                      ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
+            })
             ->paginate(1);
     
         return view('livewire.admin.user.showuser', compact('users'));

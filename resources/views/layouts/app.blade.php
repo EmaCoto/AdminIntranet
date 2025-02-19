@@ -8,7 +8,7 @@
         <title>{{ config('app.name', 'Hurus') }}</title>
 
         <!-- Fonts -->
-        <link rel="icon" href="{{ asset('img/logo_ims.webp') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('img/favicon.webp') }}" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -28,7 +28,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow">
+                <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow hidden md:block">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -36,9 +36,20 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class=" flex justify-center">
                 {{ $slot }}
             </main>
+            
+            <footer class="items-center bg-[#F1F3F5]">
+                <!-- Logo -->
+                <div class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shrink-0 flex flex-col items-center mx-auto py-4">
+                    <a href="{{ route('dashboard') }}">
+                        <x-application-mark class="block h-9 w-auto" />
+                    </a>
+                    <p class="flex items-center h-full text-xl font-bold text-[#D4B26A] uppercase italic text-center">"somos personas ayudando personas"</p>
+                </div>
+                <p class="flex justify-center text-sm bg-gradient-to-b from-[#2973B2] to-[#152B59] text-white py-1">© 2025 Hurus | Todos los derechos reservados.</span>
+            </footer>
         </div>
 
         @stack('modals')
