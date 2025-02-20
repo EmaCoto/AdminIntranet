@@ -6,6 +6,12 @@
     display: none;
 }
 
+#organi-container {
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+
 .card {
   position: relative;
   width: 200px;

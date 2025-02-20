@@ -8,6 +8,7 @@ use Livewire\Component;
 class OrganiPublicidad extends Component
 {
     protected $listeners = ['render'];
+    
 
     public function render()
     {

@@ -9,7 +9,7 @@
         @endforeach
     </nav> --}}
 
-    <div class="flex justify-center items-start my-4 overflow-auto w-full h-[80vh] relative">
+    <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
             
             <!-- Director -->
@@ -17,19 +17,20 @@
                 @foreach (['director-de-publicidad'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
-                        <div>
-                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
-                                <x-photo-showuser-organi :user="$user"/>
-                                <div class="ml-10 w-full">
-                                    <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
+                            <div>
+                                <x-profile-type  :user="$user"/>
+                                <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                    <x-photo-showuser-organi :user="$user"/>
+                                    <div class="ml-10 w-full">
+                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mr-5 -translate-y-3">
+                                    <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize text-center rounded-md z-40">
+                                        {{ $user->job_title }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="flex justify-end mr-5 -translate-y-3">
-                                <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize text-center rounded-md z-40">
-                                    {{ $user->job_title }}
-                                </p>
-                            </div>
-                        </div>
                         @endforeach
                     @endif
                 @endforeach
@@ -43,19 +44,20 @@
                 @foreach (['subgerente-de-publicidad'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
-                        <div>
-                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
-                                <x-photo-showuser-organi :user="$user"/>
-                                <div class="ml-10 w-full">
-                                    <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
+                            <div>
+                                <x-profile-type  :user="$user"/>
+                                <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                    <x-photo-showuser-organi :user="$user"/>
+                                    <div class="ml-10 w-full">
+                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mr-5 -translate-y-3">
+                                    <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize text-center rounded-md z-40">
+                                        {{ $user->job_title }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="flex justify-end mr-5 -translate-y-3">
-                                <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize text-center rounded-md z-40">
-                                    {{ $user->job_title }}
-                                </p>
-                            </div>
-                        </div>
                         @endforeach
                     @endif
                 @endforeach
@@ -66,17 +68,15 @@
 
             <div class="flex justify-center gap-8">
                 {{-- Desarrollo Web --}}
-                <div>
+                <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
                         @foreach (['supervisor-de-desarrollo-web'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
-                                        <p class="text-lg mb-4 py-1 inline-block text-[#B33031] text-center">
-                                            {{ ucwords(str_replace('-', ' ', $user->profile_type)) }}
-                                        </p>
+                                        <x-profile-type :user="$user"/>
                                         <div>
-                                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                            <div class="bg-gradient-to-r from-[#e3e3e3] to-white rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
                                                 <x-photo-showuser-organi :user="$user"/>
                                                 <div class="ml-10 w-full">
                                                     <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
@@ -100,20 +100,7 @@
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
-                                <div class="flex flex-col items-center justify-around w-[150px] h-40 p-1 bg-[#ededed] rounded-md shadow-md">
-                                    <!-- Imagen del usuario -->
-                                    <div class="relative w-16 h-16 rounded-full">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-16 h-16 rounded-full">
-                                        <!-- Bordes personalizados -->
-                                        <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-l-[#2973B2] border-t-[#2973B2] border-b-[#2973B2] border-r-white pointer-events-none"></div>
-                                    </div>
-                                    <!-- Información del usuario -->
-                                    <div class="w-full text-center">
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }}</p>
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->last_name }}</p>
-                                    </div>
-                                    {{-- <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize rounded-md">{{ $user->job_title }}</p> --}}
-                                </div>
+                                    <x-user-card :user="$user"/>
                                 @endforeach
                             </div>
                         @endif
@@ -122,17 +109,15 @@
                 </div>
 
                 {{-- Community --}}
-                <div>
+                <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
                         @foreach (['supervisor-de-community'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
-                                        <p class="text-lg mb-4 py-1 inline-block text-[#B33031] text-center">
-                                            {{ ucwords(str_replace('-', ' ', $user->profile_type)) }}
-                                        </p>
+                                        <x-profile-type  :user="$user"/>
                                         <div>
-                                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                            <div class="bg-gradient-to-r from-[#e3e3e3] to-white rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
                                                 <x-photo-showuser-organi :user="$user"/>
                                                 <div class="ml-10 w-full">
                                                     <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
@@ -156,20 +141,7 @@
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
-                                <div class="flex flex-col items-center justify-around w-[150px] h-40 p-1 bg-[#ededed] rounded-md shadow-md">
-                                    <!-- Imagen del usuario -->
-                                    <div class="relative w-16 h-16 rounded-full">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-16 h-16 rounded-full">
-                                        <!-- Bordes personalizados -->
-                                        <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-l-[#2973B2] border-t-[#2973B2] border-b-[#2973B2] border-r-white pointer-events-none"></div>
-                                    </div>
-                                    <!-- Información del usuario -->
-                                    <div class="w-full text-center">
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }}</p>
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->last_name }}</p>
-                                    </div>
-                                    {{-- <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize rounded-md">{{ $user->job_title }}</p> --}}
-                                </div>
+                                    <x-user-card :user="$user"/>
                                 @endforeach
                             </div>
                         @endif
@@ -178,17 +150,15 @@
                 </div>
 
                 {{-- Audiovisual --}}
-                <div>
+                <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
                         @foreach (['supervisor-audiovisual'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
-                                        <p class="text-lg mb-4 py-1 inline-block text-[#B33031] text-center">
-                                            {{ ucwords(str_replace('-', ' ', $user->profile_type)) }}
-                                        </p>
+                                        <x-profile-type  :user="$user"/>
                                         <div>
-                                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                            <div class="bg-gradient-to-r from-[#e3e3e3] to-white rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
                                                 <x-photo-showuser-organi :user="$user"/>
                                                 <div class="ml-10 w-full">
                                                     <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
@@ -212,20 +182,7 @@
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
-                                <div class="flex flex-col items-center justify-around w-[150px] h-40 p-1 bg-[#ededed] rounded-md shadow-md">
-                                    <!-- Imagen del usuario -->
-                                    <div class="relative w-16 h-16 rounded-full">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-16 h-16 rounded-full">
-                                        <!-- Bordes personalizados -->
-                                        <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-l-[#2973B2] border-t-[#2973B2] border-b-[#2973B2] border-r-white pointer-events-none"></div>
-                                    </div>
-                                    <!-- Información del usuario -->
-                                    <div class="w-full text-center">
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }}</p>
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->last_name }}</p>
-                                    </div>
-                                    {{-- <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize rounded-md">{{ $user->job_title }}</p> --}}
-                                </div>
+                                    <x-user-card :user="$user"/>
                                 @endforeach
                             </div>
                         @endif
@@ -234,17 +191,15 @@
                 </div>
 
                 {{-- Marketing --}}
-                <div>
+                <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
                         @foreach (['supervisor-de-marketing'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
-                                        <p class="text-lg mb-4 py-1 inline-block text-[#B33031] text-center">
-                                            {{ ucwords(str_replace('-', ' ', $user->profile_type)) }}
-                                        </p>
+                                        <x-profile-type  :user="$user"/>
                                         <div>
-                                            <div class="bg-gradient-to-r from-[#e3e3e3] rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
+                                            <div class="bg-gradient-to-r from-[#e3e3e3] to-white rounded-r-full flex items-center w-[265px] h-[62px] p-2 relative shadow-lg border">
                                                 <x-photo-showuser-organi :user="$user"/>
                                                 <div class="ml-10 w-full">
                                                     <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }} {{ $user->last_name }}</p>
@@ -268,20 +223,7 @@
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
-                                <div class="flex flex-col items-center justify-around w-[150px] h-40 p-1 bg-[#ededed] rounded-md shadow-md">
-                                    <!-- Imagen del usuario -->
-                                    <div class="relative w-16 h-16 rounded-full">
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-16 h-16 rounded-full">
-                                        <!-- Bordes personalizados -->
-                                        <div class="absolute inset-0 rounded-full border-[6px] border-transparent border-l-[#2973B2] border-t-[#2973B2] border-b-[#2973B2] border-r-white pointer-events-none"></div>
-                                    </div>
-                                    <!-- Información del usuario -->
-                                    <div class="w-full text-center">
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->first_name }}</p>
-                                        <p class="text-sm font-semibold text-[#2973B2] capitalize">{{ $user->last_name }}</p>
-                                    </div>
-                                    {{-- <p class="bg-gradient-to-t from-[#152B59] to-[#2973B2] text-sm px-2 py-1 inline-block text-white capitalize rounded-md">{{ $user->job_title }}</p> --}}
-                                </div>
+                                    <x-user-card :user="$user"/>
                                 @endforeach
                             </div>
                         @endif
