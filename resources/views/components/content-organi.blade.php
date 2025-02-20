@@ -7,8 +7,8 @@
     </x-slot>
     <x-aside />
     <div class="w-[85%] p-2 border-l border overflow-hidden">
-        <div class="h-[76.5vh] w-full rounded-lg border content-scroll "> {{-- overflow-y-scroll --}}
+        <div class=" h-[80vh] w-full rounded-lg border">
             {{ $slot }}
-        </div>
+        </div>        
     </div>
 </div>
