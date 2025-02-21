@@ -9,7 +9,7 @@
     <x-aside />
 
     <div class="w-[85%] p-2 border-l">
-        <div class="h-[80vh] w-full rounded-lg border relative flex justify-center items-center bg-white overflow-hidden">
+        <div class="h-[80vh] w-full rounded-lg border relative flex justify-center items-center bg-white overflow-hidden bg-cover bg-center p-10" style="background-image: url('{{ asset('img/cuadricula.webp') }}');">
 
             <!-- Controles de Zoom -->
             <div class="absolute top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-md flex gap-2">
