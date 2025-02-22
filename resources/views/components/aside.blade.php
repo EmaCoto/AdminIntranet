@@ -370,10 +370,10 @@
                 </button>
                 </li>
                 <ul id="report-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Sales report</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Leads report</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Projects report</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Timesheets report</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Sales report</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads report</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects report</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Timesheets report</a></li>
                 </ul>
             </ul>
         </section>
@@ -391,11 +391,11 @@
                 </button>
                 </li>
                 <ul id="aplication-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Email</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Tasks</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Notes</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">storage</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Calendar</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Email</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Tasks</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Notes</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">storage</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Calendar</a></li>
                 </ul>
             </ul>
         </section>
@@ -413,9 +413,9 @@
                 </button>
                 </li>
                 <ul id="customer-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Customer</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Customer view</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Customer create</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer view</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer create</a></li>
                 </ul>
             </ul>
         </section>
@@ -433,9 +433,9 @@
                 </button>
                 </li>
                 <ul id="leads-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Leads</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Leads view</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Leads create</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads view</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads create</a></li>
                 </ul>
             </ul>
         </section>
@@ -453,9 +453,9 @@
                 </button>
                 </li>
                 <ul id="projects-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
                 </ul>
             </ul>
         </section>
