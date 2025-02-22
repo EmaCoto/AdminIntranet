@@ -11,21 +11,21 @@
                 <div>
                     <div>
                         <x-label for="name" value="{{ __('Name') }}" />
-                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model="name" required autofocus />
+                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model="name" required autofocus autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
                     </div>
                     <div class="mt-4">
                         <x-label for="password" value="{{ __('Password') }}" />
-                        <x-input id="password" class="block mt-1 w-full" type="password" wire:model="password" required />
+                        <x-input id="password" class="block mt-1 w-full" type="password" wire:model="password" required autocomplete="new-password" />
                     </div>
                 </div>
                 <div>
                     <div>
                         <x-label for="email" value="{{ __('Email') }}" />
-                        <x-input id="email" class="block mt-1 w-full" type="email" wire:model="email" required />
+                        <x-input id="email" class="block mt-1 w-full" type="email" wire:model="email" required autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
                     </div>
                     <div class="mt-4">
                         <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password" wire:model="password_confirmation" required />
+                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password" wire:model="password_confirmation" required autocomplete="new-password" />
                     </div>
                 </div>
             </div>
@@ -64,5 +64,4 @@
             @endif
         </form>
     </div>
-
 </x-content>

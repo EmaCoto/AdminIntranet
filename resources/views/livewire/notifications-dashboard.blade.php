@@ -10,7 +10,7 @@
             @endforeach
         </ul>
     @else
-        <p class="text-gray-800">No hay notificaciones disponibles.</p>
+        <p class="text-gray-800 text-center">No hay notificaciones disponibles.</p>
     @endif
 </div>
     
