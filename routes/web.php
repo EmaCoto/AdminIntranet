@@ -101,9 +101,8 @@ Route::get('admin/organigrama', Organigrama::class)->name('organigrama');
 Route::get('admin/organigramas', OrgranigramaBolitas::class)->name('organigramas');
 Route::get('admin/organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
 
-//limpiar caché
-Route::get('/limpiar', function() {
-    Artisan::call('optimize:clear');
-    return 'Caché limpiada con éxito';
-});
-
+//Limpiar caché
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return response()->json(['message' => 'La caché se ha eliminado correctamente.']);
+})->name('cache.clear');
