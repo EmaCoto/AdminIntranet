@@ -184,6 +184,13 @@
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Mis Abogados USA</span>
                                     </div>
                                 </li>
+                                <li>
+                                    <div class="relative group w-full max-w-[250px]">
+                                        <a href="{{ route('ServiHuella') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('ServiHuella') ? 'active' : '' }} truncate w-full block">Servi Huellas</a>
+                                        <!-- Tooltip -->
+                                        <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Servi Huella</span>
+                                    </div>
+                                </li>
                                 <li><a href="{{ route('Patty8A') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Patty8A') ? 'active' : '' }}">Patty 8A</a></li>
                                 <li><a href="{{ route('Crecer') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Crecer') ? 'active' : '' }}">Crecer Todos</a></li>
                             </ul>
