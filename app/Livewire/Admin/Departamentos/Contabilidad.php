@@ -77,7 +77,7 @@ class Contabilidad extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->having('job_title', 'LIKE', 'Acuerdos')
+            ->having('job_title', 'LIKE', 'Contabilidad')
             // ->orderBy('ID', 'desc')
             ->paginate(10);
     

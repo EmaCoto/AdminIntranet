@@ -77,7 +77,7 @@ class Acuerdos extends Component
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->having('job_title', 'LIKE', 'Agentes Comerciales')
+            ->having('job_title', 'LIKE', 'Acuerdos')
             // ->orderBy('ID', 'desc')
             ->paginate(10);
         return view('livewire.admin.departamentos.acuerdos', compact('users'));
