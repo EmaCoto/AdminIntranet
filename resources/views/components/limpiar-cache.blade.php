@@ -18,6 +18,7 @@
                             text: data.message,
                             icon: "success",
                             confirmButtonText: "OK",
+                            confirmButtonColor: "#B23B3B", // Cambia este color al que desees
                             timer: 3000,
                             timerProgressBar: true
                         });
@@ -28,7 +29,8 @@
                             title: "Error",
                             text: "No se pudo limpiar la caché",
                             icon: "error",
-                            confirmButtonText: "OK"
+                            confirmButtonText: "OK",
+                            confirmButtonColor: "#B23B3B" // Cambia este color al que desees
                         });
                     });
             });

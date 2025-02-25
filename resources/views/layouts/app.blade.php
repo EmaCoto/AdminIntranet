@@ -29,7 +29,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow hidden md:block">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
