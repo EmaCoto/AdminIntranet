@@ -1,0 +1,1 @@
+<div class="mx-auto"><i class="fa-solid fa-arrow-down text-4xl text-red-600"></i></div>

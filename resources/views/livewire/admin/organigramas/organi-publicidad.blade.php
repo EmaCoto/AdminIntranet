@@ -1,14 +1,4 @@
 <x-content-organi>
-    {{-- <nav class="sticky top-0 bg-white bg-opacity-95 shadow z-40 px-4 py-2 flex justify-center gap-4 content-scroll overflow-x-auto">
-        @foreach ($profileTypes as $type)
-            @if (isset($users[$type])) 
-                <a href="#{{ Str::slug($type) }}" class="rounded-lg px-2 py-1 hover:bg-[#B33031] hover:text-white text-sm">
-                    {{ ucfirst(str_replace('-', ' ', $type)) }}
-                </a>
-            @endif
-        @endforeach
-    </nav> --}}
-
     <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
             
@@ -37,7 +27,7 @@
             </div>
 
             <!-- Línea de conexión hacia Subgerente -->
-            <div class="w-0.5 h-8 bg-gray-500 mx-auto"></div>
+            <x-arrow-organi />
 
             <!-- Subgerente -->
             <div class="flex justify-center items-center gap-12">
@@ -63,7 +53,8 @@
                 @endforeach
             </div>
 
-            <div class="w-0.5 h-8 bg-gray-500 mx-auto"></div>
+            <!-- Línea de conexión hacia Director -->
+            <x-arrow-organi />
 
             <!-- Director -->
             <div class="flex justify-center items-center gap-12">
@@ -90,7 +81,7 @@
             </div>
 
             <!-- Línea de conexión hacia subdirectores -->
-            <div class="w-0.5 h-8 bg-gray-500 mx-auto"></div>
+            <x-arrow-organi />
 
             <div class="flex justify-center gap-8">
                 {{-- Desarrollo Web --}}
@@ -116,7 +107,7 @@
                                         </div>
                                     @endforeach
                                     <!-- Línea de conexión hacia el equipo -->
-                                    <div class="w-0.5 h-8 bg-gray-500 mx-auto mb-8"></div>
+                                    <x-arrow-organi />
                                 </div>
                             @endif
                         @endforeach
@@ -157,7 +148,7 @@
                                         </div>
                                     @endforeach
                                     <!-- Línea de conexión hacia el equipo -->
-                                    <div class="w-0.5 h-8 bg-gray-500 mx-auto mb-8"></div>
+                                    <x-arrow-organi />
                                 </div>
                             @endif
                         @endforeach
@@ -198,7 +189,7 @@
                                         </div>
                                     @endforeach
                                     <!-- Línea de conexión hacia el equipo -->
-                                    <div class="w-0.5 h-8 bg-gray-500 mx-auto mb-8"></div>
+                                    <x-arrow-organi />
                                 </div>
                             @endif
                         @endforeach
@@ -239,7 +230,7 @@
                                         </div>
                                     @endforeach
                                     <!-- Línea de conexión hacia el equipo -->
-                                    <div class="w-0.5 h-8 bg-gray-500 mx-auto mb-8"></div>
+                                    <x-arrow-organi />
                                 </div>
                             @endif
                         @endforeach
@@ -280,7 +271,7 @@
                                         </div>
                                     @endforeach
                                     <!-- Línea de conexión hacia el equipo -->
-                                    <div class="w-0.5 h-8 bg-gray-500 mx-auto mb-8"></div>
+                                    <x-arrow-organi />
                                 </div>
                             @endif
                         @endforeach
