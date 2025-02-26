@@ -19,8 +19,39 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        <style>
+            /* Estilos del loader */
+            #preloader {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+            .spinner {
+                border: 5px solid #ccc;
+                border-top: 5px solid #007bff;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
+        <!-- Loader -->
+        <div id="preloader">
+            <div class="spinner"></div>
+        </div>
+
         <x-banner />
 
         <div class="bg-[#F1F3F5]">
@@ -29,7 +60,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow hidden md:block">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="mx-auto sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -111,6 +142,18 @@
                         document.querySelectorAll('.ul-nav ul').forEach(menu => closeMenu(menu));
                     }
                 });
+            });
+        </script>
+
+        <script>
+            // Oculta el loader cuando la página se ha cargado
+            window.onload = function() {
+                document.getElementById("preloader").style.display = "none";
+            };
+
+            // Muestra el loader antes de cambiar de página
+            window.addEventListener("beforeunload", function() {
+                document.getElementById("preloader").style.display = "flex";
             });
         </script>
         

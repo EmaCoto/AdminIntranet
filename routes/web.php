@@ -38,6 +38,8 @@ use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\User\DeleteUser;
+use App\Livewire\GoogleSheetComponent;
+use App\Livewire\Vacio;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +97,10 @@ Route::get('admin/Traduccion', Traduccion::class)->name('Traduccion');
 Route::get('admin/VentasIms', VentasIms::class)->name('VentasIms');
 Route::get('admin/VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('VentasPermisosTrabajo');
 Route::get('admin/DeleteUser', DeleteUser::class)->name('DeleteUser');
+
+
+Route::get('admin/vacio', Vacio::class)->name('vacio');
+Route::get('admin/GoogleSheet', GoogleSheetComponent::class)->name('GoogleSheet');
 
 // Organigramas
 Route::get('admin/organigrama', Organigrama::class)->name('organigrama');

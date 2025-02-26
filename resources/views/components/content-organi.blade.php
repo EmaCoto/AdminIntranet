@@ -1,7 +1,7 @@
 <div class="flex w-full bg-[#fafbfd]">
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <div class="text-white leading-tight px-56 flex p-5">
+            <div class="text-white leading-tight px-72 flex p-5">
                 <span class="mr-1">Bienvenido:</span>
                 <p class="font-semibold">{{ Auth::user()->name }}</p>
             </div>
@@ -52,7 +52,7 @@
         const panzoom = Panzoom(panzoomElement, {
             maxScale: 3,
             minScale: 0.3,
-            startScale: 1,
+            startScale: 0.8,
             startX: startX,
             startY: startY,
             contain: "outside",

@@ -14,20 +14,22 @@ class OrganiPublicidad extends Component
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
         $profileOrder = [
-            'director-de-publicidad',
+            'gerente-de-publicidad',
             'subgerente-de-publicidad',
-            'supervisor-de-desarrollo-web',
-            'desarrollador-web',
-            'supervisor-de-community',
-            'community',
-            'supervisor-de-diseño',
-            'diseñador',
-            'supervisor-audiovisual',
-            'audiovisual',
-            'supervisor-de-mercadeo',
-            'mercadeo',
-            'supervisor-de-marketing',
+            'director-de-publicidad',
+            'subdirector-desarrollo-web',
+            'desarrollo-web',
+            'subdirector-marketing',
             'marketing',
+            'crecer-health',
+            'subdirector-impresos',
+            'impresos',
+            'subdirector-content-manager',
+            'content-manager',
+            'subdirector-audiovisual',
+            'audiovisual',
+            'subdirector-diseño',
+            'diseño'
         ];
 
         $users = DB::connection('wordpress')
@@ -62,7 +64,7 @@ class OrganiPublicidad extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
             })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) = 'Publicidad'")
+            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Publicidad', 'Mis Abogados', 'PAL')")
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final

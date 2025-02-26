@@ -465,8 +465,8 @@
                 </button>
                 </li>
                 <ul id="projects-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
+                    <li><a href="{{ route('vacio') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
+                    <li><a href="{{ route('GoogleSheet') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
                     <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
                 </ul>
             </ul>
