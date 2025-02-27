@@ -1,4 +1,5 @@
 <x-content-admin :users="$users" :search="$search">
+    <h1 class="text-red-700 border-l-4 border-red-700 bg-red-200 py-2 px-1"><i class="fa-solid fa-circle-exclamation mx-2"></i>Estos usuarios serán eliminados por desarrollo web. Verifica que sean correctos.</h1>
     <div id="userList" class="w-full overflow-hidden">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead class="bg-gray-100 sticky top-0 z-20">

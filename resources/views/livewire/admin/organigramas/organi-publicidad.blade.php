@@ -30,7 +30,7 @@
             <x-arrow-organi />
 
             <!-- Subgerente -->
-            <div class="flex justify-center items-center gap-12">
+             <div class="flex justify-center items-center gap-12">
                 @foreach (['subgerente-de-publicidad'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
