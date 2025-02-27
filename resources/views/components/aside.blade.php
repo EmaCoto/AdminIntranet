@@ -83,6 +83,7 @@
                                 <li><a href="{{ route('GestionHumana') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('GestionHumana') ? 'active' : '' }}">Gestión Humana</a></li>
                                 <li><a href="{{ route('Sistemas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Sistemas') ? 'active' : '' }}">Sistemas</a></li>
                                 <li><a href="{{ route('Contabilidad') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Contabilidad') ? 'active' : '' }}">Contabilidad</a></li>
+                                <li><a href="{{ route('Innovacion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Innovacion') ? 'active' : '' }}">Innovacion</a></li>
                             </ul>
                         </li>
                         {{-- Legal --}}

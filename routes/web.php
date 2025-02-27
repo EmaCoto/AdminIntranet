@@ -16,6 +16,7 @@ use App\Livewire\Admin\Departamentos\DireccionLegal;
 use App\Livewire\Admin\Departamentos\Finanzas;
 use App\Livewire\Admin\Departamentos\Gerencia;
 use App\Livewire\Admin\Departamentos\GestionHumana;
+use App\Livewire\Admin\Departamentos\Innovacion;
 use App\Livewire\Admin\Departamentos\Interventoria;
 use App\Livewire\Admin\Departamentos\LegalUscis;
 use App\Livewire\Admin\Departamentos\ManejoDocumentos;
@@ -95,6 +96,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('Traduccion', Traduccion::class)->name('Traduccion');
         Route::get('VentasIms', VentasIms::class)->name('VentasIms');
         Route::get('VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('VentasPermisosTrabajo');
+        Route::get('Innovacion', Innovacion::class)->name('Innovacion');
         Route::get('DeleteUser', DeleteUser::class)->name('DeleteUser');
 
         // Organigramas
