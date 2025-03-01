@@ -12,8 +12,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- FullCalendar CSS -->
+        <link rel="stylesheet" href="https://lottie.host/56473283-3a82-4839-aa5a-b818f03b63c6/5dzOWXPXpa.lottie">
 
-        <!-- Scripts -->
+        <!-- Scripts -->     
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 

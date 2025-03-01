@@ -358,7 +358,7 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('proximamente') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('#') ? 'active' : '' }}">
+                    <a href="{{ route('BirthdayCalendar') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('BirthdayCalendar') ? 'active' : '' }}">
                         <i class="fa-regular fa-calendar w-5 h-5"></i>
                         <span class="ml-3">Cumpleaños</span>
                     </a>

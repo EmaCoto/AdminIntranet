@@ -97,11 +97,11 @@ class EditUser extends Component
     public function updateUser()
     {
         $etiquetaAnterior = DB::connection('wordpress')
-        ->table('dxv_bp_xprofile_data')
-        ->where('user_id', $this->userId)
-        ->where('field_id', 50)
-        ->value('value');
-
+            ->table('dxv_bp_xprofile_data')
+            ->where('user_id', $this->userId)
+            ->where('field_id', 50)
+            ->value('value');
+    
         $fields = [
             1 => $this->nombre,
             2 => $this->apellido,
@@ -120,7 +120,7 @@ class EditUser extends Component
             50 => $this->etiqueta,
             325 => $this->modalidad,
         ];
-
+    
         foreach ($fields as $field_id => $value) {
             $value = $value ?? ''; // Convertir NULL a cadena vacía
             
@@ -128,7 +128,7 @@ class EditUser extends Component
                 ['user_id' => $this->userId, 'field_id' => $field_id],
                 ['value' => $value, 'last_updated' => now()]
             );
-        
+    
             if ($field_id === 50 && $etiquetaAnterior !== $value) {
                 Notification::create([
                     'user_id' => $this->userId,
@@ -138,8 +138,29 @@ class EditUser extends Component
                 ]);
             }
         }
-        
-
+    
+        // **Generar nuevo display_name con formato correcto**
+        $displayName = ucwords(strtolower("{$this->nombre} {$this->apellido}"));
+    
+        // **Actualizar display_name en dxv_users**
+        DB::connection('wordpress')->table('dxv_users')
+            ->where('ID', $this->userId)
+            ->update(['display_name' => $displayName]);
+    
+        // **Actualizar first_name y last_name en dxv_usermeta
+        $meta_fields = [
+            'first_name' => $this->nombre,
+            'last_name' => $this->apellido
+        ];
+    
+        foreach ($meta_fields as $key => $value) {
+            DB::connection('wordpress')->table('dxv_usermeta')->updateOrInsert(
+                ['user_id' => $this->userId, 'meta_key' => $key],
+                ['meta_value' => $value]
+            );
+        }
+    
+        // **Actualizar perfil del usuario en term_relationships**
         DB::connection('wordpress')->table('dxv_term_relationships')
             ->updateOrInsert(
                 ['object_id' => $this->userId],
@@ -149,7 +170,7 @@ class EditUser extends Component
                     ->where('taxonomy', 'bp_member_type')
                     ->value('term_taxonomy_id')]
             );
-
+    
         $this->dispatch('render');
         $this->reset('open');
         session()->flash('messageuser', 'Usuario actualizado correctamente');

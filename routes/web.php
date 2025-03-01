@@ -39,6 +39,7 @@ use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\User\DeleteUser;
+use App\Livewire\BirthdayCalendar;
 use App\Livewire\GoogleSheetComponent;
 use App\Livewire\Vacio;
 use Illuminate\Support\Facades\Artisan;
@@ -107,6 +108,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // Google Sheet y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');
         Route::get('GoogleSheet', GoogleSheetComponent::class)->name('GoogleSheet');
+        Route::get('BirthdayCalendar', BirthdayCalendar::class)->name('BirthdayCalendar');
+
     });
 });
 
