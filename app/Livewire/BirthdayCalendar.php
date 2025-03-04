@@ -9,7 +9,8 @@ use Carbon\Carbon;
 class BirthdayCalendar extends Component
 {
     public $birthdaysByMonth = [];
-    public $selectedMonth; // Nuevo: mes seleccionado por el usuario
+    public $todaysBirthdays = [];
+    public $selectedMonth;
 
     public function mount()
     {
@@ -21,13 +22,13 @@ class BirthdayCalendar extends Component
             ->table('dxv_bp_xprofile_data as birth')
             ->join('dxv_bp_xprofile_data as name', function ($join) {
                 $join->on('birth.user_id', '=', 'name.user_id')
-                    ->where('name.field_id', '=', 1); // ID del campo "nombre"
+                    ->where('name.field_id', '=', 1);
             })
             ->join('dxv_bp_xprofile_data as lastname', function ($join) {
                 $join->on('birth.user_id', '=', 'lastname.user_id')
-                    ->where('lastname.field_id', '=', 2); // ID del campo "apellido"
+                    ->where('lastname.field_id', '=', 2);
             })
-            ->where('birth.field_id', 212) // ID del campo "fecha de nacimiento"
+            ->where('birth.field_id', 212)
             ->select(
                 'birth.user_id',
                 'birth.value as birth_date',
@@ -37,40 +38,42 @@ class BirthdayCalendar extends Component
             ->get();
 
         $birthdays = [];
+        $todaysBirthdays = [];
 
         foreach ($users as $user) {
             $birthDate = Carbon::parse($user->birth_date);
             $birthdayThisYear = Carbon::create($currentYear, $birthDate->month, $birthDate->day);
-            
-            // Calcular la edad que van a cumplir
-            $ageNext = $birthDate->age; 
-        
-            // Verificar si hoy es su cumpleaños
+            $ageNext = $birthDate->age;
             $isToday = $birthdayThisYear->isToday();
-
-            // Verificar si el cumpleaños ya pasó este año
             $isPast = $birthdayThisYear->lessThan($today);
 
-            // Agregar todos los cumpleaños, incluyendo los que ya pasaron
-            $birthdays[$birthDate->month][] = [
+            $birthdayData = [
                 'name' => "{$user->first_name} {$user->last_name}",
                 'first_name' => "{$user->first_name}",
                 'last_name' => "{$user->last_name}",
                 'birthday' => $birthdayThisYear->format('d M'),
-                'age_next' => $ageNext, // Edad que va a cumplir
-                'is_today' => $isToday, // Si es su cumpleaños hoy
-                'is_past' => $isPast // Si ya pasó su cumpleaños
+                'age_next' => $ageNext,
+                'is_today' => $isToday,
+                'is_past' => $isPast
             ];
+
+            if ($isToday) {
+                $todaysBirthdays[] = $birthdayData;
+            } else {
+                $birthdays[$birthDate->month][] = $birthdayData;
+            }
         }
 
-        // Ordenar los meses y los cumpleaños dentro de cada mes
         ksort($birthdays);
         foreach ($birthdays as &$monthBirthdays) {
-            usort($monthBirthdays, fn($a, $b) => strtotime($a['birthday']) - strtotime($b['birthday']));
+            usort($monthBirthdays, function ($a, $b) {
+                return strtotime($a['birthday']) - strtotime($b['birthday']);
+            });
         }
 
         $this->birthdaysByMonth = $birthdays;
-        $this->selectedMonth = Carbon::now()->month; // Iniciar con el mes actual
+        $this->todaysBirthdays = $todaysBirthdays;
+        $this->selectedMonth = Carbon::now()->month;
     }
 
     public function selectMonth($month)
@@ -82,7 +85,8 @@ class BirthdayCalendar extends Component
     {
         return view('livewire.birthday-calendar', [
             'months' => array_keys($this->birthdaysByMonth),
-            'birthdays' => $this->birthdaysByMonth[$this->selectedMonth] ?? []
+            'birthdays' => $this->birthdaysByMonth[$this->selectedMonth] ?? [],
+            'todaysBirthdays' => $this->todaysBirthdays
         ]);
     }
 }

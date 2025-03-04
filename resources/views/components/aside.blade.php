@@ -97,6 +97,7 @@
                             </button>
                             <ul id="legal-listas" class="hidden py-1 ul-nav">
                                 <li><a href="{{ route('DireccionLegal') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('DireccionLegal') ? 'active' : '' }}">Dirección Legal</a></li>
+                                <li><a href="{{ route('Abogados') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Abogados') ? 'active' : '' }}">Dirección Abogados</a></li>
                                 <li><a href="{{ route('Asilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Asilo') ? 'active' : '' }}">Asilo</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
@@ -158,6 +159,7 @@
                                 <li><a href="{{ route('Interventoria') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Interventoria') ? 'active' : '' }}">Interventoría</a></li>
                                 <li><a href="{{ route('Acuerdos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Acuerdos') ? 'active' : '' }}">Acuerdos</a></li>
                                 <li><a href="{{ route('Finanzas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Finanzas') ? 'active' : '' }}">Finanzas</a></li>
+                                <li><a href="{{ route('Oficinas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Oficinas') ? 'active' : '' }}">Oficinas USA</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
                                         <a href="{{ route('VentasPermisosTrabajo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('VentasPermisosTrabajo') ? 'active' : '' }} truncate w-full block">Ventas de Permisos de Trabajo</a>
@@ -467,7 +469,7 @@
                 </li>
                 <ul id="projects-list" class="hidden py-1 ul-nav">
                     <li><a href="{{ route('vacio') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
-                    <li><a href="{{ route('GoogleSheet') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
+                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
                     <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
                 </ul>
             </ul>

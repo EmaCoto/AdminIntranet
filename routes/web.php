@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Departamentos\Abogados;
 use App\Livewire\Admin\Departamentos\Acuerdos;
 use App\Livewire\Admin\Register\AdminRegister;
 use App\Livewire\Admin\Register\CustomerRegister;
@@ -21,6 +22,7 @@ use App\Livewire\Admin\Departamentos\Interventoria;
 use App\Livewire\Admin\Departamentos\LegalUscis;
 use App\Livewire\Admin\Departamentos\ManejoDocumentos;
 use App\Livewire\Admin\Departamentos\MisAbogados;
+use App\Livewire\Admin\Departamentos\Oficinas;
 use App\Livewire\Admin\Departamentos\Pal;
 use App\Livewire\Admin\Departamentos\Patty;
 use App\Livewire\Admin\Departamentos\PermisosTrabajo;
@@ -40,7 +42,6 @@ use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\User\DeleteUser;
 use App\Livewire\BirthdayCalendar;
-use App\Livewire\GoogleSheetComponent;
 use App\Livewire\Vacio;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -98,6 +99,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('VentasIms', VentasIms::class)->name('VentasIms');
         Route::get('VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('VentasPermisosTrabajo');
         Route::get('Innovacion', Innovacion::class)->name('Innovacion');
+        Route::get('Oficinas', Oficinas::class)->name('Oficinas');
+        Route::get('Abogados', Abogados::class)->name('Abogados');
         Route::get('DeleteUser', DeleteUser::class)->name('DeleteUser');
 
         // Organigramas
@@ -105,9 +108,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigramas', OrgranigramaBolitas::class)->name('organigramas');
         Route::get('organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
 
-        // Google Sheet y Vacio
+        // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');
-        Route::get('GoogleSheet', GoogleSheetComponent::class)->name('GoogleSheet');
         Route::get('BirthdayCalendar', BirthdayCalendar::class)->name('BirthdayCalendar');
 
     });

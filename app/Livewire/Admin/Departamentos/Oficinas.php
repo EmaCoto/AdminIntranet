@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin\Departamentos;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Vacio extends Component
+class Oficinas extends Component
 {
     use WithPagination;
 
@@ -33,19 +33,10 @@ class Vacio extends Component
             );
     
         $this->dispatch('render'); // Para actualizar la vista
-    }    
+    }  
 
     public function render()
     {
-        $excludedValues = [
-            'Acuerdos', 'Agentes Comerciales', 'Alianza Comercial y Legal', 'Asilo', 'Bajo Zero', 'Contabilidad', 
-            'Cortes', 'Crecer', 'Customer Services', 'Dirección Legal', 'Finanzas', 'Gerencia Administrativa', 
-            'Gestión Humana', 'Interventoría', 'USCIS', 'Manejo de Documentos', 'Mis Abogados', 'PAL', 'Patty 8A', 
-            'Permisos de Trabajo', 'Publicidad', 'Redacción', 'Revisión y Ensamble de Asilo', 
-            'Revisión y Ensamble USCIS', 'Ventas Permisos de Trabajo', 'Seguimiento de Asilo', 'Seguimiento de USCIS', 
-            'Servi Huellas', 'Sistemas', 'Traducción', 'Ventas IMS', 'Ventas de Permisos de Trabajo', 'Oficinas USA', 'Dirección Abogados', 'USUARIO DEPURADO', 'Innovación y ciencia de datos'
-        ];
-    
         $users = DB::connection('wordpress')
             ->table('dxv_users')
             ->select([
@@ -81,18 +72,12 @@ class Vacio extends Component
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->where('fn.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
+                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->where(function ($query) use ($excludedValues) {
-                $query->whereNull('jt.value') // Campo vacío
-                      ->orWhereNotIn('jt.value', $excludedValues); // Valores excluidos
-            })
-            ->orderBy('ID', 'desc')
-            ->paginate(1);
-        
-        return view('livewire.vacio', compact('users'));
+            ->having('job_title', 'LIKE', 'Oficinas USA')
+            // ->orderBy('ID', 'desc')
+            ->paginate(10);
+        return view('livewire.admin.departamentos.oficinas', compact('users'));
     }
-    
 }
