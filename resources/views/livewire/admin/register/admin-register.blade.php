@@ -1,5 +1,5 @@
 <x-content>
-    <x-validation-errors class="mb-4" />
+    <x-validation-errors class="p-2" />
 
     <div class="w-full mx-auto h-full flex items-center justify-center">
         <form wire:submit.prevent="register" class="bg-gray-200 p-10 rounded-lg w-[85%]">
@@ -15,16 +15,16 @@
                     </div>
                     <div class="mt-4">
                         <x-label for="password" value="{{ __('Password') }}" />
-                        <x-input id="password" class="block mt-1 w-full" type="password" wire:model="password" required autocomplete="new-password" />
+                        <x-input id="password" class="block mt-1 w-full" type="password" wire:model.defer="password" required autocomplete="new-password" />
                     </div>
                     <div class="mt-4">
-                        <div class="flex">
-                            <button type="button" id="generate-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center gap-2 text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border border-[#B33031]">
+                        <div class="flex gap-2">
+                            <button type="button" id="generate-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border border-[#B33031]">
                                 {{-- <i class="fa-solid fa-key "></i> --}}
                                 <i class="fa-solid fa-lock-open text-[#B33031]"></i>
                                 Generar contraseña
                             </button>
-                            <button type="button" id="toggle-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center gap-2 text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-[#F5F5F5] hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border hover:border-[#B33031]">
+                            <button type="button" id="toggle-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-[#F5F5F5] hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border hover:border-[#B33031]">
                                 <i class="fa-solid fa-eye-low-vision"></i>
                             </button>
                         </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="mt-4">
                         <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password" wire:model="password_confirmation" required autocomplete="new-password" />
+                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password" wire:model.defer="password_confirmation" required autocomplete="new-password" />
                     </div>                        
                 </div>
             </div>
@@ -77,33 +77,50 @@
         </form>
     </div>
     <script>
-        // Función para generar una contraseña aleatoria
-        function generatePassword(length = 12) {
-            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-            let password = "";
-            for (let i = 0; i < length; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
+        document.addEventListener("DOMContentLoaded", function () {
+            // Función para generar una contraseña aleatoria
+            function generatePassword(length = 12) {
+                const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+                let password = "";
+                for (let i = 0; i < length; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return password;
             }
-            return password;
-        }
-        
-        // Al hacer clic en el botón de generar, se asigna la nueva contraseña a ambos campos
-        document.getElementById("generate-password-btn").addEventListener("click", function() {
-            const newPassword = generatePassword();
-            document.getElementById("password").value = newPassword;
-            document.getElementById("password_confirmation").value = newPassword;
+
+            // Al hacer clic en el botón de generar, se asigna la nueva contraseña a ambos campos
+            document.getElementById("generate-password-btn").addEventListener("click", function () {
+                const newPassword = generatePassword();
+                
+                // Asigna la nueva contraseña a los campos de contraseña y confirmación
+                document.getElementById("password").value = newPassword;
+                document.getElementById("password_confirmation").value = newPassword;
+
+                // Disparar eventos input para que Livewire detecte los cambios
+                document.getElementById("password").dispatchEvent(new Event("input"));
+                document.getElementById("password_confirmation").dispatchEvent(new Event("input"));
+
+                // También actualizar el estado en Livewire manualmente
+                Livewire.emit('setPassword', newPassword);
+            });
+
+            // Función para alternar la visibilidad de la contraseña
+            document.getElementById("toggle-password-btn").addEventListener("click", function () {
+                const passwordField = document.getElementById("password");
+                const confirmField = document.getElementById("password_confirmation");
+                const toggleBtn = document.getElementById("toggle-password-btn");
+
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    confirmField.type = "text";
+                    toggleBtn.innerHTML = `<i class="fa-solid fa-eye"></i>`; // Ícono de ojo abierto
+                } else {
+                    passwordField.type = "password";
+                    confirmField.type = "password";
+                    toggleBtn.innerHTML = `<i class="fa-solid fa-eye-low-vision"></i>`; // Ícono de ojo cerrado
+                }
+            });
         });
-        
-        // Función para alternar la visibilidad de las contraseñas
-        function togglePasswordVisibility() {
-            const passwordField = document.getElementById("password");
-            const confirmField = document.getElementById("password_confirmation");
-            const newType = passwordField.type === "password" ? "text" : "password";
-            passwordField.type = newType;
-            confirmField.type = newType;
-        }
-        
-        // Evento para el botón de mostrar/ocultar contraseña
-        document.getElementById("toggle-password-btn").addEventListener("click", togglePasswordVisibility);
     </script>
+    
 </x-content>

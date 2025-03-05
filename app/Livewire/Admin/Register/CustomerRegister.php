@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerRegister extends Component
 {
-    public $user_login, $user_pass, $user_email, $first_name, $last_name, $display_name;
+    public $user_login, $user_pass, $user_email, $first_name, $last_name;
+    protected $listeners = ['setPassword'];
 
     protected $rules = [
         'user_login' => 'required|string|max:60|unique:wordpress.dxv_users,user_login',
@@ -19,6 +20,16 @@ class CustomerRegister extends Component
         'first_name' => 'required|string|max:100',
         'last_name' => 'required|string|max:100',
     ];
+
+    public function mount()
+    {
+        $this->user_pass = '';
+    }
+
+    public function setPassword($password)
+    {
+        $this->user_pass = $password;
+    }
 
     public function createUser()
     {
@@ -29,11 +40,10 @@ class CustomerRegister extends Component
         DB::connection('wordpress')->beginTransaction();
 
         try {
-            // ✅ Crear usuario en WordPress
             $user = UsersIntranet::create([
                 'user_login' => $this->user_login,
                 'user_pass' => $hashed_password,
-                'user_nicename' => $this->user_login, // ✅ Ahora el nicename es igual al user_login
+                'user_nicename' => $this->user_login,
                 'user_email' => $this->user_email,
                 'user_url' => '',
                 'user_registered' => now(),
@@ -42,18 +52,15 @@ class CustomerRegister extends Component
                 'display_name' => $this->first_name . ' ' . $this->last_name,
             ]);
 
-            // ✅ Insertar Metadatos del Usuario en `dxv_usermeta`
             $this->createUserMeta($user->ID, 'nickname', $this->user_login);
             $this->createUserMeta($user->ID, 'first_name', $this->first_name);
             $this->createUserMeta($user->ID, 'last_name', $this->last_name);
             $this->createUserMeta($user->ID, 'dxv_capabilities', serialize(['subscriber' => true]));
             $this->createUserMeta($user->ID, 'dxv_user_level', 0);
 
-            // ✅ Agregar Perfil de BuddyBoss en `dxv_bp_xprofile_data`
-            $this->createBuddyBossProfile($user->ID, 1, $this->first_name); // ID 1 → Nombre
-            $this->createBuddyBossProfile($user->ID, 2, $this->last_name);  // ID 2 → Apellidos
+            $this->createBuddyBossProfile($user->ID, 1, $this->first_name);
+            $this->createBuddyBossProfile($user->ID, 2, $this->last_name);
 
-            // ✅ **Registrar Actividad para que aparezca el muro**
             $this->createBuddyBossActivity($user->ID);
 
             DB::connection('wordpress')->commit();
@@ -89,31 +96,11 @@ class CustomerRegister extends Component
 
     private function createBuddyBossActivity($user_id)
     {
-        // ✅ Agregar actividad de nuevo miembro en BuddyBoss
         DB::connection('wordpress')->table('dxv_bp_activity')->insert([
             'user_id' => $user_id,
             'component' => 'members',
             'type' => 'new_member',
             'action' => '¡' . $this->first_name . ' se ha unido a la comunidad!',
-            'content' => '',
-            'primary_link' => '',
-            'item_id' => 0,
-            'secondary_item_id' => null,
-            'date_recorded' => now(),
-            'hide_sitewide' => 0,
-            'mptt_left' => 0,
-            'mptt_right' => 0,
-            'is_spam' => 0,
-            'privacy' => 'public',
-            'status' => 'published',
-        ]);
-
-        // ✅ Registrar última actividad del usuario
-        DB::connection('wordpress')->table('dxv_bp_activity')->insert([
-            'user_id' => $user_id,
-            'component' => 'members',
-            'type' => 'last_activity',
-            'action' => '',
             'content' => '',
             'primary_link' => '',
             'item_id' => 0,
