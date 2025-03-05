@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Administradores;
 use App\Livewire\Admin\Departamentos\Abogados;
 use App\Livewire\Admin\Departamentos\Acuerdos;
 use App\Livewire\Admin\Register\AdminRegister;
@@ -12,6 +13,7 @@ use App\Livewire\Admin\Departamentos\BajoZero;
 use App\Livewire\Admin\Departamentos\Contabilidad;
 use App\Livewire\Admin\Departamentos\Cortes;
 use App\Livewire\Admin\Departamentos\Crecer;
+use App\Livewire\Admin\Departamentos\Crecerhealth;
 use App\Livewire\Admin\Departamentos\CustomerService;
 use App\Livewire\Admin\Departamentos\DireccionLegal;
 use App\Livewire\Admin\Departamentos\Finanzas;
@@ -101,7 +103,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('Innovacion', Innovacion::class)->name('Innovacion');
         Route::get('Oficinas', Oficinas::class)->name('Oficinas');
         Route::get('Abogados', Abogados::class)->name('Abogados');
+        Route::get('Crecerhealth', Crecerhealth::class)->name('Crecerhealth');
         Route::get('DeleteUser', DeleteUser::class)->name('DeleteUser');
+        Route::get('Administradores', Administradores::class)->name('Administradores');
 
         // Organigramas
         Route::get('organigrama', Organigrama::class)->name('organigrama');

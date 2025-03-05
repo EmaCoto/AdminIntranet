@@ -6,7 +6,7 @@
     <!-- Modal -->
     @if($open)
         <div class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
-            <div class="bg-white rounded-lg  shadow-lg w-[80%] h-[80vh] overflow-y-auto relative content-scroll">
+            <div class="bg-white rounded-lg  shadow-lg w-[80%] h-hit overflow-y-auto relative content-scroll">
                 <!-- Encabezado -->
                 <div class="flex justify-between items-center mb-4 p-4 bg-[#11163D]">
                     <div class="flex items-center">
@@ -41,7 +41,9 @@
                             'Área' => $area,
                             'Departamento' => $etiqueta,
                             'Talla' => $talla,
+                            'Fecha de ingreso' => $ingreso,
                             'Modalidad' => $modalidad,
+                            'Fecha de nacimiento' => $nacimiento,
                             'Perfil' => $perfilOptions[$perfil] ?? 'No definido'
                         ] as $label => $value)
                         <div class="flex flex-col text-left border-b border-slate-300">

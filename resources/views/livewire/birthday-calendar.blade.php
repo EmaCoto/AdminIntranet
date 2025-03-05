@@ -64,7 +64,12 @@
     @endif
         
     {{-- Cumpleañeros del mes --}}
-    <div class="mb-6 text-center">
+    <div class="text-center my-4">
+        <h3 class="text-3xl font-bold text-slate-800 capitalize">
+            {{ \Carbon\Carbon::create()->locale('es')->month($selectedMonth)->translatedFormat('F') }}
+        </h3>
+    </div>
+    <div class="text-center">
         <ul class="grid grid-cols-4 gap-2 gap-y-8 p-4">
             @foreach ($birthdays as $birthday)
                 <div class="w-52 h-fit hover:scale-105 transition duration-300 relative">
@@ -73,7 +78,8 @@
                         <p class="flex flex-col bg-gradient-to-t from-[#152B59] to-[#2973B2] text-white rounded-full p-1 px-1.5 z-20">{{ $birthday['age_next'] }} <span class="text-xs -mt-2">Años</span></p>
                     </div>
 
-                    <li class="bg-gradient-to-r from-[#e3e3e3] to-white flex flex-col items-center w-52 h-fit p-2 relative hover:shadow-lg border text-sm gap-y-2 rounded-md overflow-hidden">
+                    <li class="bg-gradient-to-r from-[#e3e3e3] to-white flex flex-col items-center w-52 h-fit p-2 relative hover:shadow-lg border text-sm gap-y-2 rounded-md overflow-hidden 
+                        {{ $birthday['is_past'] ? 'border-red-800' : '' }}">
                         <div class="relative z-10 flex flex-col items-center">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($birthday['name']) }}&background=fff" alt="Foto de {{ $birthday['name'] }}" class="w-16 h-16 rounded-full">
                             <div>
@@ -86,4 +92,5 @@
             @endforeach
         </ul>
     </div>
+
 </x-content>

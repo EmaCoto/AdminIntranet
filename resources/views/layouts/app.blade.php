@@ -61,13 +61,18 @@
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow hidden md:block">
-                    <div class="mx-auto sm:px-6 lg:px-8">
-                        {{ $header }}
+            <header class="bg-gradient-to-b from-[#152B59] to-[#2973B2] shadow hidden md:block">
+                <div class="mx-auto sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center">
+                        <div class="text-white leading-tight px-64 flex p-5">
+                            <span class="mr-1">Bienvenido:</span>
+                            <p class="font-semibold">{{ Auth::user()->name }}</p>
+                        </div>
+            
+                        <x-limpiar-cache />
                     </div>
-                </header>
-            @endif
+                </div>
+            </header>
 
             <!-- Page Content -->
             <main class=" flex justify-center">

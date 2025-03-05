@@ -44,6 +44,11 @@
                             <input type="text" id="numero" wire:model="numero" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
                             @error('numero') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
+                        <div class="">
+                            <label for="nacimiento" class="block text-xs font-medium uppercase">Fecha de nacimiento</label>
+                            <input type="date" id="nacimiento" wire:model="nacimiento" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                            @error('nacimiento') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        </div>
                     </div>
 
                     <div class="space-y-2">
@@ -81,6 +86,11 @@
                                 @endforeach
                             </select>
                             @error('modalidad') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="">
+                            <label for="ingreso" class="block text-xs font-medium uppercase">Fecha de ingreso</label>
+                            <input type="date" id="ingreso" wire:model="ingreso" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
+                            @error('ingreso') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
 

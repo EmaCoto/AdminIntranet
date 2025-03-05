@@ -180,6 +180,7 @@
                             </button>
                             <ul id="marcas-listas" class="hidden py-1 ul-nav">
                                 <li><a href="{{ route('Pal') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Pal') ? 'active' : '' }}">PAL</a></li>
+                                <li><a href="{{ route('Crecerhealth') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Crecerhealth') ? 'active' : '' }}">Crecer Health</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
                                         <a href="{{ route('MisAbogados') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('MisAbogados') ? 'active' : '' }} truncate w-full block">Mis Abogados USA</a>
@@ -215,6 +216,18 @@
             </ul>
         </section>
         
+        <!-- Administradores -->
+        <section class="mb-1">
+            <ul class="font-medium ul-nav">
+                <li>
+                    <a href="{{ route('Administradores') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Administradores') ? 'active' : '' }}">
+                        <i class="fa-regular fa-address-card"></i>
+                        <span class="ml-3">Administradores</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
         <div class="py-1 px-1">
             <span class="uppercase text-slate-400 text-xs font-bold">Gerencia</span>
         </div>

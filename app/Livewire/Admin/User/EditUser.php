@@ -21,7 +21,7 @@ class EditUser extends Component
         $profileData = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('user_id', $this->userId)
-            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 325])
+            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325])
             ->pluck('value', 'field_id');
 
         $this->nombre = $profileData[1] ?? null;
@@ -39,6 +39,8 @@ class EditUser extends Component
         $this->ubicacion = $profileData[53] ?? null;
         $this->area = $profileData[760] ?? null;
         $this->etiqueta = $profileData[50] ?? null;
+        $this->nacimiento = $profileData[212] ?? null;
+        $this->ingreso = $profileData[324] ?? null;
         $this->modalidad = $profileData[325] ?? null;
 
         // Cargar opciones de "etiqueta" desde la base de datos
@@ -118,6 +120,8 @@ class EditUser extends Component
             53 => $this->ubicacion,
             760 => $this->area,
             50 => $this->etiqueta,
+            212 => $this->nacimiento,
+            324 => $this->ingreso,
             325 => $this->modalidad,
         ];
     
