@@ -12,6 +12,15 @@ class BirthdayCalendar extends Component
     public $todaysBirthdays = [];
     public $selectedMonth;
 
+    protected $countryFlags = [
+        'Colombia' => 'https://flagcdn.com/w40/co.png',
+        'Estados Unidos' => 'https://flagcdn.com/w40/us.png',
+        'Argentina' => 'https://flagcdn.com/w40/ar.png',
+        'México' => 'https://flagcdn.com/w40/mx.png',
+        'Puerto Rico' => 'https://flagcdn.com/w40/pr.png',
+        'Costa Rica' => 'https://flagcdn.com/w40/cr.png',
+    ];
+
     public function mount()
     {
         $today = Carbon::today();
@@ -28,12 +37,17 @@ class BirthdayCalendar extends Component
                 $join->on('birth.user_id', '=', 'lastname.user_id')
                     ->where('lastname.field_id', '=', 2);
             })
+            ->leftJoin('dxv_bp_xprofile_data as country', function ($join) {
+                $join->on('birth.user_id', '=', 'country.user_id')
+                    ->where('country.field_id', '=', 288);
+            })
             ->where('birth.field_id', 212)
             ->select(
                 'birth.user_id',
                 'birth.value as birth_date',
                 'name.value as first_name',
-                'lastname.value as last_name'
+                'lastname.value as last_name',
+                'country.value as country'
             )
             ->get();
 
@@ -47,6 +61,10 @@ class BirthdayCalendar extends Component
             $isToday = $birthdayThisYear->isToday();
             $isPast = $birthdayThisYear->lessThan($today);
 
+            // Verificar si el país está definido y tiene una bandera
+            $userCountry = $user->country ?? 'Desconocido';
+            $flagUrl = $this->countryFlags[$userCountry] ?? null;
+
             $birthdayData = [
                 'name' => "{$user->first_name} {$user->last_name}",
                 'first_name' => "{$user->first_name}",
@@ -54,7 +72,9 @@ class BirthdayCalendar extends Component
                 'birthday' => $birthdayThisYear->format('d M'),
                 'age_next' => $ageNext,
                 'is_today' => $isToday,
-                'is_past' => $isPast
+                'is_past' => $isPast,
+                'country' => $userCountry,
+                'flag' => $flagUrl
             ];
 
             if ($isToday) {

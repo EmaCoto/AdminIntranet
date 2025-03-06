@@ -39,7 +39,16 @@
                     <div class="w-52 h-fit hover:scale-105 transition duration-300 relative">
                         <div class="flex items-center justify-between w-full -mb-5">
                             <p class="bg-gradient-to-t from-[#B33031] to-[#f44343] text-white p-1 px-3 text-sm rounded-lg z-20">{{ $birthday['birthday'] }}</p>
-                            <p class="flex flex-col bg-gradient-to-t from-[#152B59] to-[#2973B2] text-white rounded-full p-1 px-1.5 z-20">{{ $birthday['age_next'] }} <span class="text-xs -mt-2">Años</span></p>
+                            <div class="flex flex-col -mb-7 items-center">
+                                <p class="flex flex-col bg-gradient-to-t from-[#152b59] to-[#2973B2] text-white rounded-full p-1 px-1.5 z-20">
+                                    {{ $birthday['age_next'] }} <span class="text-xs -mt-2">Años</span>
+                                </p>
+                                @if (!empty($birthday['flag']))
+                                    <img src="{{ $birthday['flag'] }}" alt="Bandera de {{ $birthday['country'] }}" class="w-6 h-4 mt-1 z-20">
+                                @else
+                                    <p class="text-xs text-gray-500 mt-1">Sin país</p>
+                                @endif
+                            </div>                                                       
                         </div>
                         
                         <li class="bg-gradient-to-r from-[#e3e3e3] to-white flex flex-col items-center w-52 h-fit p-2 relative hover:shadow-lg border text-sm gap-y-2 rounded-md overflow-hidden">
@@ -75,7 +84,16 @@
                 <div class="w-52 h-fit hover:scale-105 transition duration-300 relative">
                     <div class="flex items-center justify-between w-full -mb-5">
                         <p class="bg-gradient-to-t from-[#B33031] to-[#f44343] text-white p-1 px-3 text-sm rounded-lg z-20">{{ $birthday['birthday'] }}</p>
-                        <p class="flex flex-col bg-gradient-to-t from-[#152B59] to-[#2973B2] text-white rounded-full p-1 px-1.5 z-20">{{ $birthday['age_next'] }} <span class="text-xs -mt-2">Años</span></p>
+                        <div class="flex flex-col -mb-7 items-center">
+                            <p class="flex flex-col bg-gradient-to-t from-[#152b59] to-[#2973B2] text-white rounded-full p-1 px-1.5 z-20">
+                                {{ $birthday['age_next'] }} <span class="text-xs -mt-2">Años</span>
+                            </p>
+                            @if (!empty($birthday['flag']))
+                                <img src="{{ $birthday['flag'] }}" alt="Bandera de {{ $birthday['country'] }}" class="w-6 h-4 mt-1 z-20">
+                            @else
+                                <p class="text-xs text-gray-500 mt-1">Sin país</p>
+                            @endif
+                        </div>   
                     </div>
 
                     <li class="bg-gradient-to-r from-[#e3e3e3] to-white flex flex-col items-center w-52 h-fit p-2 relative hover:shadow-lg border text-sm gap-y-2 rounded-md overflow-hidden 
@@ -92,5 +110,4 @@
             @endforeach
         </ul>
     </div>
-
 </x-content>
