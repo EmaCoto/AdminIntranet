@@ -11,7 +11,7 @@
                 <div>
                     <div>
                         <x-label for="name" value="{{ __('Name') }}" />
-                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model="name" required autofocus autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
+                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model.defer="name" required autofocus autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
                     </div>
                     <div class="mt-4">
                         <x-label for="password" value="{{ __('Password') }}" />
@@ -20,8 +20,7 @@
                     <div class="mt-4">
                         <div class="flex gap-2">
                             <button type="button" id="generate-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border border-[#B33031]">
-                                {{-- <i class="fa-solid fa-key "></i> --}}
-                                <i class="fa-solid fa-lock-open text-[#B33031]"></i>
+                                <i class="fa-solid fa-lock-open text-[#B33031] mr-2"></i>
                                 Generar contraseña
                             </button>
                             <button type="button" id="toggle-password-btn" class="cursor-pointer bg-white relative inline-flex items-center justify-center text-sm font-medium ring-offset-background transition focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-[#F5F5F5] hover:text-[#B33031] h-9 rounded-md px-3 hover:-translate-y-0.5 duration-300 ease-in-out border hover:border-[#B33031]">
@@ -33,7 +32,7 @@
                 <div>
                     <div>
                         <x-label for="email" value="{{ __('Email') }}" />
-                        <x-input id="email" class="block mt-1 w-full" type="email" wire:model="email" required autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
+                        <x-input id="email" class="block mt-1 w-full" type="email" wire:model.defer="email" required autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
                     </div>
                     <div class="mt-4">
                         <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />

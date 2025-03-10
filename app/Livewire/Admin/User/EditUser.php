@@ -82,11 +82,15 @@ class EditUser extends Component
         ->toArray();
 
         $this->perfilOptions = DB::connection('wordpress')
-            ->table('dxv_terms as t')
-            ->join('dxv_term_taxonomy as tt', 't.term_id', '=', 'tt.term_id')
-            ->where('tt.taxonomy', 'bp_member_type')
-            ->pluck('t.name', 't.term_id')
-            ->toArray();
+        ->table('dxv_terms as t')
+        ->join('dxv_term_taxonomy as tt', 't.term_id', '=', 'tt.term_id')
+        ->join('dxv_term_relationships as tr', 'tt.term_taxonomy_id', '=', 'tr.term_taxonomy_id')
+        ->where('tt.taxonomy', 'bp_member_type')
+        ->distinct()
+        ->orderBy('t.name')
+        ->pluck('t.name', 't.term_id')
+        ->toArray();
+      
 
         $this->perfil = DB::connection('wordpress')
             ->table('dxv_term_relationships as tr')

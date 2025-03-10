@@ -1,10 +1,8 @@
-<x-content-admin :users="$users" :search="$search">
-    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-50 shadow-md">
-        <h2 class="text-slate-400 font-bold px-2 capitalize">Todos los colaboradores</h2>
-        <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-tr-md w-fit">
-            <i class="fa-solid fa-download mr-2"></i> Exportar
-        </button>
+<x-content :users="$users">
+    <div class="mb-4 text-lg font-semibold text-gray-700">
+        Total de usuarios registrados en los últimos 8 días: {{ $totalUsers }}
     </div>
+
     <div id="userList" class="w-full overflow-hidden">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead class="bg-gray-100 sticky top-0 z-20">
@@ -35,12 +33,6 @@
                             <div class="flex justify-center items-center gap-x-1">
                                 @livewire('admin.user.info-user', ['userId' => $user->ID], key('info-user-'.$user->ID))
                                 @livewire('admin.user.edit-user', ['userId' => $user->ID], key('edit-user-'.$user->ID))                                
-                                
-                                {{-- <button @click="$dispatch('sweet-delete', {{ $user->ID }})"
-                                    class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button> --}}
-                                
                                 <button @click="$dispatch('sweet-delete', { ID: {{ $user->ID }} })"
                                     class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
                                     <i class="fa-solid fa-trash"></i>
@@ -57,4 +49,4 @@
         </table>
     </div>
     <x-sweet-delete />
-</x-content-admin>
+</x-content>

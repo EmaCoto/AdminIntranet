@@ -42,6 +42,7 @@ use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
+use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
 use App\Livewire\BirthdayCalendar;
 use App\Livewire\Vacio;
@@ -115,6 +116,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');
         Route::get('BirthdayCalendar', BirthdayCalendar::class)->name('BirthdayCalendar');
+        Route::get('Ultimosochodias', Ultimosochodias::class)->name('Ultimosochodias');
 
     });
 });

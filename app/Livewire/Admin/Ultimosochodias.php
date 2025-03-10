@@ -1,25 +1,17 @@
 <?php
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\ColaboradoresExport;
 
-class ShowUser extends Component
+class Ultimosochodias extends Component
 {
     use WithPagination;
 
     public $search = '';
     protected $listeners = ['render'];
-
-
-    public function export()
-    {
-        $export = new ColaboradoresExport();
-        return $export->export();
-    }
 
     public function resetSearch()
     {
@@ -41,7 +33,7 @@ class ShowUser extends Component
             );
     
         $this->dispatch('render'); // Para actualizar la vista
-    }
+    }    
 
     public function render()
     {
@@ -50,10 +42,11 @@ class ShowUser extends Component
             ->select([
                 'dxv_users.ID',
                 'dxv_users.user_login',
+                'dxv_users.user_registered',
                 'fn.value as first_name',
                 'ln.value as last_name',
                 'jt.value as job_title',
-                't.name as cargo' // Obteniendo el nombre del cargo
+                't.name as cargo'
             ])
             ->leftJoin('dxv_bp_xprofile_data as fn', function ($join) {
                 $join->on('dxv_users.ID', '=', 'fn.user_id')
@@ -75,23 +68,18 @@ class ShowUser extends Component
                      ->where('tt.taxonomy', 'bp_member_type');
             })
             ->leftJoin('dxv_terms as t', function ($join) {
-                $join->on('tt.term_id', '=', 't.term_id'); // Trae el nombre del cargo desde dxv_terms
+                $join->on('tt.term_id', '=', 't.term_id');
             })
-            ->when($this->search, function ($query) {
-                $query->where(function ($subQuery) {
-                    $subQuery->where('fn.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
-                });
-            })
+            ->where('dxv_users.user_registered', '>=', now()->subDays(8)) // Solo los últimos 8 días
             ->where(function ($query) {
                 $query->whereNull('jt.value')
                       ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
             })
-            ->distinct()
             ->orderBy('ID', 'desc')
-            ->paginate(1);
-    
-        return view('livewire.admin.user.showuser', compact('users'));
-    }    
+            ->get(); // Removemos la paginación para obtener todos los usuarios
+        
+        // Contamos el número total de usuarios
+        $totalUsers = $users->count();
+        return view('livewire.admin.ultimosochodias', compact('users', 'totalUsers'));
+    }
 }

@@ -12,7 +12,7 @@ class AdminRegister extends Component
     public $email;
     public $password;
     public $password_confirmation;
-    protected $listeners = ['setPassword', 'render'];
+    protected $listeners = ['setPassword'];
 
 
     // protected $rules = [
@@ -37,14 +37,7 @@ class AdminRegister extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users',
-                'regex:/^[a-zA-Z0-9._%+-]+@outlook\.(com|es)$/i'
-            ],
+            'email' => 'required|string|email|max:255|unique:users|ends_with:@rpsprocessing.com,@rpsprocessing.es',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -54,17 +47,13 @@ class AdminRegister extends Component
             'password' => Hash::make($this->password),
         ]);
         $this->reset();
-        $this->dispatch('render');
         session()->flash('message', 'Registro exitoso.');
     }
 
-    public function messages()
+    public function updatedEmail()
     {
-        return [
-            'email.regex' => 'El correo debe ser una dirección de Outlook válida (ejemplo@outlook.com o ejemplo@outlook.es).',
-        ];
+        $this->resetErrorBag('email'); // Resetea solo el error de email
     }
-
 
     public function render()
     {
