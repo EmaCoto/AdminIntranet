@@ -16,67 +16,70 @@ class Vacio extends Component
     public function resetSearch()
     {
         $this->reset('search');
-        $this->resetPage(); // Resetear la paginación al limpiar la búsqueda
+        $this->resetPage();
     }
     
     public function updatingSearch()
     {
-        $this->resetPage(); // Resetear la paginación cuando cambia el search
+        $this->resetPage();
     }
        
     public function deleteUser($ID)
     {
         DB::connection('wordpress')->table('dxv_bp_xprofile_data')
             ->updateOrInsert(
-                ['user_id' => $ID, 'field_id' => 50], // Campo 50 = Etiqueta
+                ['user_id' => $ID, 'field_id' => 50], 
                 ['value' => 'USUARIO DEPURADO', 'last_updated' => now()]
             );
     
-        $this->dispatch('render'); // Para actualizar la vista
+        $this->dispatch('render');
     }    
 
     public function render()
     {
-        $excludedValues = [
-            'Acuerdos', 'Agentes Comerciales', 'Alianza Comercial y Legal', 'Asilo', 'Bajo Zero', 'Contabilidad', 
-            'Cortes', 'Crecer', 'Customer Services', 'Dirección Legal', 'Finanzas', 'Gerencia Administrativa', 
-            'Gestión Humana', 'Interventoría', 'USCIS', 'Manejo de Documentos', 'Mis Abogados', 'PAL', 'Patty 8A', 
-            'Permisos de Trabajo', 'Publicidad', 'Redacción', 'Revisión y Ensamble de Asilo', 
-            'Revisión y Ensamble USCIS', 'Ventas Permisos de Trabajo', 'Seguimiento de Asilo', 'Seguimiento de USCIS', 
-            'Servi Huellas', 'Sistemas', 'Traducción', 'Ventas IMS', 'Ventas de Permisos de Trabajo', 'Oficinas USA', 'Dirección Abogados', 'USUARIO DEPURADO', 'Innovación y ciencia de datos'
-        ];
-    
-        $users = DB::connection('wordpress')
-            ->table('dxv_users')
+        // Lista de campos a verificar (exceptuando 559, 77, 558 y perfil)
+        $fieldsToCheck = [1, 2, 3, 999, 1000, 78, 302, 76, 288, 53, 760, 50, 212, 324, 325];
+
+        $usersWithMissingFields = DB::connection('wordpress')
+            ->table('dxv_users as u')
             ->select([
-                'dxv_users.ID',
-                'dxv_users.user_login',
+                'u.ID',
+                'u.user_login',
                 'fn.value as first_name',
                 'ln.value as last_name',
                 'jt.value as job_title',
-                't.name as cargo' // Obteniendo el nombre del cargo
+                't.name as cargo'
             ])
             ->leftJoin('dxv_bp_xprofile_data as fn', function ($join) {
-                $join->on('dxv_users.ID', '=', 'fn.user_id')
-                     ->where('fn.field_id', '=', 1);
+                $join->on('u.ID', '=', 'fn.user_id')->where('fn.field_id', '=', 1);
             })
             ->leftJoin('dxv_bp_xprofile_data as ln', function ($join) {
-                $join->on('dxv_users.ID', '=', 'ln.user_id')
-                     ->where('ln.field_id', '=', 2);
+                $join->on('u.ID', '=', 'ln.user_id')->where('ln.field_id', '=', 2);
             })
             ->leftJoin('dxv_bp_xprofile_data as jt', function ($join) {
-                $join->on('dxv_users.ID', '=', 'jt.user_id')
-                     ->where('jt.field_id', '=', 50);
+                $join->on('u.ID', '=', 'jt.user_id')->where('jt.field_id', '=', 50);
             })
             ->leftJoin('dxv_term_relationships as tr', function ($join) {
-                $join->on('dxv_users.ID', '=', 'tr.object_id');
+                $join->on('u.ID', '=', 'tr.object_id');
             })
             ->leftJoin('dxv_term_taxonomy as tt', function ($join) {
-                $join->on('tr.term_taxonomy_id', '=', 'tt.term_taxonomy_id')
-                     ->where('tt.taxonomy', 'bp_member_type');
+                $join->on('tr.term_taxonomy_id', '=', 'tt.term_taxonomy_id')->where('tt.taxonomy', 'bp_member_type');
             })
             ->leftJoin('dxv_terms as t', function ($join) {
-                $join->on('tt.term_id', '=', 't.term_id'); // Trae el nombre del cargo desde dxv_terms
+                $join->on('tt.term_id', '=', 't.term_id');
+            })
+            ->where(function ($query) use ($fieldsToCheck) {
+                foreach ($fieldsToCheck as $fieldId) {
+                    $query->orWhereRaw("
+                        NOT EXISTS (
+                            SELECT 1 FROM dxv_bp_xprofile_data
+                            WHERE user_id = u.ID
+                            AND field_id = $fieldId
+                            AND value IS NOT NULL
+                            AND value != ''
+                        )
+                    ");
+                }
             })
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
@@ -85,14 +88,9 @@ class Vacio extends Component
                             ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->where(function ($query) use ($excludedValues) {
-                $query->whereNull('jt.value') // Campo vacío
-                      ->orWhereNotIn('jt.value', $excludedValues); // Valores excluidos
-            })
-            ->orderBy('ID', 'desc')
-            ->paginate(1);
-        
-        return view('livewire.vacio', compact('users'));
+            ->orderBy('u.ID', 'desc')
+            ->paginate(10);
+
+        return view('livewire.vacio', compact('usersWithMissingFields'))->with('users', $usersWithMissingFields);
     }
-    
 }

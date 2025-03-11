@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Organigramas;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class OrganiSistemas extends Component
+class OrganiGerencia extends Component
 {
     protected $listeners = ['render'];
     
@@ -14,9 +14,8 @@ class OrganiSistemas extends Component
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
         $profileOrder = [
-            'deputy-manager',
-            'director',
-            'deputy-director'
+            'president',
+            'advertising-manager'
         ];
 
         $users = DB::connection('wordpress')
@@ -51,7 +50,15 @@ class OrganiSistemas extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
             })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Sistemas')")
+            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) 
+            IN ('Acuerdos', 'Agentes Comerciales', 'Alianza Comercial y Legal', 'Asilo', 'Bajo Zero', 'Contabilidad', 
+                'Cortes', 'Crecer', 'Crecer Health', 'Customer Services', 'Dirección Abogados', 'Dirección comercial', 
+                'Dirección Legal', 'Finanzas', 'Gerencia Administrativa', 'Gestión Humana', 'Innovación y ciencia de datos', 
+                'Interventoría', 'Manejo de Documentos', 'Mis Abogados', 'Oficinas USA', 'Otro', 'PAL', 'Patty 8A', 
+                'Permisos de Trabajo', 'Publicidad', 'Redacción', 'Revisión y Ensamble de Asilo', 
+                'Revisión y Ensamble USCIS', 'Seguimiento de Asilo', 'Seguimiento de USCIS', 'Servi Huellas', 'Sistemas', 
+                'Traducción', 'USCIS', 'Ventas de Permisos de Trabajo', 'Ventas IMS')")
+        
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final
@@ -60,6 +67,6 @@ class OrganiSistemas extends Component
 
         $profileTypes = array_keys($profileOrder); // Extraer los tipos de perfil en el orden definido.
 
-        return view('livewire.admin.organigramas.organi-sistemas', compact('users', 'profileTypes'));
+        return view('livewire.admin.organigramas.organi-gerencia', compact('users', 'profileTypes'));
     }
 }

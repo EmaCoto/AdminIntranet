@@ -14,22 +14,21 @@ class OrganiPublicidad extends Component
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
         $profileOrder = [
-            'gerente-de-publicidad',
-            'subgerente-de-publicidad',
-            'director-de-publicidad',
-            'subdirector-desarrollo-web',
-            'desarrollo-web',
-            'subdirector-marketing',
+            'advertising-manager',
+            'deputy-advertising-manager',
+            'advertising-director',
+            'deputy-director-of-web-developer',
+            'web-developer',
+            'deputy-director-of-marketing',
             'marketing',
-            'crecer-health',
-            'subdirector-impresos',
-            'impresos',
-            'subdirector-content-manager',
-            'content-manager',
-            'subdirector-audiovisual',
-            'audiovisual',
+            'deputy-director-of-audiovisual',
+            'audiovisual-producer',
+            'deputy-director-of-community-advertising',
+            'community-manager',
             'subdirector-diseño',
-            'diseño'
+            'graphic-designer',
+            'crecer-health',
+            'impresos'
         ];
 
         $users = DB::connection('wordpress')

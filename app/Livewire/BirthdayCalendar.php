@@ -25,7 +25,7 @@ class BirthdayCalendar extends Component
     {
         $today = Carbon::today();
         $currentYear = $today->year;
-
+    
         // Obtener los usuarios con fecha de nacimiento (field_id 212)
         $users = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data as birth')
@@ -50,21 +50,32 @@ class BirthdayCalendar extends Component
                 'country.value as country'
             )
             ->get();
-
+    
         $birthdays = [];
         $todaysBirthdays = [];
-
+    
         foreach ($users as $user) {
-            $birthDate = Carbon::parse($user->birth_date);
+            try {
+                $birthDate = Carbon::parse($user->birth_date);
+            } catch (\Exception $e) {
+                continue; // Si la fecha no es válida, omitir este usuario
+            }
+    
             $birthdayThisYear = Carbon::create($currentYear, $birthDate->month, $birthDate->day);
             $ageNext = $birthDate->age;
+    
+            // Filtrar usuarios con edad 0 o negativa
+            if ($ageNext <= 0) {
+                continue;
+            }
+    
             $isToday = $birthdayThisYear->isToday();
             $isPast = $birthdayThisYear->lessThan($today);
-
+    
             // Verificar si el país está definido y tiene una bandera
             $userCountry = $user->country ?? 'Desconocido';
             $flagUrl = $this->countryFlags[$userCountry] ?? null;
-
+    
             $birthdayData = [
                 'name' => "{$user->first_name} {$user->last_name}",
                 'first_name' => "{$user->first_name}",
@@ -76,25 +87,26 @@ class BirthdayCalendar extends Component
                 'country' => $userCountry,
                 'flag' => $flagUrl
             ];
-
+    
             if ($isToday) {
                 $todaysBirthdays[] = $birthdayData;
             } else {
                 $birthdays[$birthDate->month][] = $birthdayData;
             }
         }
-
+    
         ksort($birthdays);
         foreach ($birthdays as &$monthBirthdays) {
             usort($monthBirthdays, function ($a, $b) {
                 return strtotime($a['birthday']) - strtotime($b['birthday']);
             });
         }
-
+    
         $this->birthdaysByMonth = $birthdays;
         $this->todaysBirthdays = $todaysBirthdays;
         $this->selectedMonth = Carbon::now()->month;
     }
+    
 
     public function selectMonth($month)
     {

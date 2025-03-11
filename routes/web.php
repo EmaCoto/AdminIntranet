@@ -39,8 +39,12 @@ use App\Livewire\Admin\Departamentos\Sistemas;
 use App\Livewire\Admin\Departamentos\Traduccion;
 use App\Livewire\Admin\Departamentos\VentasIms;
 use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
+use App\Livewire\Admin\Organigramas\OrganiContabilidad;
+use App\Livewire\Admin\Organigramas\OrganiGerencia;
+use App\Livewire\Admin\Organigramas\OrganiGestionHumana;
 use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
+use App\Livewire\Admin\Organigramas\OrganiSistemas;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
@@ -112,6 +116,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigrama', Organigrama::class)->name('organigrama');
         Route::get('organigramas', OrgranigramaBolitas::class)->name('organigramas');
         Route::get('organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
+        Route::get('organigrama/sistemas', OrganiSistemas::class)->name('OrganiSistemas');
+        Route::get('organigrama/gestionhumana', OrganiGestionHumana::class)->name('OrganiGestionHumana');
+        Route::get('organigrama/organicontabilidad', OrganiContabilidad::class)->name('OrganiContabilidad');
+        Route::get('organigrama/organigerencia', OrganiGerencia::class)->name('OrganiGerencia');
 
         // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');

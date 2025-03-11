@@ -255,10 +255,10 @@
                                 <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                             </button>
                             <ul id="og-administrativa-listas" class="hidden py-1 ul-nav">
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Gerencia</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Gestión Humana</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Sistemas</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Contabilidad</a></li>
+                                <li><a href="{{ route('OrganiGerencia') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiGerencia') ? 'active' : '' }}">Gerencia</a></li>
+                                <li><a href="{{ route('OrganiGestionHumana') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiGestionHumana') ? 'active' : '' }}">Gestión Humana</a></li>
+                                <li><a href="{{ route('OrganiSistemas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiSistemas') ? 'active' : '' }}">Sistemas</a></li>
+                                <li><a href="{{ route('OrganiContabilidad') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiContabilidad') ? 'active' : '' }}">Contabilidad</a></li>
                             </ul>
                         </li>
                         {{-- Legal --}}
@@ -482,7 +482,7 @@
                 </li>
                 <ul id="projects-list" class="hidden py-1 ul-nav">
                     <li><a href="{{ route('vacio') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
+                    <li><a href="{{ route('Ultimosochodias') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects view</a></li>
                     <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
                 </ul>
             </ul>

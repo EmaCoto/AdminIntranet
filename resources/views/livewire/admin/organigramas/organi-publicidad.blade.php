@@ -4,7 +4,7 @@
             
             <!-- Gerente -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['gerente-de-publicidad'] as $role)
+                @foreach (['advertising-manager'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -30,8 +30,8 @@
             <x-arrow-organi />
 
             <!-- Subgerente -->
-             <div class="flex justify-center items-center gap-12">
-                @foreach (['subgerente-de-publicidad'] as $role)
+            <div class="flex justify-center items-center gap-12">
+                @foreach (['deputy-advertising-manager'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -58,7 +58,7 @@
 
             <!-- Director -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['director-de-publicidad'] as $role)
+                @foreach (['advertising-director'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -87,7 +87,7 @@
                 {{-- Desarrollo Web --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['subdirector-desarrollo-web'] as $role)
+                        @foreach (['deputy-director-of-web-developer'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -113,7 +113,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['desarrollo-web'] as $role)
+                    @foreach (['web-developer'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -128,7 +128,7 @@
                 {{-- Content Manager --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['subdirector-content-manager'] as $role)
+                        @foreach (['deputy-director-of-community-advertising'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -154,7 +154,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['content-manager'] as $role)
+                    @foreach (['community-manager'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -169,7 +169,7 @@
                 {{-- Audiovisual --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['subdirector-audiovisual'] as $role)
+                        @foreach (['deputy-director-of-audiovisual'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -195,7 +195,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['audiovisual'] as $role)
+                    @foreach (['audiovisual-producer'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -210,7 +210,7 @@
                 {{-- Marketing --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['subdirector-marketing'] as $role)
+                        @foreach (['deputy-director-of-marketing'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -236,7 +236,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['marketing'] as $role)
+                    @foreach (['digital-marketing'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -277,7 +277,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['diseño'] as $role)
+                    @foreach (['graphic-designer'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
