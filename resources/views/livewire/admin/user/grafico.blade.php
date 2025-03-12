@@ -1,7 +1,7 @@
 <div>
     <!-- Estadísticas Resumidas -->
     <div class="grid grid-cols-4 gap-4">
-        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
+        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow-md rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
             <h3 class="text-lg font-bold">Total de Empleados</h3>
             <div class="flex items-center">
               <img src="{{ asset('img/icon/working.png') }}" alt="" class="w-8 h-8 mr-2">
@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
+        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow-md rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
             <h3 class="text-lg font-bold">Nuevos <span>(Últimos 30 días)</span></h3>
             <div class="flex items-center">
               <img src="{{ asset('img/icon/group.png') }}" alt="" class="w-8 h-8 mr-2">
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
+        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow-md rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
             <h3 class="text-lg font-bold">Vendedores</h3>
             <div class="flex items-center">
               <img src="{{ asset('img/icon/gerente.png') }}" alt="" class="w-8 h-8 mr-2">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
+        <div class="p-4 bg-gradient-to-b from-[#2973B2] to-[#152B59] shadow-md rounded-lg text-white hover:bg-none hover:bg-white hover:text-gray-800 transition duration-200">
             <h3 class="text-lg font-bold">Departamentos</h3>
             <div class="flex items-center">
               <img src="{{ asset('img/icon/apartment.png') }}" alt="" class="w-8 h-8 mr-2">

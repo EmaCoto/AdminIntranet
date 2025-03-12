@@ -83,11 +83,11 @@
 
             <div class="flex justify-center gap-8">
                 {{-- Asistente --}}
-                <div class="p-3 bg-slate-200 h-fit rounded-lg">
-                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Gerentes</h1>
-                    @foreach (['advertising-manager'] as $role)
+                <div>
+                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Executive Assistants</h1>
+                    @foreach (['executive-assistant'] as $role)
                         @if (isset($users[$role]))
-                            <div class="grid grid-cols-4 items-center gap-2">
+                            <div class="grid items-center gap-2">
                                 @foreach ($users[$role] as $user)
                                     <x-user-card :user="$user"/>
                                 @endforeach
@@ -101,11 +101,11 @@
 
             <div class="flex justify-center gap-8">
                 {{-- Asistente --}}
-                <div>
-                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Asistente Ejecutiva</h1>
-                    @foreach (['executive-assistant'] as $role)
+                <div class="p-3 bg-slate-200 h-fit rounded-lg">
+                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">General Managers</h1>
+                    @foreach (['advertising-manager'] as $role)
                         @if (isset($users[$role]))
-                            <div class="grid items-center gap-2">
+                            <div class="grid grid-cols-4 items-center gap-2">
                                 @foreach ($users[$role] as $user)
                                     <x-user-card :user="$user"/>
                                 @endforeach

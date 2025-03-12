@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\DB;
+use App\Exports\ColaboradoresVaciosExport;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,6 +13,12 @@ class Vacio extends Component
 
     public $search = '';
     protected $listeners = ['render'];
+
+    public function exportVacio()
+    {
+        $export = new ColaboradoresVaciosExport();
+        return $export->export();
+    }
 
     public function resetSearch()
     {
