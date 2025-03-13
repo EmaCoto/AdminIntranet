@@ -44,7 +44,7 @@ class Vacio extends Component
 
     public function render()
     {
-        // Lista de campos a verificar (exceptuando 559, 77, 558 y perfil)
+        // Lista de campos requeridos (los que deben estar llenos)
         $fieldsToCheck = [1, 2, 3, 999, 1000, 78, 302, 76, 288, 53, 760, 50, 212, 324, 325];
 
         $usersWithMissingFields = DB::connection('wordpress')
@@ -75,18 +75,12 @@ class Vacio extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id');
             })
-            ->where(function ($query) use ($fieldsToCheck) {
-                foreach ($fieldsToCheck as $fieldId) {
-                    $query->orWhereRaw("
-                        NOT EXISTS (
-                            SELECT 1 FROM dxv_bp_xprofile_data
-                            WHERE user_id = u.ID
-                            AND field_id = $fieldId
-                            AND value IS NOT NULL
-                            AND value != ''
-                        )
-                    ");
-                }
+            ->whereIn('u.ID', function ($subQuery) use ($fieldsToCheck) {
+                $subQuery->select('user_id')
+                    ->from('dxv_bp_xprofile_data')
+                    ->whereIn('field_id', $fieldsToCheck)
+                    ->groupBy('user_id')
+                    ->havingRaw('SUM(CASE WHEN value IS NULL OR value = "" THEN 1 ELSE 0 END) > 0');
             })
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {

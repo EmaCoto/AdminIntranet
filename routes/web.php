@@ -39,12 +39,19 @@ use App\Livewire\Admin\Departamentos\Sistemas;
 use App\Livewire\Admin\Departamentos\Traduccion;
 use App\Livewire\Admin\Departamentos\VentasIms;
 use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
+use App\Livewire\Admin\Organigramas\OrganiAsilo;
 use App\Livewire\Admin\Organigramas\OrganiContabilidad;
+use App\Livewire\Admin\Organigramas\OrganiDireccionLegal;
 use App\Livewire\Admin\Organigramas\OrganiGerencia;
 use App\Livewire\Admin\Organigramas\OrganiGestionHumana;
 use App\Livewire\Admin\Organigramas\Organigrama;
+use App\Livewire\Admin\Organigramas\OrganiLegalUscis;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
+use App\Livewire\Admin\Organigramas\OrganiRedaccion;
+use App\Livewire\Admin\Organigramas\OrganiRevisionEnsambleAsilo;
+use App\Livewire\Admin\Organigramas\OrganiSeguimientoAsilo;
 use App\Livewire\Admin\Organigramas\OrganiSistemas;
+use App\Livewire\Admin\Organigramas\OrganiUscisRevisionEnsamble;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
@@ -118,8 +125,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
         Route::get('organigrama/sistemas', OrganiSistemas::class)->name('OrganiSistemas');
         Route::get('organigrama/gestionhumana', OrganiGestionHumana::class)->name('OrganiGestionHumana');
-        Route::get('organigrama/organicontabilidad', OrganiContabilidad::class)->name('OrganiContabilidad');
-        Route::get('organigrama/organigerencia', OrganiGerencia::class)->name('OrganiGerencia');
+        Route::get('organigrama/contabilidad', OrganiContabilidad::class)->name('OrganiContabilidad');
+        Route::get('organigrama/gerencia', OrganiGerencia::class)->name('OrganiGerencia');
+        Route::get('organigrama/direccionlegal', OrganiDireccionLegal::class)->name('OrganiDireccionLegal');
+        Route::get('organigrama/asilo', OrganiAsilo::class)->name('OrganiAsilo');
+        Route::get('organigrama/revisionyensambleasilo', OrganiRevisionEnsambleAsilo::class)->name('OrganiRevisionEnsambleAsilo');
+        Route::get('organigrama/seguimientoasilo', OrganiSeguimientoAsilo::class)->name('OrganiSeguimientoAsilo');
+        Route::get('organigrama/redaccion', OrganiRedaccion::class)->name('OrganiRedaccion');
+        Route::get('organigrama/legaluscis', OrganiLegalUscis::class)->name('OrganiLegalUscis');
+        Route::get('organigrama/uscisrevisionensamble', OrganiUscisRevisionEnsamble::class)->name('OrganiUscisRevisionEnsamble');
 
         // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');

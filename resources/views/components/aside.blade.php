@@ -5,9 +5,9 @@
             <div class="flex flex-col items-center text-center">
                 <div class="flex text-sm border-2 rounded-full focus:outline-none focus:border-gray-300 transition p-1 border-[#152B59] border-dashed">
                     @if (Auth::user()->profile_photo_path)
-                    <img class="h-14 w-14 rounded-full object-cover" src="/storage/{{Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" />
+                        <img class="h-14 w-14 rounded-full object-cover" src="/storage/{{Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" />
                     @else
-                    <img class="h-14 w-14 rounded-full object-cover" src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> 
+                        <img class="h-14 w-14 rounded-full object-cover" src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> 
                     @endif
                 </div>
                 <p class="text-slate-500 mt-2 text-sm">{{ Auth::user()->name }}</p>
@@ -271,21 +271,21 @@
                                 <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                             </button>
                             <ul id="og-legal-listas" class="hidden py-1 ul-nav">
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Dirección Legal</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Asilo</a></li>
+                                <li><a href="{{ route('OrganiDireccionLegal') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiDireccionLegal') ? 'active' : '' }}">Dirección Legal</a></li>
+                                <li><a href="{{ route('OrganiAsilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiAsilo') ? 'active' : '' }}">Asilo</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Revisión y Ensamble de Asilo</a>
+                                        <a href="{{ route('OrganiRevisionEnsambleAsilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiRevisionEnsambleAsilo') ? 'active' : '' }} truncate w-full block">Revisión y Ensamble de Asilo</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Revisión y Ensamble de Asilo</span>
                                     </div>
                                 </li>                     
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Seguimiento de Asilo</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Redacción</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">USCIS</a></li>
+                                <li><a href="{{ route('OrganiSeguimientoAsilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiSeguimientoAsilo') ? 'active' : '' }}">Seguimiento de Asilo</a></li>
+                                <li><a href="{{ route('OrganiRedaccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiRedaccion') ? 'active' : '' }}">Redacción</a></li>
+                                <li><a href="{{ route('OrganiLegalUscis') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiLegalUscis') ? 'active' : '' }}">USCIS</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Revisión y Ensamble de USCIS</a>
+                                        <a href="{{ route('OrganiUscisRevisionEnsamble') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiUscisRevisionEnsamble') ? 'active' : '' }} truncate w-full block">Revisión y Ensamble de USCIS</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Revisión y Ensamble de USCIS</span>
                                     </div>
