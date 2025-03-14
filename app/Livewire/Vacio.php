@@ -44,10 +44,7 @@ class Vacio extends Component
 
     public function render()
     {
-        // Lista de campos requeridos
-        $fieldsToCheck = [1, 2, 3, 999, 1000, 78, 302, 76, 288, 53, 760, 50, 212, 324, 325];
-
-        $usersWithMissingFields = DB::connection('wordpress')
+        $usersWithMissingField288 = DB::connection('wordpress')
             ->table('dxv_users as u')
             ->select([
                 'u.ID',
@@ -75,23 +72,23 @@ class Vacio extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id');
             })
-            ->whereIn('u.ID', function ($subQuery) use ($fieldsToCheck) {
-                $subQuery->select('user_id')
-                    ->from('dxv_bp_xprofile_data')
-                    ->whereIn('field_id', $fieldsToCheck)
-                    ->groupBy('user_id')
-                    ->havingRaw('SUM(CASE WHEN value IS NULL OR value = "" THEN 1 ELSE 0 END) > 0');
+            ->leftJoin('dxv_bp_xprofile_data as x', function ($join) {
+                $join->on('u.ID', '=', 'x.user_id')->where('x.field_id', '=', 288);
+            })
+            ->where(function ($query) {
+                $query->whereNull('x.value')->orWhere('x.value', '');
             })
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->where('fn.value', 'LIKE', "%{$this->search}%")
                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('jt.value', 'LIKE', "%{$this->search}%");
+                            ->orWhere('jt.value', 'LIKE', "%{$this->search}%")
+                            ->orWhere('t.name', 'LIKE', "%{$this->search}%");
                 });
             })
             ->orderBy('u.ID', 'desc')
             ->paginate(10);
 
-        return view('livewire.vacio', compact('usersWithMissingFields'))->with('users', $usersWithMissingFields);
+        return view('livewire.vacio', compact('usersWithMissingField288'))->with('users', $usersWithMissingField288);
     }
 }
