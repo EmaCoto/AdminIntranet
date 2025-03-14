@@ -52,6 +52,7 @@ use App\Livewire\Admin\Organigramas\OrganiRevisionEnsambleAsilo;
 use App\Livewire\Admin\Organigramas\OrganiSeguimientoAsilo;
 use App\Livewire\Admin\Organigramas\OrganiSistemas;
 use App\Livewire\Admin\Organigramas\OrganiUscisRevisionEnsamble;
+use App\Livewire\Admin\Organigramas\OrganiUscisSeguimiento;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
@@ -134,6 +135,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigrama/redaccion', OrganiRedaccion::class)->name('OrganiRedaccion');
         Route::get('organigrama/legaluscis', OrganiLegalUscis::class)->name('OrganiLegalUscis');
         Route::get('organigrama/uscisrevisionensamble', OrganiUscisRevisionEnsamble::class)->name('OrganiUscisRevisionEnsamble');
+        Route::get('organigrama/uscisseguimiento', OrganiUscisSeguimiento::class)->name('OrganiUscisSeguimiento');
 
         // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');

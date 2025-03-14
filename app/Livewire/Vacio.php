@@ -44,7 +44,7 @@ class Vacio extends Component
 
     public function render()
     {
-        // Lista de campos requeridos (los que deben estar llenos)
+        // Lista de campos requeridos
         $fieldsToCheck = [1, 2, 3, 999, 1000, 78, 302, 76, 288, 53, 760, 50, 212, 324, 325];
 
         $usersWithMissingFields = DB::connection('wordpress')
