@@ -123,6 +123,7 @@ class ColaboradoresExport
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id');
             })
+            ->orderBy('first_name', 'asc') // Ordenar por nombre en orden alfabético
             ->distinct()
             ->get();
     }
@@ -147,20 +148,26 @@ class ColaboradoresExport
             $sheet->setCellValue("{$col}1", $title);
         }
     
+        // Aplicar formato de texto a las columnas específicas (Cédula y Número)
+        $sheet->getStyle('E')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+        $sheet->getStyle('K')->getNumberFormat()->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
+    
         // Insertar los datos
         $row = 2;
         foreach ($users as $user) {
             $data = [
                 'A' => $user->ID, 'B' => $user->user_login, 'C' => $user->first_name, 'D' => $user->last_name,
-                'E' => $user->cedula, 'F' => $user->talla, 'G' => $user->outlook, 'H' => $user->correo_gmail,
-                'I' => $user->personal_correo, 'J' => $user->whatsapp_corporativo, 'K' => $user->numero,
+                'E' => $user->cedula, // Sin comilla simple
+                'F' => $user->talla, 'G' => $user->outlook, 'H' => $user->correo_gmail,
+                'I' => $user->personal_correo, 'J' => $user->whatsapp_corporativo,
+                'K' => $user->numero, // Sin comilla simple
                 'L' => $user->cloud, 'M' => $user->pais, 'N' => $user->ubicacion, 'O' => $user->area,
                 'P' => $user->etiqueta, 'Q' => $user->nacimiento, 'R' => $user->ingreso,
                 'S' => $user->modalidad, 'T' => $user->cargo
             ];
     
             foreach ($data as $col => $value) {
-                $sheet->setCellValue("{$col}{$row}", $value);
+                $sheet->setCellValueExplicit("{$col}{$row}", $value, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             }
     
             $row++;

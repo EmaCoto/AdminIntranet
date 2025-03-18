@@ -13,11 +13,7 @@ class OrganiGestionHumana extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'deputy-manager',
-            'director',
-            'hr-assistant'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')
@@ -51,7 +47,7 @@ class OrganiGestionHumana extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
             })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Gestión Humana')")
+            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Gestión Humana', 'Patty 8A', 'Dirección Legal')")
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final

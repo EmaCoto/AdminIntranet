@@ -1,6 +1,6 @@
 <x-content-admin :users="$users" :search="$search">
-    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-50 shadow-md">
-        <h2 class="text-slate-400 font-bold px-2 capitalize">Todos los colaboradores</h2>
+    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-30 shadow-md">
+        <h2 class="text-[#152B59] font-bold px-2 capitalize">Todos los colaboradores</h2>
         <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-tr-md w-fit">
             <i class="fa-solid fa-download mr-2"></i> Exportar
         </button>

@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Organigramas;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class OrganiDireccionLegal extends Component
+class OrganiInnovacion extends Component
 {
     protected $listeners = ['render'];
     
@@ -47,7 +47,7 @@ class OrganiDireccionLegal extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
             })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Dirección Legal')")
+            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Innovación y ciencia de datos')")
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final
@@ -55,6 +55,6 @@ class OrganiDireccionLegal extends Component
             ->groupBy('profile_type'); // Agrupar por tipo de perfil.
 
         $profileTypes = array_keys($profileOrder); // Extraer los tipos de perfil en el orden definido.
-        return view('livewire.admin.organigramas.organi-direccion-legal', compact('users', 'profileTypes'));
+        return view('livewire.admin.organigramas.organi-innovacion', compact('users', 'profileTypes'));
     }
 }

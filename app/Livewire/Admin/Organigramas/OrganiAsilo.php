@@ -13,11 +13,7 @@ class OrganiAsilo extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'director-asylums',
-            'deputy-director-asylums-falcons',
-            'paralegal-asylums'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')

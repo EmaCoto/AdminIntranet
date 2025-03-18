@@ -1,4 +1,20 @@
 <x-content-admin :users="$users" :search="$search">
+    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-30 shadow-md">
+        <h2 class="text-[#152B59] font-bold px-2 capitalize">Gerencia Administrativa</h2>
+        <div class="flex items-center gap-x-4">
+            <div class="relative flex items-center">
+                <a href="{{ route('OrganiGerencia') }}" class="group flex items-center">
+                    <i class="fa-solid fa-chart-diagram text-red-800 hover:text-red-700 px-2"></i>
+                    <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 whitespace-nowrap">
+                        Organigrama
+                    </span>
+                </a>
+            </div>
+            <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-l-md w-fit cursor-no-drop" disabled>
+                <i class="fa-solid fa-download mr-2"></i> Exportar
+            </button>
+        </div>
+    </div>
     <div id="userList" class="w-full overflow-hidden">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead class="bg-gray-100 sticky top-0 z-20">
@@ -28,17 +44,12 @@
                         <td class="px-4 py-2 w-40">
                             <div class="flex justify-center items-center gap-x-1">
                                 @livewire('admin.user.info-user', ['userId' => $user->ID], key('info-user-'.$user->ID))
-                                @livewire('admin.user.edit-user', ['userId' => $user->ID], key('edit-user-'.$user->ID))                                
-                                
-                                {{-- <button @click="$dispatch('sweet-delete', {{ $user->ID }})"
-                                    class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button> --}}
+                                @livewire('admin.user.edit-user', ['userId' => $user->ID], key('edit-user-'.$user->ID))
                                 
                                 <button @click="$dispatch('sweet-delete', { ID: {{ $user->ID }} })"
                                     class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
                                     <i class="fa-solid fa-trash"></i>
-                                </button>                                
+                                </button>
                             </div>
                         </td>                        
                     </tr>

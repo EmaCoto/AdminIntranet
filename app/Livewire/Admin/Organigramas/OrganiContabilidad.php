@@ -13,10 +13,7 @@ class OrganiContabilidad extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'financial-accountant',
-            'bookkeeper'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')

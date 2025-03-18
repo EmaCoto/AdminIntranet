@@ -259,6 +259,7 @@
                                 <li><a href="{{ route('OrganiGestionHumana') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiGestionHumana') ? 'active' : '' }}">Gestión Humana</a></li>
                                 <li><a href="{{ route('OrganiSistemas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiSistemas') ? 'active' : '' }}">Sistemas</a></li>
                                 <li><a href="{{ route('OrganiContabilidad') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiContabilidad') ? 'active' : '' }}">Contabilidad</a></li>
+                                <li><a href="{{ route('OrganiInnovacion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiInnovacion') ? 'active' : '' }}">Innovación</a></li>
                             </ul>
                         </li>
                         {{-- Legal --}}

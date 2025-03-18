@@ -13,10 +13,7 @@ class OrganiGerencia extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'president',
-            'advertising-manager'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')
@@ -49,16 +46,7 @@ class OrganiGerencia extends Component
             })
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
-            })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) 
-            IN ('Acuerdos', 'Agentes Comerciales', 'Alianza Comercial y Legal', 'Asilo', 'Bajo Zero', 'Contabilidad', 
-                'Cortes', 'Crecer', 'Crecer Health', 'Customer Services', 'Dirección Abogados', 'Dirección comercial', 
-                'Dirección Legal', 'Finanzas', 'Gerencia Administrativa', 'Gestión Humana', 'Innovación y ciencia de datos', 
-                'Interventoría', 'Manejo de Documentos', 'Mis Abogados', 'Oficinas USA', 'Otro', 'PAL', 'Patty 8A', 
-                'Permisos de Trabajo', 'Publicidad', 'Redacción', 'Revisión y Ensamble de Asilo', 
-                'Revisión y Ensamble USCIS', 'Seguimiento de Asilo', 'Seguimiento de USCIS', 'Servi Huellas', 'Sistemas', 
-                'Traducción', 'USCIS', 'Ventas de Permisos de Trabajo', 'Ventas IMS')")
-        
+            })       
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final
