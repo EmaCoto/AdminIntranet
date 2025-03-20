@@ -1,14 +1,14 @@
 <x-content-organi>
     <div class="relative">
         <div class="absolute -top-10 z-50 flex justify-center w-full">
-            <a href="{{ route('Gerencia') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
+            <a href="{{ route('CustomerService') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
         </div>
     </div>
     <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
-            <!-- Presidenta -->
+            <!-- Subdirector -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['presidenta'] as $role)
+                @foreach (['subdirectora-customer-service'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -28,35 +28,19 @@
                         @endforeach
                     @endif
                 @endforeach
-
-                <div class="mx-auto"><i class="fa-solid fa-arrow-right text-4xl text-red-600"></i></div>
-
-                <div class="flex justify-center gap-8">
-                    {{-- Asistente ejecutiva --}}
-                    <div>
-                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Asistente ejecutiva</h1>
-                        @foreach (['asistente-ejecutiva'] as $role)
-                            @if (isset($users[$role]))
-                                <div class="grid items-center gap-2">
-                                    @foreach ($users[$role] as $user)
-                                        <x-user-card :user="$user"/>
-                                    @endforeach
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
             </div>
 
+            <!-- Línea de conexión hacia subdirectores -->
             <x-arrow-organi />
 
+
             <div class="flex justify-center gap-8">
-                {{-- Gerentes --}}
-                <div class="p-3 bg-slate-200 h-fit rounded-lg">
-                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Gerentes</h1>
-                    @foreach (['gerente'] as $role)
+                {{-- CustomerService --}}
+                <div class="p-3 bg-slate-200 h-fit rounded-md">
+                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Customer Service</h1>
+                    @foreach (['paralegal-customer-service'] as $role)
                         @if (isset($users[$role]))
-                            <div class="grid grid-cols-5 items-center gap-2">
+                            <div class="grid grid-cols-3 items-center gap-2">
                                 @foreach ($users[$role] as $user)
                                     <x-user-card :user="$user"/>
                                 @endforeach

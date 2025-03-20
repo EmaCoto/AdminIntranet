@@ -298,24 +298,24 @@
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Seguimiento de USCIS</span>
                                     </div>
                                 </li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Cortes</a></li>
+                                <li><a href="{{ route('OrganiCortes') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiCortes') ? 'active' : '' }}">Cortes</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Manejo de Documentos</a>
+                                        <a href="{{ route('OrganiManejoDocumentos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiManejoDocumentos') ? 'active' : '' }} truncate w-full block">Manejo de Documentos</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Manejo de Documentos</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Alianza Comercial y Legal</a>
+                                        <a href="{{ route('OrganiAlianzaComercial') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiAlianzaComercial') ? 'active' : '' }} truncate w-full block">Alianza Comercial y Legal</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Alianza Comercial y Legal</span>
                                     </div>
                                 </li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Traducción</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Customer Services</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Permisos de Trabajo</a></li>
+                                <li><a href="{{ route('OrganiTraduccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiTraduccion') ? 'active' : '' }}">Traducción</a></li>
+                                <li><a href="{{ route('OrganiCustomerServices') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiCustomerServices') ? 'active' : '' }}">Customer Services</a></li>
+                                <li><a href="{{ route('OrganiPermisosTrabajo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiPermisosTrabajo') ? 'active' : '' }}">Permisos de Trabajo</a></li>
                             </ul>
                         </li>
                         {{-- Comercial --}}

@@ -13,10 +13,7 @@ class OrganiSeguimientoAsilo extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'deputy-director-case-follow-up-uscis',
-            'case-follow-up-paralegal-uscis'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')

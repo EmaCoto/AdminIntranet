@@ -4,7 +4,7 @@
             
             <!-- Gerente -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['advertising-manager'] as $role)
+                @foreach (['gerente'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -31,7 +31,7 @@
 
             <!-- Subgerente -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['deputy-advertising-manager'] as $role)
+                @foreach (['subgerente-de-publicidad'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -58,7 +58,7 @@
 
             <!-- Director -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['advertising-director'] as $role)
+                @foreach (['director-de-publicidad'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -87,7 +87,7 @@
                 {{-- Desarrollo Web --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['deputy-director-of-web-developer'] as $role)
+                        @foreach (['subdirector-desarrollo-web'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -113,7 +113,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['web-developer'] as $role)
+                    @foreach (['desarrollador-web'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -128,7 +128,7 @@
                 {{-- Content Manager --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['deputy-director-of-community-advertising'] as $role)
+                        @foreach (['subdirector-content-manager'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -154,7 +154,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['community-manager'] as $role)
+                    @foreach (['content-manager-publicidad'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -169,7 +169,7 @@
                 {{-- Audiovisual --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['deputy-director-of-audiovisual'] as $role)
+                        @foreach (['subdirector-de-audiovisual'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -195,7 +195,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['audiovisual-producer'] as $role)
+                    @foreach (['productor-audiovisual'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -210,7 +210,7 @@
                 {{-- Marketing --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
                     <div class="flex justify-center gap-12">
-                        @foreach (['deputy-director-of-marketing'] as $role)
+                        @foreach (['subdirector-de-markenting'] as $role)
                             @if (isset($users[$role]))
                                 <div class="flex flex-col items-center">
                                     @foreach ($users[$role] as $user)
@@ -236,7 +236,7 @@
                         @endforeach
                     </div>
 
-                    @foreach (['digital-marketing'] as $role)
+                    @foreach (['marketing-publicidad'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-2 items-center gap-2">
                                 @foreach ($users[$role] as $user)
@@ -249,7 +249,7 @@
                 </div>
 
                 {{-- Diseño --}}
-                <div class="p-3 bg-slate-200 h-fit rounded-md">
+                <div>
                     <div class="flex justify-center gap-12">
                         @foreach (['subdirector-diseño'] as $role)
                             @if (isset($users[$role]))
@@ -277,16 +277,85 @@
                         @endforeach
                     </div>
 
-                    @foreach (['graphic-designer'] as $role)
-                        @if (isset($users[$role]))
-                            <div class="grid grid-cols-2 items-center gap-2">
-                                @foreach ($users[$role] as $user)
-                                    <x-user-card :user="$user"/>
-                                @endforeach
-                            </div>
-                        @endif
-                    @endforeach
+                    <div class="grid grid-cols-2 gap-4 border-2 border-gray-500 rounded-md p-1">
+                        <div class="p-3 bg-slate-200 h-fit rounded-md">
+                            @foreach (['bajo-zero-publicidad'] as $role)
+                            <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Bajo Zero</h1>
+                                @if (isset($users[$role]))
+                                    <div class="grid grid-cols-2 items-center gap-2">
+                                        @foreach ($users[$role] as $user)
+                                            <x-user-card :user="$user"/>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="p-3 bg-slate-200 h-fit rounded-md">
+                            @foreach (['mis-a-pal-publicidad'] as $role)
+                            <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Mis abogados<br>Pal</h1>
+                                @if (isset($users[$role]))
+                                    <div class="grid grid-cols-2 items-center gap-2">
+                                        @foreach ($users[$role] as $user)
+                                            <x-user-card :user="$user"/>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="p-3 bg-slate-200 h-fit rounded-md">
+                            @foreach (['turavi-publicidad'] as $role)
+                            <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Turavi</h1>
+                                @if (isset($users[$role]))
+                                    <div class="grid grid-cols-2 items-center gap-2">
+                                        @foreach ($users[$role] as $user)
+                                            <x-user-card :user="$user"/>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="p-3 bg-slate-200 h-fit rounded-md">
+                            @foreach (['ims-publicidad'] as $role)
+                            <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">IMS</h1>
+                                @if (isset($users[$role]))
+                                    <div class="grid grid-cols-2 items-center gap-2">
+                                        @foreach ($users[$role] as $user)
+                                            <x-user-card :user="$user"/>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
+                {{-- impresos y crecer health --}}
+
+                <div class="flex flex-col gap-4">
+                    <div class="p-3 bg-slate-200 h-fit rounded-md">
+                        @foreach (['impresos-marketing'] as $role)
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Impresos</h1>
+                            @if (isset($users[$role]))
+                                <div class="grid grid-cols-2 items-center gap-2">
+                                    @foreach ($users[$role] as $user)
+                                        <x-user-card :user="$user"/>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="p-3 bg-slate-200 h-fit rounded-md">
+                        @foreach (['crecer-health-publicidad'] as $role)
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Crecer Health</h1>
+                            @if (isset($users[$role]))
+                                <div class="grid grid-cols-2 items-center gap-2">
+                                    @foreach ($users[$role] as $user)
+                                        <x-user-card :user="$user"/>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\Organigramas;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class OrganiPublicidad extends Component
+class OrganiCortes extends Component
 {
     protected $listeners = ['render'];
     
@@ -14,7 +14,7 @@ class OrganiPublicidad extends Component
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
         $profileOrder = [];
-    
+
         $users = DB::connection('wordpress')
             ->table('dxv_users')
             ->select([
@@ -47,19 +47,14 @@ class OrganiPublicidad extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id'); // Obteniendo el tipo de perfil desde dxv_terms
             })
-            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Publicidad', 'Mis Abogados', 'PAL')")
-            ->where(function ($query) {
-                $query->where('t.name', '!=', 'gerente') // Excluir a todos los gerentes
-                      ->orWhereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) = 'Publicidad'"); // Pero permitir si es gerente de Publicidad
-            })
+            ->whereRaw("(SELECT value FROM dxv_bp_xprofile_data WHERE user_id = dxv_users.ID AND field_id = 50 LIMIT 1) IN ('Cortes')")
             ->get()
             ->sortBy(function ($user) use ($profileOrder) {
                 return $profileOrder[$user->profile_type] ?? PHP_INT_MAX; // Ordenar según el tipo de perfil, los no listados al final
             })
             ->groupBy('profile_type'); // Agrupar por tipo de perfil.
-    
+
         $profileTypes = array_keys($profileOrder); // Extraer los tipos de perfil en el orden definido.
-    
-        return view('livewire.admin.organigramas.organi-publicidad', compact('users', 'profileTypes'));
-    }    
+        return view('livewire.admin.organigramas.organi-cortes', compact('users', 'profileTypes'));
+    }
 }

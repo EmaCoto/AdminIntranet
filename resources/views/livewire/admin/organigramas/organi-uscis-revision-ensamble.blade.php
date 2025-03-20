@@ -1,9 +1,14 @@
 <x-content-organi>
+    <div class="relative">
+        <div class="absolute -top-10 z-50 flex justify-center w-full">
+            <a href="{{ route('RevisionEnsambleUscis') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
+        </div>
+    </div>
     <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
             <!-- SubDirector -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['deputy-director-uscis-revision-and-assembly'] as $role)
+                @foreach (['subdirector-revision-y-ensamble-uscis'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -31,8 +36,8 @@
             <div class="flex justify-center gap-8">
                 {{-- Primer subirector y sus pupilos --}}
                 <div class="p-3 bg-slate-200 h-fit rounded-md">
-                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Uscis Revision and Assembly</h1>
-                    @foreach (['uscis-revision-and-assembly'] as $role)
+                    <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">Paralegal de Revisión y Ensamble USCIS</h1>
+                    @foreach (['paralegal-de-revision-y-ensamble-uscis'] as $role)
                         @if (isset($users[$role]))
                             <div class="grid grid-cols-3 items-center gap-2">
                                 @foreach ($users[$role] as $user)

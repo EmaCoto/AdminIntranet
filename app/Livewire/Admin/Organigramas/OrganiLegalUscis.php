@@ -13,14 +13,7 @@ class OrganiLegalUscis extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'deputy-director-uscis-lakers',
-            'uscis-lakers',
-            'deputy-director-uscis-celtics',
-            'uscis-celtics',
-            'deputy-director-uscis-warriors',
-            'uscis-warriors'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')

@@ -13,10 +13,7 @@ class OrganiUscisRevisionEnsamble extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'deputy-director-uscis-revision-and-assembly',
-            'uscis-revision-and-assembly'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')

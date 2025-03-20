@@ -1,15 +1,14 @@
 <x-content-organi>
     <div class="relative">
         <div class="absolute -top-10 z-50 flex justify-center w-full">
-            <a href="{{ route('RevisionEnsambleAsilo') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
+            <a href="{{ route('Traduccion') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
         </div>
     </div>
     <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
-
-            <!-- subdirector -->
+            <!-- Subdirector -->
             <div class="flex justify-center items-center gap-12">
-                @foreach (['subdirector-revision-y-ensamble-asilo'] as $role)
+                @foreach (['subdirector-traduccion'] as $role)
                     @if (isset($users[$role]))
                         @foreach ($users[$role] as $user)
                             <div>
@@ -34,14 +33,14 @@
             <!-- Línea de conexión hacia subdirectores -->
             <x-arrow-organi />
 
-            <div class="flex gap-2">
+            <div class="flex">
                 <div class="flex justify-center gap-8">
-                    {{-- REVISOR (REV Y ENS ASILO) --}}
+                    {{-- evidencia y biográficos de asilos --}}
                     <div class="p-3 bg-slate-200 h-fit rounded-md">
-                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Revisores</h1>
-                        @foreach (['revisor-asilo'] as $role)
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">evidencia y biográficos de asilos</h1>
+                        @foreach (['evidencia-y-biograficos-de-asilos-traduccion'] as $role)
                             @if (isset($users[$role]))
-                                <div class="grid grid-cols-3 items-center gap-2">
+                                <div class="grid grid-cols-4 items-center gap-2">
                                     @foreach ($users[$role] as $user)
                                         <x-user-card :user="$user"/>
                                     @endforeach
@@ -49,13 +48,11 @@
                             @endif
                         @endforeach
                     </div>
-                </div>
 
-                <div class="flex justify-center gap-8">
-                    {{-- REVISOR ONLINE ASILO --}}
+                    {{-- traductores de redaccione --}}
                     <div class="p-3 bg-slate-200 h-fit rounded-md">
-                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Revisores Online</h1>
-                        @foreach (['revisor-online-asilo'] as $role)
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">traductores de redacciones</h1>
+                        @foreach (['traductores-de-redacciones'] as $role)
                             @if (isset($users[$role]))
                                 <div class="grid grid-cols-2 items-center gap-2">
                                     @foreach ($users[$role] as $user)
@@ -65,13 +62,25 @@
                             @endif
                         @endforeach
                     </div>
-                </div>
 
-                <div class="flex justify-center gap-8">
-                    {{-- paralegal pending revisión y ensamble --}}
+                    {{-- traductores de uscis --}}
                     <div class="p-3 bg-slate-200 h-fit rounded-md">
-                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold uppercase">Paralegal Pending</h1>
-                        @foreach (['paralegal-pending-asilo'] as $role)
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">traductores de uscis</h1>
+                        @foreach (['traductor-uscis'] as $role)
+                            @if (isset($users[$role]))
+                                <div class="grid grid-cols-2 items-center gap-2">
+                                    @foreach ($users[$role] as $user)
+                                        <x-user-card :user="$user"/>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    {{-- traductores de cortes --}}
+                    <div class="p-3 bg-slate-200 h-fit rounded-md">
+                        <h1 class="text-lg mb-4 py-1 text-slate-800 text-center justify-center font-bold">traductores de cortes</h1>
+                        @foreach (['traductor-cortes'] as $role)
                             @if (isset($users[$role]))
                                 <div class="grid grid-cols-2 items-center gap-2">
                                     @foreach ($users[$role] as $user)

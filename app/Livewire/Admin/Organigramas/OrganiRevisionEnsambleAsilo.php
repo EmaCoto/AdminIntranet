@@ -13,10 +13,7 @@ class OrganiRevisionEnsambleAsilo extends Component
     public function render()
     {
         // Orden jerárquico basado en el tipo de perfil (desde la tabla dxv_terms)
-        $profileOrder = [
-            'depury-director-revision-and-assembly',
-            'revision-and-assembly'
-        ];
+        $profileOrder = [];
 
         $users = DB::connection('wordpress')
             ->table('dxv_users')
