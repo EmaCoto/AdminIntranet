@@ -1,4 +1,9 @@
 <x-content-organi>
+    <div class="relative">
+        <div class="absolute -top-10 z-50 flex justify-center w-full">
+            <a href="{{ route('Finanzas') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
+        </div>
+    </div>
     <div class="flex justify-center items-start my-4 w-full relative">
         <div class="tree-container flex flex-col items-center w-full gap-8">
 

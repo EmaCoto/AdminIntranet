@@ -1,4 +1,9 @@
 <x-content-organi>
+    <div class="relative">
+        <div class="absolute -top-10 z-50 flex justify-center w-full">
+            <a href="{{ route('VentasIms') }}" class="p-2 bg-[#B23B3B] text-white rounded-md shadow-md w-fit uppercase font-bold hover:bg-slate-50 hover:text-[#B23B3B] hover:border-[#B23B3B] border-2 border-[#B23B3B]"><i class="fa-solid fa-table pr-2"></i>ver tabla</a>
+        </div>
+    </div>
     <div class="flex justify-center gap-4 my-6">
         <button onclick="mostrarOrganigrama('gonzalez')" class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-700">Ventas KAM González</button>
         <button onclick="mostrarOrganigrama('santana')" class="px-4 py-2 bg-green-500 text-white rounded-md shadow-md hover:bg-green-700">Ventas KAM Santana</button>

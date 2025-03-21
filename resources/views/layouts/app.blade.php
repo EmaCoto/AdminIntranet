@@ -56,7 +56,7 @@
         </div>
 
 
-        <a href="https://forms.gle/sPadjQfAz9pNmUXL8" class="send fixed z-50 bottom-0 right-0 m-2">
+        <a href="https://forms.gle/sPadjQfAz9pNmUXL8" target="_blank" rel="noopener noreferrer" class="send fixed z-50 bottom-0 right-0 m-2">
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">
                     <i class="fa-solid fa-headset"></i>
