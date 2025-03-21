@@ -55,6 +55,17 @@
             <div class="spinner"></div>
         </div>
 
+
+        <a href="https://forms.gle/sPadjQfAz9pNmUXL8" class="send fixed z-50 bottom-0 right-0 m-2">
+            <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+            </div>
+            <span>Soporte</span>
+        </a>
+
+        
         <x-banner />
 
         <div class="bg-[#F1F3F5]">
@@ -76,7 +87,7 @@
 
             <!-- Page Content -->
             <main class=" flex justify-center">
-                {{ $slot }}
+                {{ $slot }}                
             </main>
             
             <footer class="items-center bg-[#F1F3F5]">

@@ -39,18 +39,26 @@ use App\Livewire\Admin\Departamentos\Sistemas;
 use App\Livewire\Admin\Departamentos\Traduccion;
 use App\Livewire\Admin\Departamentos\VentasIms;
 use App\Livewire\Admin\Departamentos\VentasPermisosTrabajo;
+use App\Livewire\Admin\Organigramas\OrganiAcuerdos;
+use App\Livewire\Admin\Organigramas\OrganiAgentesComerciales;
 use App\Livewire\Admin\Organigramas\OrganiAlianzaComercial;
 use App\Livewire\Admin\Organigramas\OrganiAsilo;
+use App\Livewire\Admin\Organigramas\OrganiBajoZero;
 use App\Livewire\Admin\Organigramas\OrganiContabilidad;
 use App\Livewire\Admin\Organigramas\OrganiCortes;
+use App\Livewire\Admin\Organigramas\OrganiCrecerTodos;
 use App\Livewire\Admin\Organigramas\OrganiCustomerServices;
 use App\Livewire\Admin\Organigramas\OrganiDireccionLegal;
+use App\Livewire\Admin\Organigramas\OrganiFinanzas;
 use App\Livewire\Admin\Organigramas\OrganiGerencia;
 use App\Livewire\Admin\Organigramas\OrganiGestionHumana;
 use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiInnovacion;
+use App\Livewire\Admin\Organigramas\OrganiInterventoria;
 use App\Livewire\Admin\Organigramas\OrganiLegalUscis;
 use App\Livewire\Admin\Organigramas\OrganiManejoDocumentos;
+use App\Livewire\Admin\Organigramas\OrganiMisAbogados;
+use App\Livewire\Admin\Organigramas\OrganiPal;
 use App\Livewire\Admin\Organigramas\OrganiPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\OrganiPublicidad;
 use App\Livewire\Admin\Organigramas\OrganiRedaccion;
@@ -60,6 +68,8 @@ use App\Livewire\Admin\Organigramas\OrganiSistemas;
 use App\Livewire\Admin\Organigramas\OrganiTraduccion;
 use App\Livewire\Admin\Organigramas\OrganiUscisRevisionEnsamble;
 use App\Livewire\Admin\Organigramas\OrganiUscisSeguimiento;
+use App\Livewire\Admin\Organigramas\OrganiVentasIms;
+use App\Livewire\Admin\Organigramas\OrganiVentasPermisosTrabajo;
 use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
 use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
@@ -112,7 +122,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('Redaccion', Redaccion::class)->name('Redaccion');
         Route::get('RevisionEnsambleAsilo', RevisionEnsambleAsilo::class)->name('RevisionEnsambleAsilo');
         Route::get('RevisionEnsambleUscis', RevisionEnsambleUscis::class)->name('RevisionEnsambleUscis');
-        Route::get('VentasPermisosTrabajo', VentasPermisosTrabajo::class)->name('VentasPermisosTrabajo');
         Route::get('SeguimientoAsilo', SeguimientoAsilo::class)->name('SeguimientoAsilo');
         Route::get('SeguimientoUscis', SeguimientoUscis::class)->name('SeguimientoUscis');
         Route::get('ServiHuella', ServiHuella::class)->name('ServiHuella');
@@ -128,8 +137,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('Administradores', Administradores::class)->name('Administradores');
 
         // Organigramas
-        Route::get('organigrama', Organigrama::class)->name('organigrama');
-        Route::get('organigramas', OrgranigramaBolitas::class)->name('organigramas');
         Route::get('organigrama/publicidad', OrganiPublicidad::class)->name('OrganiPublicidad');
         Route::get('organigrama/sistemas', OrganiSistemas::class)->name('OrganiSistemas');
         Route::get('organigrama/gestionhumana', OrganiGestionHumana::class)->name('OrganiGestionHumana');
@@ -150,6 +157,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigrama/traduccion', OrganiTraduccion::class)->name('OrganiTraduccion');
         Route::get('organigrama/customerservices', OrganiCustomerServices::class)->name('OrganiCustomerServices');
         Route::get('organigrama/permisostrabajo', OrganiPermisosTrabajo::class)->name('OrganiPermisosTrabajo');
+        Route::get('organigrama/agentescomerciales', OrganiAgentesComerciales::class)->name('OrganiAgentesComerciales');
+        Route::get('organigrama/ventasims', OrganiVentasIms::class)->name('OrganiVentasIms');
+        Route::get('organigrama/interventoria', OrganiInterventoria::class)->name('OrganiInterventoria');
+        Route::get('organigrama/Acuerdos', OrganiAcuerdos::class)->name('OrganiAcuerdos');
+        Route::get('organigrama/finanzas', OrganiFinanzas::class)->name('OrganiFinanzas');
+        Route::get('organigrama/Ventaspermisostrabajo', OrganiVentasPermisosTrabajo::class)->name('OrganiVentasPermisosTrabajo');
+        Route::get('organigrama/pal', OrganiPal::class)->name('OrganiPal');
+        Route::get('organigrama/misabogados', OrganiMisAbogados::class)->name('OrganiMisAbogados');
+        Route::get('organigrama/Crecertodos', OrganiCrecerTodos::class)->name('OrganiCrecerTodos');
+        Route::get('organigrama/bajozero', OrganiBajoZero::class)->name('OrganiBajoZero');
 
         // Cumpleaños y Vacio
         Route::get('vacio', Vacio::class)->name('vacio');

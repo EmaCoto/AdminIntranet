@@ -329,14 +329,14 @@
                             </button>
                             <ul id="og-comercial-listas" class="hidden py-1 ul-nav">
                                 <li><a href="{{ route('OrganiPublicidad') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiPublicidad') ? 'active' : '' }}">Publicidad</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Agentes Comerciales</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Ventas IMS</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Interventoría</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Acuerdos</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Finanzas</a></li>
+                                <li><a href="{{ route('OrganiAgentesComerciales') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiAgentesComerciales') ? 'active' : '' }}">Agentes Comerciales</a></li>
+                                <li><a href="{{ route('OrganiVentasIms') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiVentasIms') ? 'active' : '' }}">Ventas IMS</a></li>
+                                <li><a href="{{ route('OrganiInterventoria') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiInterventoria') ? 'active' : '' }}">Interventoría</a></li>
+                                <li><a href="{{ route('OrganiAcuerdos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiAcuerdos') ? 'active' : '' }}">Acuerdos</a></li>
+                                <li><a href="{{ route('OrganiFinanzas') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiFinanzas') ? 'active' : '' }}">Finanzas</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Ventas de Permisos de Trabajo</a>
+                                        <a href="{{ route('OrganiVentasPermisosTrabajo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiVentasPermisosTrabajo') ? 'active' : '' }} truncate w-full block">Ventas de Permisos de Trabajo</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Ventas de Permisos de Trabajo</span>
                                     </div>
@@ -353,16 +353,17 @@
                                 <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                             </button>
                             <ul id="og-marcas-listas" class="hidden py-1 ul-nav">
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">PAL</a></li>
+                                <li><a href="{{ route('OrganiPal') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiPal') ? 'active' : '' }}">PAL</a></li>
                                 <li>
                                     <div class="relative group w-full max-w-[250px]">
-                                        <a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }} truncate w-full block">Mis Abogados USA</a>
+                                        <a href="{{ route('OrganiMisAbogados') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiMisAbogados') ? 'active' : '' }} truncate w-full block">Mis Abogados USA</a>
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Mis Abogados USA</span>
                                     </div>
                                 </li>
                                 <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Patty 8A</a></li>
-                                <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('proximamente') ? 'active' : '' }}">Crecer Todos</a></li>
+                                <li><a href="{{ route('OrganiCrecerTodos') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiCrecerTodos') ? 'active' : '' }}">Crecer Todos</a></li>
+                                <li><a href="{{ route('OrganiBajoZero') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiBajoZero') ? 'active' : '' }}">Bajo Zero</a></li>
                             </ul>
                         </li>
                     </ul>
