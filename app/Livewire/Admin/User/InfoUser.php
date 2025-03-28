@@ -25,15 +25,16 @@ class InfoUser extends Component
             ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325])
             ->pluck('value', 'field_id');
 
-        // Asignar datos
+        // Asignar datos personales
         $this->nombre = $profileData[1] ?? null;
         $this->apellido = $profileData[2] ?? null;
         $this->usuario = $profileData[3] ?? null;
         $this->cedula = $profileData[999] ?? null;
         $this->talla = $profileData[1000] ?? null;
         $this->outlook = $profileData[558] ?? null;
-        $this->correo = $profileData[78] ?? null;
         $this->personalCorreo = $profileData[302] ?? null;
+        $this->nacimiento = $profileData[212] ?? null;
+        $this->correo = $profileData[78] ?? null;
         $this->whatsAppCorporativo = $profileData[559] ?? null;
         $this->numero = $profileData[76] ?? null;
         $this->cloud = $profileData[77] ?? null;
@@ -41,7 +42,6 @@ class InfoUser extends Component
         $this->ubicacion = $profileData[53] ?? null;
         $this->area = $profileData[760] ?? null;
         $this->etiqueta = $profileData[50] ?? null;
-        $this->nacimiento = $profileData[212] ?? null;
         $this->ingreso = $profileData[324] ?? null;
         $this->modalidad = $profileData[325] ?? null;
 

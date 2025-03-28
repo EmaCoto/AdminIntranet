@@ -13,154 +13,161 @@
             </div>
         </x-slot>
         <x-slot name='content'>
-            <form>
-                <div class="text-black grid grid-cols-3 gap-2">
-                    <div class="space-y-2">
-                        <div>
-                            <img src="{{ asset('img/photo.png') }}" alt="" class="mx-auto w-32 rounded-full p-2 border-2 border-dashed border-[#152B59]">
-                        </div>
-                        <div class="">
-                            <label for="nombre" class="block text-xs font-medium uppercase">Nombre</label>
-                            <input type="text" id="nombre" wire:model="nombre" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('nombre') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="apellido" class="block text-xs font-medium uppercase">Apellidos</label>
-                            <input type="text" id="apellido" wire:model="apellido" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('apellido') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        {{-- <div class="">
-                            <label for="usuario" class="block text-xs font-medium uppercase">Nombre de Usuario</label>
-                            <input type="text" id="usuario" wire:model="usuario" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('usuario') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div> --}}
-                        <div class="">
-                            <label for="cedula" class="block text-xs font-medium uppercase">Cedula o número de identificación</label>
-                            <input type="number" id="cedula" wire:model="cedula" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('cedula') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="numero" class="block text-xs font-medium uppercase">Número de WhatsApp / teléfono personal</label>
-                            <input type="text" id="numero" wire:model="numero" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('numero') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="nacimiento" class="block text-xs font-medium uppercase">Fecha de nacimiento</label>
-                            <input type="date" id="nacimiento" wire:model="nacimiento" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('nacimiento') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
 
-                    <div class="space-y-2">
-                        <div class="">
-                            <label for="personalCorreo" class="block text-xs font-medium uppercase">Correo Personal</label>
-                            <input type="text" id="personalCorreo" wire:model="personalCorreo" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('personalCorreo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+            {{-- Tabs tipo carpeta --}}
+            <div class="flex space-x-2 mb-4 border-b border-[#11163D]">
+                @foreach(['info' => 'Datos del Colaborador', 'evaluacion de desarrollo' => 'Evaluación de desarrollo', 'resultados de desempeño' => 'resultados de desempeño', 'plan de desarrollo laboral' => 'plan de desarrollo laboral'] as $key => $label)
+                    <button
+                        wire:click="$set('tab', '{{ $key }}')"
+                        class="text-sm font-semibold uppercase px-4 py-2 rounded-t-md transition-all duration-200
+                            {{ $tab === $key ? 'bg-[#11163D] text-white' : 'bg-gray-300 text-gray-600 opacity-50 hover:opacity-100' }}"
+                    >
+                        {{ $label }}
+                    </button>
+                @endforeach
+            </div>
+        
+            {{-- Contenido de cada sección --}}
+            @if($tab === 'info')
+                <div class="grid grid-cols-2 gap-4">
+        
+                    {{-- Columna izquierda: Datos personales --}}
+                    <div class="space-y-4">
+                        <h2 class="text-center font-bold uppercase py-1 text-xl">Datos personales</h2>
+        
+                        <div class="flex justify-center">
+                            <img src="{{ asset('img/photo.png') }}" class="w-32 h-32 object-cover rounded-full border-2 border-dashed border-[#152B59]" alt="Foto de perfil">
                         </div>
-                        <div class="">
-                            <label for="outlook" class="block text-xs font-medium uppercase">Correo Outlook Corporativo</label>
-                            <input type="text" id="outlook" wire:model="outlook" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('outlook') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="correo" class="block text-xs font-medium uppercase">Correo Gmail Corporativo</label>
-                            <input type="text" id="correo" wire:model="correo" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('correo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="whatsAppCorporativo" class="block text-xs font-medium uppercase">Número de WhatsApp Corporativo	</label>
-                            <input type="text" id="whatsAppCorporativo" wire:model="whatsAppCorporativo" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('whatsAppCorporativo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="cloud" class="block text-xs font-medium uppercase">Número de Cloudtalk</label>
-                            <input type="text" id="cloud" wire:model="cloud" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('cloud') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="modalidad" class="block text-xs font-medium uppercase">Modalidad</label>
-                            <select name="modalidad" id="modalidad" wire:model="modalidad" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una modalidad</option>
-                                @foreach($modalidadOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $modalidad == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('modalidad') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="ingreso" class="block text-xs font-medium uppercase">Fecha de ingreso</label>
-                            <input type="date" id="ingreso" wire:model="ingreso" class="block w-full p-2 border bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                            @error('ingreso') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <div class="">
-                            <label for="talla" class="block text-xs font-medium uppercase">Talla de camisa</label>
-                            <select name="talla" id="talla" wire:model="talla" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una talla</option>
-                                @foreach($tallaOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $talla == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('talla') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="pais" class="block text-xs font-medium uppercase">País de residencia</label>
-                            <select name="pais" id="pais" wire:model="pais" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una ubicación</option>
-                                @foreach($paisOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $pais == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('pais') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="ubicacion" class="block text-xs font-medium uppercase">Oficina a la que Pertenece</label>
-                            <select name="ubicacion" id="ubicacion" wire:model="ubicacion" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una ubicación</option>
-                                @foreach($ubicacionOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $ubicacion == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('ubicacion') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="area" class="block text-xs font-medium uppercase">Área a la que pertenece</label>
-                            <select name="area" id="area" wire:model="area" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona una ubicación</option>
-                                @foreach($areaOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $area == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('area') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="etiqueta" class="block text-xs font-medium uppercase">Departamento</label>
-                            <select name="etiqueta" id="etiqueta" wire:model="etiqueta" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="" class="text-gray-500">Selecciona un departamento</option>
-                                @foreach($etiquetaOptions as $value => $label)
-                                    <option value="{{ $value }}" {{ $etiqueta == $value ? 'selected' : '' }}>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            @error('etiqueta') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="">
-                            <label for="perfil" class="block text-xs font-medium uppercase">Rol</label>
-                            <select name="perfil" id="perfil" wire:model="perfil" class="block w-full bg-gray-300 focus:bg-white rounded-md shadow-sm focus:ring-[#11163D]">
-                                <option value="">Selecciona un tipo de perfil</option>
-                                @foreach($perfilOptions as $id => $name)
-                                    <option value="{{ $id }}" {{ $perfil == $id ? 'selected' : '' }}>{{ $name }}</option>
-                                @endforeach
-                            </select>
-                            @error('perfil') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Nombre</label>
+                                <input type="text" wire:model="nombre" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Apellido</label>
+                                <input type="text" wire:model="apellido" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="text-xs font-semibold uppercase">Cédula</label>
+                                <input type="text" wire:model="cedula" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Número personal</label>
+                                <input type="text" wire:model="numero" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Nacimiento</label>
+                                <input type="date" wire:model="nacimiento" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="text-xs font-semibold uppercase">Correo personal</label>
+                                <input type="text" wire:model="personalCorreo" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
                         </div>
                     </div>
-                    
+        
+                    {{-- Columna derecha: Datos corporativos --}}
+                    <div class="space-y-4 border-l pl-4 border-gray-300">
+                        <h2 class="text-center font-bold uppercase py-1 text-xl">Datos corporativos</h2>
+        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Correo Outlook</label>
+                                <input type="text" wire:model="outlook" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Correo Gmail Corporativo</label>
+                                <input type="text" wire:model="correo" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">WhatsApp Corporativo</label>
+                                <input type="text" wire:model="whatsAppCorporativo" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Cloudtalk</label>
+                                <input type="text" wire:model="cloud" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Modalidad</label>
+                                <select wire:model="modalidad" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona modalidad</option>
+                                    @foreach($modalidadOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Ingreso</label>
+                                <input type="date" wire:model="ingreso" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Talla</label>
+                                <select wire:model="talla" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona talla</option>
+                                    @foreach($tallaOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">País</label>
+                                <select wire:model="pais" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona país</option>
+                                    @foreach($paisOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Ubicación</label>
+                                <select wire:model="ubicacion" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona ubicación</option>
+                                    @foreach($ubicacionOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Área</label>
+                                <select wire:model="area" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona área</option>
+                                    @foreach($areaOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label class="text-xs font-semibold uppercase">Departamento</label>
+                                <select wire:model="etiqueta" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona departamento</option>
+                                    @foreach($etiquetaOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label class="text-xs font-semibold uppercase">Rol</label>
+                                <select wire:model="perfil" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona rol</option>
+                                    @foreach($perfilOptions as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-
+            @else
+                <div class="text-center py-20">
+                    <h2 class="text-xl font-bold text-gray-600">Próximamente</h2>
+                    <p class="text-sm text-gray-500 mt-2">Estamos trabajando en esta sección.</p>
+                </div>
+            @endif
+        
         </x-slot>
+        
+        
         <x-slot name='footer'>
             <div wire:loading class="px-8 mx-8 py-2.5">
                 <i class="fa-solid fa-spinner animate-spin"></i>

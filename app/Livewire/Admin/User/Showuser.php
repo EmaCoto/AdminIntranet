@@ -95,7 +95,7 @@ class ShowUser extends Component
                 'jt.value'
             )
             ->orderBy('dxv_users.ID', 'desc')
-            ->paginate(10);
+            ->paginate(1);
 
         return view('livewire.admin.user.showuser', compact('users'));
     }
