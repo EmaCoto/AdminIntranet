@@ -7,7 +7,7 @@
                     @if (Auth::user()->profile_photo_path)
                         <img class="h-14 w-14 rounded-full object-cover" src="/storage/{{Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" />
                     @else
-                        <img class="h-14 w-14 rounded-full object-cover" src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" /> 
+                        <img class="h-14 w-14 rounded-full object-cover" src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                     @endif
                 </div>
                 <p class="text-slate-500 mt-2 text-sm">{{ Auth::user()->name }}</p>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="py-1 px-1">
-            <span class="uppercase text-slate-400 text-xs font-bold">Dashboard</span>
+            <span class="uppercase text-slate-400 text-xs font-bold">Métricas</span>
         </div>
 
         <!-- Inicio -->
@@ -26,29 +26,29 @@
                 <li>
                     <a href="{{ route('dashboard') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <i class="fa-solid fa-chart-column w-5 h-5"></i>
-                        <span class="ml-3">Inicio</span>
+                        <span class="ml-3">Estadísticas</span>
                     </a>
                 </li>
             </ul>
         </section>
 
-        
+
         <div class="py-1 px-1">
-            <span class="uppercase text-slate-400 text-xs font-bold">Empleados</span>
+            <span class="uppercase text-slate-400 text-xs font-bold">Colaboradores</span>
         </div>
-        
-        <!-- Nuevo Registro -->
+
+        {{-- últimos colaboradores --}}
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('register') ? 'active' : '' }}">
-                        <i class="fa-solid fa-arrow-right-to-bracket w-5 h-5"></i>
-                        <span class="ml-3">Registrar</span>
+                    <a href="{{ route('Ultimosochodias') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Ultimosochodias') ? 'active' : '' }}">
+                        <i class="fa-regular fa-circle-user w-5 h-5"></i>
+                        <span class="ml-3">Compañeros nuevos</span>
                     </a>
                 </li>
             </ul>
         </section>
-        
+
         <!-- Areas -->
         <section class="mb-1">
             <ul class="font-medium ul-nav">
@@ -68,7 +68,7 @@
                                 <span class="ml-3">Todos</span>
                             </a>
                         </li>
-        
+
                         {{-- Administrativa --}}
                         <li>
                             <button data-toggle="menu" data-target="administrativa-listas" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full">
@@ -105,7 +105,7 @@
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Revisión y Ensamble de Asilo</span>
                                     </div>
-                                </li>                     
+                                </li>
                                 <li><a href="{{ route('SeguimientoAsilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('SeguimientoAsilo') ? 'active' : '' }}">Seguimiento de Asilo</a></li>
                                 <li><a href="{{ route('Redaccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('Redaccion') ? 'active' : '' }}">Redacción</a></li>
                                 <li><a href="{{ route('LegalUscis') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('LegalUscis') ? 'active' : '' }}">USCIS</a></li>
@@ -215,21 +215,37 @@
                 </li>
             </ul>
         </section>
-        
-        <!-- Administradores -->
+
+        <div class="py-1 px-1">
+            <span class="uppercase text-slate-400 text-xs font-bold">Nuevos colaboradores</span>
+        </div>
+
+        <!-- Nuevo Registro -->
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('Administradores') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Administradores') ? 'active' : '' }}">
-                        <i class="fa-regular fa-address-card"></i>
-                        <span class="ml-3">Administradores</span>
+                    <a href="{{ route('register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('register') ? 'active' : '' }}">
+                        <i class="fa-solid fa-arrow-right-to-bracket w-5 h-5"></i>
+                        <span class="ml-3">Registrar</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        {{-- Registro Incompleto --}}
+        <section class="mb-1">
+            <ul class="font-medium ul-nav">
+                <li>
+                    <a href="#" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('') ? 'active' : '' }}">
+                        <i class="fa-regular fa-address-card w-5 h-5"></i>
+                        <span class="ml-3">Registro Incompleto</span>
                     </a>
                 </li>
             </ul>
         </section>
 
         <div class="py-1 px-1">
-            <span class="uppercase text-slate-400 text-xs font-bold">Gerencia</span>
+            <span class="uppercase text-slate-400 text-xs font-bold">Herramientas</span>
         </div>
 
         <!-- Organigramas -->
@@ -244,7 +260,7 @@
                         <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                     </button>
                     <ul id="organigrama-list" class="hidden ml-5 py-1">
-            
+
                         {{-- Administrativa --}}
                         <li>
                             <button data-toggle="menu" data-target="og-administrativa-listas" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full">
@@ -280,7 +296,7 @@
                                         <!-- Tooltip -->
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-max max-w-xs bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">Revisión y Ensamble de Asilo</span>
                                     </div>
-                                </li>                     
+                                </li>
                                 <li><a href="{{ route('OrganiSeguimientoAsilo') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiSeguimientoAsilo') ? 'active' : '' }}">Seguimiento de Asilo</a></li>
                                 <li><a href="{{ route('OrganiRedaccion') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiRedaccion') ? 'active' : '' }}">Redacción</a></li>
                                 <li><a href="{{ route('OrganiLegalUscis') }}" id="nav-link" class="p-2 rounded-md pl-10 {{ request()->routeIs('OrganiLegalUscis') ? 'active' : '' }}">USCIS</a></li>
@@ -382,13 +398,9 @@
                 </li>
             </ul>
         </section>
-        
-        <div class="py-1 px-1">
-            <span class="uppercase text-slate-400 text-xs font-bold">Administrativo</span>
-        </div>
 
         <!-- Reportes -->
-        <section class="mb-1">
+        {{-- <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
                 <button data-toggle="menu" data-target="report-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
@@ -406,78 +418,16 @@
                     <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Timesheets report</a></li>
                 </ul>
             </ul>
-        </section>
+        </section> --}}
 
-        <!-- Aplicaciones -->
-        <section class="mb-1">
-            <ul class="font-medium ul-nav">
-                <li>
-                <button data-toggle="menu" data-target="aplication-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
-                    <span class="flex items-center">
-                        <i class="fa-regular fa-paper-plane w-5 h-5"></i>
-                        <span class="ml-3">Applications</span>
-                    </span>
-                    <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
-                </button>
-                </li>
-                <ul id="aplication-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Email</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Tasks</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Notes</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">storage</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Calendar</a></li>
-                </ul>
-            </ul>
-        </section>
-
-        <!-- Cliente -->
-        <section class="mb-1">
-            <ul class="font-medium ul-nav">
-                <li>
-                <button data-toggle="menu" data-target="customer-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
-                    <span class="flex items-center">
-                        <img src="{{ asset('img/icon/users.svg') }}" alt="" class="w-5 h-5">
-                        <span class="ml-3">Customer</span>
-                    </span>
-                    <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
-                </button>
-                </li>
-                <ul id="customer-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer view</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Customer create</a></li>
-                </ul>
-            </ul>
-        </section>
-
-        <!-- Leads -->
-        <section class="mb-1">
-            <ul class="font-medium ul-nav">
-                <li>
-                <button data-toggle="menu" data-target="leads-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
-                    <span class="flex items-center">
-                        <img src="{{ asset('img/icon/alert-circle.svg') }}" alt="" class="w-5 h-5">
-                        <span class="ml-3">Leads</span>
-                    </span>
-                    <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
-                </button>
-                </li>
-                <ul id="leads-list" class="hidden py-1 ul-nav">
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads view</a></li>
-                    <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Leads create</a></li>
-                </ul>
-            </ul>
-        </section>
-
-        <!-- projects -->
-        <section class="mb-1">
+                <!-- projects -->
+        {{-- <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
                 <button data-toggle="menu" data-target="projects-list" id="button-link" class="flex items-center justify-between p-2 rounded-md w-full ">
                     <span class="flex items-center">
                         <img src="{{ asset('img/icon/briefcase.svg') }}" alt="" class="w-5 h-5">
-                        <span class="ml-3">Projects</span>
+                        <span class="ml-3">Compañeros nuevos</span>
                     </span>
                     <i class="fa-solid fa-chevron-down arrow-icon text-xs"></i>
                 </button>
@@ -488,6 +438,18 @@
                     <li><a href="{{ route('proximamente') }}" id="nav-link" class="p-2 rounded-md pl-10 cursor-no-drop {{ request()->routeIs('#') ? 'active' : '' }}">Projects create</a></li>
                 </ul>
             </ul>
-        </section>
+        </section> --}}
+
+                <!-- Administradores -->
+        {{-- <section class="mb-1">
+            <ul class="font-medium ul-nav">
+                <li>
+                    <a href="{{ route('Administradores') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Administradores') ? 'active' : '' }}">
+                        <i class="fa-regular fa-address-card"></i>
+                        <span class="ml-3">Administradores</span>
+                    </a>
+                </li>
+            </ul>
+        </section> --}}
     </div>
 </aside>
