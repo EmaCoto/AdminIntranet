@@ -41,7 +41,7 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('Ultimosochodias') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Ultimosochodias') ? 'active' : '' }}">
+                    <a href="{{ route('UltimosDias') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Ultimosochodias') ? 'active' : '' }}">
                         <i class="fa-regular fa-circle-user w-5 h-5"></i>
                         <span class="ml-3">Compañeros nuevos</span>
                     </a>
@@ -236,9 +236,9 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="#" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('') ? 'active' : '' }}">
+                    <a href="{{ route('vacio') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('') ? 'active' : '' }}">
                         <i class="fa-regular fa-address-card w-5 h-5"></i>
-                        <span class="ml-3">Registro Incompleto</span>
+                        <span class="ml-3">Registros Incompletos</span>
                     </a>
                 </li>
             </ul>

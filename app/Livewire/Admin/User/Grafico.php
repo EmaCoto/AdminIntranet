@@ -24,12 +24,31 @@ class Grafico extends Component
     public function mount()
     {
         // Total de empleados
-        $this->totalEmployees = DB::connection('wordpress')->table('dxv_users')->count();
+        $this->totalEmployees = DB::connection('wordpress')
+            ->table('dxv_users')
+            ->leftJoin('dxv_bp_xprofile_data as jt', function ($join) {
+                $join->on('dxv_users.ID', '=', 'jt.user_id')
+                    ->where('jt.field_id', '=', 50);
+            })
+            ->where(function ($query) {
+                $query->whereNull('jt.value')
+                    ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
+            })
+            ->count();
+    
 
         // Empleados nuevos (últimos 30 días)
         $this->newEmployees = DB::connection('wordpress')
             ->table('dxv_users')
-            ->where('user_registered', '>=', now()->subDays(30))
+            ->leftJoin('dxv_bp_xprofile_data as jt', function ($join) {
+                $join->on('dxv_users.ID', '=', 'jt.user_id')
+                    ->where('jt.field_id', '=', 50);
+            })
+            ->where('dxv_users.user_registered', '>=', now()->subDays(30))
+            ->where(function ($query) {
+                $query->whereNull('jt.value')
+                    ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
+            })
             ->count();
 
         // Contar perfiles específicos
@@ -51,7 +70,7 @@ class Grafico extends Component
         $this->departments = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('field_id', 50)
-            ->whereNotIn('value', ['USUARIO DEPURADO', 'Otro'])
+            ->whereNotIn('value', ['USUARIO DEPURADO', 'Otro', ''])
             ->select('value', DB::raw('COUNT(*) as total'))
             ->groupBy('value')
             ->orderBy('value', 'asc')

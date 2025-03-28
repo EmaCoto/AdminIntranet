@@ -70,16 +70,14 @@ class Ultimosochodias extends Component
             ->leftJoin('dxv_terms as t', function ($join) {
                 $join->on('tt.term_id', '=', 't.term_id');
             })
-            ->where('dxv_users.user_registered', '>=', now()->subDays(8)) // Solo los últimos 8 días
+            ->where('dxv_users.user_registered', '>=', now()->subDays(30)) // Solo los últimos 8 días
             ->where(function ($query) {
                 $query->whereNull('jt.value')
                       ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
             })
             ->orderBy('ID', 'desc')
-            ->get(); // Removemos la paginación para obtener todos los usuarios
-        
-        // Contamos el número total de usuarios
-        $totalUsers = $users->count();
-        return view('livewire.admin.ultimosochodias', compact('users', 'totalUsers'));
+            ->paginate(10);
+
+        return view('livewire.admin.ultimosochodias', compact('users'));
     }
 }

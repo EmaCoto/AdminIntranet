@@ -1,8 +1,7 @@
-<x-content-admin :users="$users">
+<x-content-admin :users="$users" :search="$search">
     <div class="py-2 text-lg font-semibold text-gray-700 text-center">
         Total de usuarios registrados en los últimos 30 días
     </div>
-
     <div id="userList" class="w-full overflow-hidden">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead class="bg-gray-100 sticky top-0 z-20">
@@ -33,6 +32,12 @@
                             <div class="flex justify-center items-center gap-x-1">
                                 @livewire('admin.user.info-user', ['userId' => $user->ID], key('info-user-'.$user->ID))
                                 @livewire('admin.user.edit-user', ['userId' => $user->ID], key('edit-user-'.$user->ID))                                
+                                
+                                {{-- <button @click="$dispatch('sweet-delete', {{ $user->ID }})"
+                                    class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button> --}}
+                                
                                 <button @click="$dispatch('sweet-delete', { ID: {{ $user->ID }} })"
                                     class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md">
                                     <i class="fa-solid fa-trash"></i>

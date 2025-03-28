@@ -102,6 +102,8 @@ class EditUser extends Component
 
     public function updateUser()
     {
+        $this->limpiarPerfilesDuplicados();
+
         $etiquetaAnterior = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('user_id', $this->userId)
@@ -131,7 +133,7 @@ class EditUser extends Component
     
         foreach ($fields as $field_id => $value) {
             $value = $value ?? ''; // Convertir NULL a cadena vacía
-            
+    
             DB::connection('wordpress')->table('dxv_bp_xprofile_data')->updateOrInsert(
                 ['user_id' => $this->userId, 'field_id' => $field_id],
                 ['value' => $value, 'last_updated' => now()]
@@ -147,15 +149,13 @@ class EditUser extends Component
             }
         }
     
-        // **Generar nuevo display_name con formato correcto**
+        // Actualizar display_name en dxv_users
         $displayName = ucwords(strtolower("{$this->nombre} {$this->apellido}"));
-    
-        // **Actualizar display_name en dxv_users**
         DB::connection('wordpress')->table('dxv_users')
             ->where('ID', $this->userId)
             ->update(['display_name' => $displayName]);
     
-        // **Actualizar first_name y last_name en dxv_usermeta
+        // Actualizar first_name y last_name en dxv_usermeta
         $meta_fields = [
             'first_name' => $this->nombre,
             'last_name' => $this->apellido
@@ -168,21 +168,56 @@ class EditUser extends Component
             );
         }
     
-        // **Actualizar perfil del usuario en term_relationships**
+        // ✅ Eliminar relaciones anteriores del perfil del usuario
         DB::connection('wordpress')->table('dxv_term_relationships')
-            ->updateOrInsert(
-                ['object_id' => $this->userId],
-                ['term_taxonomy_id' => DB::connection('wordpress')
-                    ->table('dxv_term_taxonomy')
-                    ->where('term_id', $this->perfil)
-                    ->where('taxonomy', 'bp_member_type')
-                    ->value('term_taxonomy_id')]
-            );
+            ->where('object_id', $this->userId)
+            ->whereIn('term_taxonomy_id', function ($query) {
+                $query->select('term_taxonomy_id')
+                      ->from('dxv_term_taxonomy')
+                      ->where('taxonomy', 'bp_member_type');
+            })
+            ->delete();
+    
+        // ✅ Insertar nueva relación de perfil
+        $termTaxonomyId = DB::connection('wordpress')
+            ->table('dxv_term_taxonomy')
+            ->where('term_id', $this->perfil)
+            ->where('taxonomy', 'bp_member_type')
+            ->value('term_taxonomy_id');
+    
+        DB::connection('wordpress')->table('dxv_term_relationships')->insert([
+            'object_id' => $this->userId,
+            'term_taxonomy_id' => $termTaxonomyId,
+        ]);
     
         $this->dispatch('render');
         $this->reset('open');
         session()->flash('messageuser', 'Usuario actualizado correctamente');
     }
+
+public function limpiarPerfilesDuplicados()
+{
+    // Obtener todos los perfiles asignados al usuario
+    $relaciones = DB::connection('wordpress')
+        ->table('dxv_term_relationships as tr')
+        ->join('dxv_term_taxonomy as tt', 'tr.term_taxonomy_id', '=', 'tt.term_taxonomy_id')
+        ->where('tt.taxonomy', 'bp_member_type')
+        ->where('tr.object_id', $this->userId)
+        ->pluck('tr.term_taxonomy_id');
+
+    // Si hay más de uno, conservar solo el primero
+    if ($relaciones->count() > 1) {
+        $termTaxonomyIdAConservar = $relaciones->first();
+
+        // Eliminar los demás
+        DB::connection('wordpress')->table('dxv_term_relationships')
+            ->where('object_id', $this->userId)
+            ->where('term_taxonomy_id', '!=', $termTaxonomyIdAConservar)
+            ->delete();
+
+        session()->flash('messageuser', 'Perfiles duplicados del usuario fueron limpiados.');
+    }
+}
 
     public function render()
     {
@@ -190,7 +225,7 @@ class EditUser extends Component
             'etiquetaOptions' => $this->etiquetaOptions,
             'ubicacionOptions' => $this->ubicacionOptions,
             'modalidadOptions' => $this->modalidadOptions,
-            'modalidadOptions' => $this->tallaOptions,
+            'tallaOptions' => $this->tallaOptions,
             'paisOptions' => $this->paisOptions,
             'perfilOptions' => $this->perfilOptions,
         ]);

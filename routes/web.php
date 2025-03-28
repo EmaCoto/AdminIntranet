@@ -52,7 +52,6 @@ use App\Livewire\Admin\Organigramas\OrganiDireccionLegal;
 use App\Livewire\Admin\Organigramas\OrganiFinanzas;
 use App\Livewire\Admin\Organigramas\OrganiGerencia;
 use App\Livewire\Admin\Organigramas\OrganiGestionHumana;
-use App\Livewire\Admin\Organigramas\Organigrama;
 use App\Livewire\Admin\Organigramas\OrganiInnovacion;
 use App\Livewire\Admin\Organigramas\OrganiInterventoria;
 use App\Livewire\Admin\Organigramas\OrganiLegalUscis;
@@ -70,10 +69,9 @@ use App\Livewire\Admin\Organigramas\OrganiUscisRevisionEnsamble;
 use App\Livewire\Admin\Organigramas\OrganiUscisSeguimiento;
 use App\Livewire\Admin\Organigramas\OrganiVentasIms;
 use App\Livewire\Admin\Organigramas\OrganiVentasPermisosTrabajo;
-use App\Livewire\Admin\Organigramas\OrgranigramaBolitas;
-use App\Livewire\Admin\Ultimosochodias;
 use App\Livewire\Admin\User\DeleteUser;
 use App\Livewire\BirthdayCalendar;
+use App\Livewire\UltimosDias;
 use App\Livewire\Vacio;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -169,9 +167,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('organigrama/bajozero', OrganiBajoZero::class)->name('OrganiBajoZero');
 
         // Cumpleaños y Vacio
-        Route::get('vacio', Vacio::class)->name('vacio');
+        Route::get('campos-de-usuarios-vacios', Vacio::class)->name('vacio');
         Route::get('BirthdayCalendar', BirthdayCalendar::class)->name('BirthdayCalendar');
-        Route::get('Ultimosochodias', Ultimosochodias::class)->name('Ultimosochodias');
+        Route::get('UltimosDias', UltimosDias::class)->name('UltimosDias');
 
     });
 });
