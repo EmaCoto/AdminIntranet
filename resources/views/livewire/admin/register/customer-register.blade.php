@@ -1,5 +1,8 @@
 <x-content>
     <x-validation-errors class="p-3" />
+    
+    <livewire:ingreso-nuevo-table />
+
     <div class="w-full h-full flex items-center justify-center">
         <form wire:submit.prevent="createUser" class="bg-gray-200 p-10 rounded-lg w-[85%]">
             <h1 class="mb-10 text-3xl font-extrabold text-center">

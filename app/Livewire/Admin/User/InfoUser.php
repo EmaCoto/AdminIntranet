@@ -10,6 +10,7 @@ class InfoUser extends Component
     protected $listeners = ['render'];
 
     public $open = false;
+    public $tab = 'info';
     public $userId, $user;
     public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso;
     public $perfilOptions = [];

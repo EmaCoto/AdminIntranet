@@ -65,7 +65,7 @@ class CustomerRegister extends Component
 
             DB::connection('wordpress')->commit();
 
-            session()->flash('message', 'Usuario creado exitosamente.');
+            session()->flash('message', 'Colaborador creado exitosamente, recuerda completar los datos del perfil.');
             $this->reset();
         } catch (\Exception $e) {
             DB::connection('wordpress')->rollBack();

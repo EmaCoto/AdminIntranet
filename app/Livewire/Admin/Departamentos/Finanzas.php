@@ -23,7 +23,7 @@ class Finanzas extends Component
     {
         $this->resetPage(); // Resetear la paginación cuando cambia el search
     }
-       
+
     public function deleteUser($ID)
     {
         DB::connection('wordpress')->table('dxv_bp_xprofile_data')
@@ -31,9 +31,9 @@ class Finanzas extends Component
                 ['user_id' => $ID, 'field_id' => 50], // Campo 50 = Etiqueta
                 ['value' => 'USUARIO DEPURADO', 'last_updated' => now()]
             );
-    
+
         $this->dispatch('render'); // Para actualizar la vista
-    }  
+    }
 
     public function render()
     {
@@ -45,7 +45,7 @@ class Finanzas extends Component
                 'fn.value as first_name',
                 'ln.value as last_name',
                 'jt.value as job_title',
-                't.name as cargo' // Obteniendo el nombre del cargo
+                DB::raw('MAX(t.name) as cargo') // Mostrar solo un cargo por usuario
             ])
             ->leftJoin('dxv_bp_xprofile_data as fn', function ($join) {
                 $join->on('dxv_users.ID', '=', 'fn.user_id')
@@ -67,18 +67,25 @@ class Finanzas extends Component
                      ->where('tt.taxonomy', 'bp_member_type');
             })
             ->leftJoin('dxv_terms as t', function ($join) {
-                $join->on('tt.term_id', '=', 't.term_id'); // Trae el nombre del cargo desde dxv_terms
+                $join->on('tt.term_id', '=', 't.term_id');
             })
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->where('fn.value', 'LIKE', "%{$this->search}%")
-                            ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
+                             ->orWhere('ln.value', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->having('job_title', 'LIKE', 'Finanzas')
-            // ->orderBy('ID', 'desc')
+            ->where('jt.value', 'LIKE', 'Finanzas') // Filtra por el departamento 'Finanzas'
+            ->groupBy(
+                'dxv_users.ID',
+                'dxv_users.user_login',
+                'fn.value',
+                'ln.value',
+                'jt.value'
+            )
+            ->orderBy('dxv_users.ID', 'desc')
             ->paginate(10);
-    
+
         return view('livewire.admin.departamentos.finanzas', compact('users'));
     }
 }
