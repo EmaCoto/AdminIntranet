@@ -175,7 +175,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 });
 
 // Rutas sin protección (accesibles sin autenticación)
-Route::get('/register', function () { return view('register'); })->name('register');
+// Route::get('/register', function () { return view('register'); })->name('register');
 Route::get('/proximamente', function () { return view('proximamente'); })->name('proximamente');
 
 // Limpiar caché

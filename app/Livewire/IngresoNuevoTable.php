@@ -11,60 +11,53 @@ class IngresoNuevoTable extends Component
     use WithPagination;
 
     public $nombre, $gmail, $estado;
-    public $ingresoId = null;  // Para identificar si estamos editando o creando
-    public $open = false;      // Controla si el modal está abierto
+    public $openDeleteConfirm = false;
+    public $ingresoIdToDelete = null;
+    public $ingresoId = null;
+    public $open = false;
 
-    // Número de registros por página
     protected $paginationTheme = 'tailwind';
 
-    // Método para renderizar la tabla
     public function render()
     {
-        $ingresos = IngresoNuevo::orderBy('id','desc')->paginate(10); // Paginación de 10 elementos
+        $ingresos = IngresoNuevo::orderBy('id','desc')->paginate(10);
         return view('livewire.ingreso-nuevo-table', compact('ingresos'));
     }
 
-    // Mostrar el modal y preparar para agregar un nuevo usuario
     public function create()
     {
-        $this->resetInput(); // Resetear valores antes de agregar
-        $this->estado = 'en espera'; // Valor por defecto para el nuevo registro
-        $this->open = true; // Abrir el modal
+        $this->resetInput();
+        $this->estado = 'en espera';
+        $this->open = true;
     }
 
-    // Guardar un nuevo usuario
     public function store()
     {
         $this->validate([
             'nombre' => 'required|string|max:255',
-            // Hacer que el campo 'gmail' sea opcional al agregar
-            'gmail' => 'nullable|email|max:255', 
+            'gmail' => 'nullable|email|max:255',
         ]);
 
-
         IngresoNuevo::create([
-            'nombre' => $this->nombre,
+            'nombre' => ucwords(strtolower($this->nombre)), // Capitalize
             'estado' => $this->estado,
-            'gmail' => $this->gmail// Asegúrate de agregar 'gmail'
+            'gmail' => $this->gmail
         ]);
 
         session()->flash('message', 'Usuario agregado exitosamente.');
-        $this->closeModal(); // Cerrar modal después de agregar
+        $this->closeModal();
     }
 
-
-    // Preparar el modal para editar un usuario
     public function edit($id)
     {
         $ingreso = IngresoNuevo::findOrFail($id);
         $this->ingresoId = $ingreso->id;
         $this->nombre = $ingreso->nombre;
         $this->gmail = $ingreso->gmail;
-        $this->estado = 'finalizado'; // Estado por defecto cuando se edita
-        $this->open = true; // Abrir el modal para edición
+        $this->estado = 'finalizado';
+        $this->open = true;
     }
 
-    // Actualizar un usuario
     public function update()
     {
         $this->validate([
@@ -74,38 +67,50 @@ class IngresoNuevoTable extends Component
 
         $ingreso = IngresoNuevo::findOrFail($this->ingresoId);
         $ingreso->update([
-            'nombre' => $this->nombre,
+            'nombre' => ucwords(strtolower($this->nombre)), // Capitalize
             'gmail' => $this->gmail,
             'estado' => $this->estado,
         ]);
 
         session()->flash('message', 'Usuario actualizado exitosamente.');
-        $this->closeModal(); // Cerrar modal después de actualizar
+        $this->closeModal();
     }
 
-    // Cerrar el modal
     public function closeModal()
     {
-        $this->resetInput(); // Limpiar datos al cerrar
-        $this->open = false;  // Cerrar modal
+        $this->resetInput();
+        $this->open = false;
+        $this->openDeleteConfirm = false;
     }
 
-    // Resetear los valores del formulario
     public function resetInput()
     {
         $this->nombre = '';
         $this->gmail = '';
-        $this->estado = 'en espera'; // Resetear al valor por defecto
+        $this->estado = 'en espera';
         $this->ingresoId = null;
+        $this->ingresoIdToDelete = null;
     }
 
-    public function delete($id)
+    public function confirmDelete($id)
     {
-        // Encontrar al usuario por ID y eliminarlo
-        $ingreso = IngresoNuevo::findOrFail($id);
-        $ingreso->delete();
+        $this->ingresoIdToDelete = $id;
+        $this->openDeleteConfirm = true;
+    }
 
-        // Mensaje de confirmación
-        session()->flash('message', 'Usuario eliminado exitosamente.');
+    public function delete()
+    {
+        if ($this->ingresoIdToDelete) {
+            $ingreso = IngresoNuevo::find($this->ingresoIdToDelete);
+            if ($ingreso) {
+                $ingreso->delete();
+                session()->flash('message', 'Usuario eliminado exitosamente.');
+            } else {
+                session()->flash('message', 'Usuario no encontrado.');
+            }
+
+            $this->resetInput();
+            $this->openDeleteConfirm = false;
+        }
     }
 }

@@ -71,6 +71,7 @@ class CustomerRegister extends Component
             DB::connection('wordpress')->rollBack();
             session()->flash('error', 'Error al crear usuario: ' . $e->getMessage());
         }
+        $this->reset();
     }
 
     private function createUserMeta($user_id, $key, $value)

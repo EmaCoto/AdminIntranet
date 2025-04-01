@@ -224,7 +224,7 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('register') ? 'active' : '' }}">
+                    <a href="{{ route('customer-register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('register') ? 'active' : '' }}">
                         <i class="fa-solid fa-arrow-right-to-bracket w-5 h-5"></i>
                         <span class="ml-3">Registrar</span>
                     </a>

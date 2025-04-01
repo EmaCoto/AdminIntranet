@@ -11,7 +11,7 @@
                 <div>
                     <div>
                         <x-label for="name" value="{{ __('Name') }}" />
-                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model.defer="name" required autofocus autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" />
+                        <x-input id="name" class="block mt-1 w-full" type="text" wire:model.defer="name" required autofocus autocomplete="off" autocorrect="off" spellcheck="false" />
                     </div>
                     <div class="mt-4">
                         <x-label for="password" value="{{ __('Password') }}" />
