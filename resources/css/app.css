@@ -126,7 +126,8 @@
       color: black;
   }
   #nav-link.active, #button-link.active, .button-link:hover {
-      background-color: #d4d4d4;
+      background-color: #B23B3B;
+      color: white;
   }
   .ul-nav {
       overflow: hidden;

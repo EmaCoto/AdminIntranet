@@ -41,7 +41,7 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('UltimosDias') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('Ultimosochodias') ? 'active' : '' }}">
+                    <a href="{{ route('UltimosDias') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('UltimosDias') ? 'active' : '' }}">
                         <i class="fa-regular fa-circle-user w-5 h-5"></i>
                         <span class="ml-3">Compañeros nuevos</span>
                     </a>
@@ -209,7 +209,7 @@
             <ul class="font-medium ul-nav">
                 <li>
                     <a href="{{ route('DeleteUser') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('DeleteUser') ? 'active' : '' }}">
-                        <img src="{{ asset('img/icon/user-x.svg') }}" alt="" class="w-5 h-5">
+                        <i class="fa-solid fa-ban w-5 h-5"></i>
                         <span class="ml-3">Depurados</span>
                     </a>
                 </li>
@@ -220,11 +220,23 @@
             <span class="uppercase text-slate-400 text-xs font-bold">Nuevos colaboradores</span>
         </div>
 
+        <!-- Solicitudes de Gmail -->
+        <section class="mb-1">
+            <ul class="font-medium ul-nav">
+                <li class="relative group">
+                    <a href="{{ route('solicitud-gmail') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('solicitud-gmail') ? 'active' : '' }}">
+                        <i class="fa-regular fa-id-card w-5 h-5"></i>
+                        <span class="ml-3">Solicitudes de Gmail</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
         <!-- Nuevo Registro -->
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('customer-register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('register') ? 'active' : '' }}">
+                    <a href="{{ route('customer-register') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('customer-register') ? 'active' : '' }}">
                         <i class="fa-solid fa-arrow-right-to-bracket w-5 h-5"></i>
                         <span class="ml-3">Registrar</span>
                     </a>
@@ -236,7 +248,7 @@
         <section class="mb-1">
             <ul class="font-medium ul-nav">
                 <li>
-                    <a href="{{ route('vacio') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('') ? 'active' : '' }}">
+                    <a href="{{ route('vacio') }}" id="nav-link" class="flex items-center p-2 rounded-md {{ request()->routeIs('vacio') ? 'active' : '' }}">
                         <i class="fa-regular fa-address-card w-5 h-5"></i>
                         <span class="ml-3">Registros Incompletos</span>
                     </a>

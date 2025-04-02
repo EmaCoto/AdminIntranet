@@ -85,9 +85,8 @@ Route::get('/', function () {
 // Agrupar rutas protegidas con middleware de autenticación
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('/solicitud-gmail', function () {return view('solicitud-gmail');})->name('solicitud-gmail');
 
     // Departamentos
     Route::prefix('admin')->group(function () {

@@ -1,83 +1,82 @@
 <x-content>
+<!-- Instrucciones paso a paso -->
+<div class="my-4">
+    <h2 class="text-2xl font-semibold mb-6 text-center text-[#152B59] uppercase">
+        Flujo para Registrar un Colaborador
+    </h2>
 
-    <!-- Instrucciones paso a paso -->
-    <div class="my-4 mb-14">
-        <h2 class="text-2xl font-semibold mb-6 text-center text-[#152B59] uppercase">Flujo de Registro de Colaboradores</h2>
-        
-        <div class="flex justify-center space-x-2 p-2">
-            <!-- Paso 1: Gestión Humana ingresa un usuario -->
-            <div class="text-center p-3 w-[250px] shadow-md bg-white rounded-lg relative">
-                <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/icon/profile.png') }}" alt="" class="w-10 h-10 mr-2">
-                </div>
-                <h3 class="text-lg font-semibold leading-4">Gestión Humana ingresa colaborador</h3>
-                <p class="text-sm text-gray-600 mt-1">Ingresa los datos básicos del colaborador, como nombre y apellido completo.</p>
-                <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">1</p>
+    <div class="flex justify-center space-x-6 p-4">
+        <!-- Paso 1: Verificar nombre y correo -->
+        <div class="text-center p-2 w-[250px] shadow-md bg-white rounded-lg relative">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('img/icon/profile.png') }}" alt="" class="w-12 h-12">
             </div>
-            
-            <!-- Flecha -->
-            <div class="flex justify-center items-center">
-                <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12 mr-2">
-            </div>
+            <h3 class="text-lg font-semibold leading-5">Verificar Nombre y Correo</h3>
+            <p class="text-sm text-gray-600 mt-2">Verifica el nombre y correo del colaborador en la <a href="{{ route('solicitud-gmail') }}" class="hover:text-red-600 text-red-800 underline">tabla de correos.</a></p>
+            <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">1</p>
+        </div>
 
-            <!-- Paso 2: Sistemas edita el usuario y agrega el Gmail -->
-            <div class="text-center p-3 w-[250px] shadow-md bg-white rounded-lg relative">
-                <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/icon/edit.png') }}" alt="" class="w-10 h-10 mr-2">
-                </div>
-                <h3 class="text-lg font-semibold leading-4">Sistemas edita y agrega el Gmail</h3>
-                <p class="text-sm text-gray-600 mt-1">Edita la información del usuario y agrega su correo electrónico corporativo (Gmail).</p>
-                <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">2</p>
-            </div>
+        <!-- Flecha -->
+        <div class="flex justify-center items-center">
+            <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12">
+        </div>
 
-            <!-- Flecha -->
-            <div class="flex justify-center items-center">
-                <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12 mr-2 transform scale-y-[-1]">
+        <!-- Paso 2: Completar campos -->
+        <div class="text-center p-2 w-[250px] shadow-md bg-white rounded-lg relative">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('img/icon/edit.png') }}" alt="" class="w-12 h-12">
             </div>
+            <h3 class="text-lg font-semibold leading-5">Completar Nombre y Correo</h3>
+            <p class="text-sm text-gray-600 mt-2">Llena los campos con nombre completo, apellido y correo electrónico.</p>
+            <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">2</p>
+        </div>
 
-            <!-- Paso 3: Gestión Humana crea y elimina un usuario -->
-            <div class="text-center p-3 w-[250px] shadow-md bg-white rounded-lg relative">
-                <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/icon/register.png') }}" alt="" class="w-10 h-10 mr-2">
-                </div>
-                <h3 class="text-lg font-semibold leading-4">Gestión Humana crea y elimina usuario</h3>
-                <p class="text-sm text-gray-600 mt-1">Crea al usuario en la Intranet y lo elimina de la <a href="#tabla-gmail-corpo" class="hover:text-red-600 text-red-800 underline">tabla</a></p>
-                <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">3</p>
-            </div>
+        <!-- Flecha -->
+        <div class="flex justify-center items-center">
+            <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12 transform scale-y-[-1]">
+        </div>
 
-            <!-- Flecha -->
-            <div class="flex justify-center items-center">
-                <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12 mr-2">
+        <!-- Paso 3: Extraer nombre de usuario -->
+        <div class="text-center p-2 w-[250px] shadow-md bg-white rounded-lg relative">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('img/icon/register.png') }}" alt="" class="w-12 h-12">
             </div>
+            <h3 class="text-lg font-semibold leading-5">Extraer Nombre de Usuario</h3>
+            <p class="text-sm text-gray-600 mt-2">Usa el nombre de usuario que aparece antes del "@" en el correo. <br><span class="font-bold"> Ej: polayaims</span></p>
+            <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">3</p>
+        </div>
 
-            <!-- Paso 4: Completar datos personales y corporativos -->
-            <div class="text-center p-3 w-[250px] shadow-md bg-white rounded-lg relative">
-                <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/icon/registered.png') }}" alt="" class="w-10 h-10 mr-2">
-                </div>
-                <h3 class="text-lg font-semibold leading-4">Completar los datos del colaborador</h3>
-                <p class="text-sm text-gray-600 mt-1">Gestión Humana y Sistemas completan todos los datos de cada <a href="{{ route('vacio') }}" class="hover:text-red-600 text-red-800 underline">nuevo colaborador.</a></p>
-                <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">4</p>
+        <!-- Flecha -->
+        <div class="flex justify-center items-center">
+            <img src="{{ asset('img/icon/right-arrow.png') }}" alt="" class="w-12 h-12">
+        </div>
+
+        <!-- Paso 4: Registrar -->
+        <div class="text-center p-2 w-[250px] shadow-md bg-white rounded-lg relative">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('img/icon/registered.png') }}" alt="" class="w-12 h-12">
             </div>
+            <h3 class="text-lg font-semibold leading-5">Hacer Clic en Registrar</h3>
+            <p class="text-sm text-gray-600 mt-2">Haz clic en el botón <span class="font-semibold">Registrar</span> para finalizar el proceso.</p>
+            <p class="absolute z-10 text-lg font-bold -right-2 -top-2 w-8 h-8 bg-[#B23B3B] rounded-full text-white flex items-center justify-center">4</p>
         </div>
     </div>
+</div>
 
-    <h2 class="text-2xl font-semibold text-center text-[#152B59] uppercase">¡Empezar a registar!</h2>
-
-    <livewire:ingreso-nuevo-table />
     
+
     <div class="w-full h-full flex items-center justify-center">
-        <x-validation-errors class="p-3" />
         <form wire:submit.prevent="createUser" class="bg-gray-200 p-10 rounded-lg w-[85%]">
             <h1 class="mb-10 text-3xl font-extrabold text-center">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-[#B33031] from-[#11163D] uppercase">
                     Registrar Nuevo Usuario en Intranet
                 </span>
             </h1>
-
+            
+            <x-validation-errors class="p-3" />
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <x-label for="first_name" value="Nombre" />
+                    <x-label for="first_name" value="Nombres" />
                     <x-input id="first_name" class="block mt-1 w-full" type="text" wire:model="first_name" required />
                 </div>
                 <div>
