@@ -40,10 +40,12 @@
             <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por país</h3>
             <div id="chart-2"></div>
         </div>
+
         <div class="p-4 shadow rounded-lg bg-white">
             <p class="text-lg font-bold text-center mb-4">Notificaciones</p>
             <livewire:notifications-dashboard />
         </div>
+
         <div class="p-4 shadow rounded-lg bg-white">
           <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por departamentos</h3>
           <div class="max-h-[375px] overflow-y-auto">
@@ -63,66 +65,41 @@
                   @endforeach
                 </tbody>
             </table>
+          </div>
         </div>
-      </div>
-      <div class="p-4 shadow rounded-lg bg-white">
-        <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por oficina</h3>
-        <div class="max-h-[375px] overflow-y-auto">
-          <table class="min-w-full bg-white border border-gray-300 rounded-lg">
-              <thead class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
-                  <tr>
-                      <th class="py-3 px-6 text-left">Oficina</th>
-                      <th class="py-3 px-6 text-center">Colaboradores</th>
+
+        <div class="p-4 shadow rounded-lg bg-white">
+          <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por oficina</h3>
+          <div class="max-h-[375px] overflow-y-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                <thead class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="py-3 px-6 text-left">Oficina</th>
+                        <th class="py-3 px-6 text-center">Colaboradores</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                  @foreach($ubicacion as $name => $count)
+                  <tr class="border-b border-gray-300 hover:bg-gray-100">
+                      <td class="py-3 px-6 text-left">{{ $name }}</td>
+                      <td class="py-3 px-6 text-center">{{ $count }}</td>
                   </tr>
-              </thead>
-              <tbody class="text-gray-600 text-sm font-light">
-                @foreach($ubicacion as $name => $count)
-                <tr class="border-b border-gray-300 hover:bg-gray-100">
-                    <td class="py-3 px-6 text-left">{{ $name }}</td>
-                    <td class="py-3 px-6 text-center">{{ $count }}</td>
-                </tr>
-                @endforeach
-              </tbody>
-          </table>
+                  @endforeach
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="p-4 shadow rounded-lg bg-white">
+          <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por Area</h3>
+          <div id="chart"></div>
       </div>
-    </div>
+
     </div>
     
 
     {{-- <script>
-
         /* Primer Gráfica*/
-        var acuerdos = @json($acuerdos);
-        var agentesComerciales = @json($agentesComerciales);
-        var alianzaComercialLegal = @json($alianzaComercialLegal);
-        var asilo = @json($asilo);
-        var bajoZero = @json($bajoZero);
-        var contabilidad = @json($contabilidad);
-        var cortes = @json($cortes);
-        var crecer = @json($crecer);
-        var crecerHealth = @json($crecerHealth);
-        var customerServices = @json($customerServices);
-        var direccionAbogados = @json($direccionAbogados);
-        var direccionComercial = @json($direccionComercial);
-        var direccionLegal = @json($direccionLegal);
-        var finanzas = @json($finanzas);
-        var gerenciaAdministrativa = @json($gerenciaAdministrativa);
-        var gestionHumana = @json($gestionHumana);
-        var innovacionCienciaDatos = @json($innovacionCienciaDatos);
-        var interventoria = @json($interventoria);
-        var manejoDocumentos = @json($manejoDocumentos);
-        var misAbogados = @json($misAbogados);
-        var oficinasUSA = @json($oficinasUSA);
-        var pal = @json($pal);
-        var permisosTrabajo = @json($permisosTrabajo);
-        var publicidad = @json($publicidad);
-        var redaccion = @json($redaccion);
-        var revisionEnsambleAsilo = @json($revisionEnsambleAsilo);
-        var revisionEnsambleUSCIS = @json($revisionEnsambleUSCIS);
-        var seguimientoAsilo = @json($seguimientoAsilo);
-        var seguimientoUSCIS = @json($seguimientoUSCIS);
-        var serviHuellas = @json($serviHuellas);
-        var sistemas = @json($sistemas);
         var traduccion = @json($traduccion);
         var uscis = @json($uscis);
         var ventasPermisosTrabajo = @json($ventasPermisosTrabajo);
@@ -130,37 +107,6 @@
 
         var options = {
         series: [
-          { name: 'Acuerdos', data: [acuerdos] },
-          { name: 'Agentes Comerciales', data: [agentesComerciales] },
-          { name: 'Alianza Comercial y Legal', data: [alianzaComercialLegal] },
-          { name: 'Asilo', data: [asilo] },
-          { name: 'Bajo Zero', data: [bajoZero] },
-          { name: 'Contabilidad', data: [contabilidad] },
-          { name: 'Cortes', data: [cortes] },
-          { name: 'Crecer', data: [crecer] },
-          { name: 'Crecer Health', data: [crecerHealth] },
-          { name: 'Customer Services', data: [customerServices] },
-          { name: 'Dirección Abogados', data: [direccionAbogados] },
-          { name: 'Dirección Comercial', data: [direccionComercial] },
-          { name: 'Dirección Legal', data: [direccionLegal] },
-          { name: 'Finanzas', data: [finanzas] },
-          { name: 'Gerencia Administrativa', data: [gerenciaAdministrativa] },
-          { name: 'Gestión Humana', data: [gestionHumana] },
-          { name: 'Innovación y Ciencia de Datos', data: [innovacionCienciaDatos] },
-          { name: 'Interventoría', data: [interventoria] },
-          { name: 'Manejo de Documentos', data: [manejoDocumentos] },
-          { name: 'Mis Abogados', data: [misAbogados] },
-          { name: 'Oficinas USA', data: [oficinasUSA] },
-          { name: 'PAL', data: [pal] },
-          { name: 'Permisos de Trabajo', data: [permisosTrabajo] },
-          { name: 'Publicidad', data: [publicidad] },
-          { name: 'Redacción', data: [redaccion] },
-          { name: 'Revisión y Ensamble de Asilo', data: [revisionEnsambleAsilo] },
-          { name: 'Revisión y Ensamble USCIS', data: [revisionEnsambleUSCIS] },
-          { name: 'Seguimiento de Asilo', data: [seguimientoAsilo] },
-          { name: 'Seguimiento de USCIS', data: [seguimientoUSCIS] },
-          { name: 'Servi Huellas', data: [serviHuellas] },
-          { name: 'Sistemas', data: [sistemas] },
           { name: 'Traducción', data: [traduccion] },
           { name: 'USCIS', data: [uscis] },
           { name: 'Ventas de Permisos de Trabajo', data: [ventasPermisosTrabajo] },

@@ -1,7 +1,7 @@
 <x-content-admin :users="$users" :search="$search">
-    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-30 shadow-md">
-        <h2 class="text-[#152B59] font-bold px-2 capitalize">Acuerdos</h2>
-        <div class="flex items-center gap-x-4">
+    <div class="w-full flex flex-col items-center bg-white">
+        <h3 class="text-black font-bold py-5 capitalize w-full text-center text-xl underline">tabla de acuerdos</h3>
+        <div class="flex justify-end items-center gap-x-4 w-full">
             <div class="relative flex items-center">
                 <a href="{{ route('OrganiAcuerdos') }}" class="group flex items-center">
                     <i class="fa-solid fa-chart-diagram text-red-800 hover:text-red-700 px-2"></i>
@@ -10,7 +10,7 @@
                     </span>
                 </a>
             </div>
-            <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-l-md w-fit cursor-no-drop" disabled>
+            <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-l-md w-fit flex cursor-no-drop" disabled>
                 <i class="fa-solid fa-download mr-2"></i> Exportar
             </button>
         </div>

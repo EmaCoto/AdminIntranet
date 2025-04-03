@@ -35,8 +35,7 @@ class Grafico extends Component
                     ->orWhere('jt.value', '!=', 'USUARIO DEPURADO');
             })
             ->count();
-    
-
+            
         // Empleados nuevos (últimos 30 días)
         $this->newEmployees = DB::connection('wordpress')
             ->table('dxv_users')

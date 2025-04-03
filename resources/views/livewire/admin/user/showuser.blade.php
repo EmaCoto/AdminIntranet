@@ -1,9 +1,11 @@
 <x-content-admin :users="$users" :search="$search">
-    <div class="w-full flex justify-between items-center bg-white sticky top-0 z-30 shadow-md">
-        <h2 class="text-[#152B59] font-bold px-2 capitalize">Todos los colaboradores</h2>
-        <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-tr-md w-fit">
-            <i class="fa-solid fa-download mr-2"></i> Exportar
-        </button>
+    <div class="w-full flex flex-col items-center bg-white">
+        <h3 class="text-black font-bold py-5 capitalize w-full text-center text-xl underline">tabla de los colaboradores</h3>
+        <div class="flex justify-end items-center gap-x-4 w-full">
+            <button wire:click="export" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-l-md w-fit flex cursor-no-drop">
+                <i class="fa-solid fa-download mr-2"></i> Exportar
+            </button>
+        </div>
     </div>
     <div id="userList" class="w-full overflow-hidden">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
