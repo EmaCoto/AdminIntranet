@@ -56,9 +56,13 @@
                                         'Usuario' => $usuario,
                                         'Cédula' => $cedula,
                                         'Fecha de nacimiento' => $nacimiento,
+                                        'País' => $pais,
                                         'Correo personal' => $personalCorreo,
                                         'Teléfono personal' => $numero,
                                         'Talla' => $talla,
+                                        'Género' => $genero,
+                                        'Dirección' => $direccion,
+                                        'Fecha de ingreso' => $ingreso,
                                     ] as $label => $value)
                                         <div class="border-b pb-1">
                                             <span class="text-xs uppercase text-gray-500">{{ $label }}</span>
@@ -79,8 +83,6 @@
                                     'WhatsApp Corporativo' => $whatsAppCorporativo,
                                     'Cloudtalk' => $cloud,
                                     'Modalidad' => $modalidad,
-                                    'Fecha de ingreso' => $ingreso,
-                                    'País' => $pais,
                                     'Ubicación' => $ubicacion,
                                     'Área' => $area,
                                     'Departamento' => $etiqueta,

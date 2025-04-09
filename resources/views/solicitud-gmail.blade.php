@@ -63,7 +63,10 @@
             </div>
         </div>
 
-        <h2 class="text-2xl font-semibold text-center text-[#152B59] uppercase">¡Genera solicitudes!</h2>
+        <div>
+            <h2 class="text-2xl font-semibold text-center text-[#152B59] uppercase">¡Genera solicitudes!</h2>
+            <p class="text-center px-10">Este espacio está destinado para asignar un correo a los nuevos colaboradores de la compañía, facilitando su integración y comunicación desde el primer día.</p>            
+        </div>
         <livewire:ingreso-nuevo-table />
     </x-content>
 </x-app-layout>

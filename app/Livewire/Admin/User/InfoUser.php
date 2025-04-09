@@ -12,7 +12,7 @@ class InfoUser extends Component
     public $open = false;
     public $tab = 'info';
     public $userId, $user;
-    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso;
+    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso, $genero, $direccion;
     public $perfilOptions = [];
 
     public function mount($userId)
@@ -23,7 +23,7 @@ class InfoUser extends Component
         $profileData = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('user_id', $this->userId)
-            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325])
+            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325, 2464, 2471])
             ->pluck('value', 'field_id');
 
         // Asignar datos personales
@@ -45,6 +45,9 @@ class InfoUser extends Component
         $this->etiqueta = $profileData[50] ?? null;
         $this->ingreso = $profileData[324] ?? null;
         $this->modalidad = $profileData[325] ?? null;
+        $this->genero = $profileData[2464] ?? null;
+        $this->direccion = $profileData[2471] ?? null;
+
 
         // Obtener opciones de perfil
         $this->perfilOptions = DB::connection('wordpress')

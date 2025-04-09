@@ -11,8 +11,8 @@ class EditUser extends Component
     public $open = false;
     public $tab = 'info'; // Puede ser: info, documentos, historial, permisos
     public $userId, $user;
-    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso;
-    public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [], $tallaOptions = [];
+    public $nombre, $apellido, $etiqueta, $usuario, $ubicacion, $numero, $correo, $personalCorreo, $cloud, $pais, $modalidad, $perfil, $outlook, $whatsAppCorporativo, $area, $cedula, $talla, $nacimiento, $ingreso, $genero, $direccion;
+    public $etiquetaOptions = [], $ubicacionOptions = [], $paisOptions = [], $modalidadOptions = [], $areaOptions = [], $perfilOptions = [], $tallaOptions = [], $generoOptions = [];
 
     public function mount($userId)
     {
@@ -22,7 +22,7 @@ class EditUser extends Component
         $profileData = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('user_id', $this->userId)
-            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325])
+            ->whereIn('field_id', [1, 2, 3, 999, 1000, 558, 78, 302, 559, 76, 77, 288, 53, 760, 50, 212, 324, 325, 2464, 2471])
             ->pluck('value', 'field_id');
 
        // Asignar datos personales
@@ -33,17 +33,19 @@ class EditUser extends Component
         $this->talla = $profileData[1000] ?? null;
         $this->nacimiento = $profileData[212] ?? null;
         $this->personalCorreo = $profileData[302] ?? null;
+        $this->genero = $profileData[2464] ?? null;
+        $this->direccion = $profileData[2471] ?? null;
+        $this->numero = $profileData[76] ?? null;
+        $this->pais = $profileData[288] ?? null;
+        $this->ingreso = $profileData[324] ?? null;
        // Asignar datos corporativos
         $this->whatsAppCorporativo = $profileData[559] ?? null;
-        $this->numero = $profileData[76] ?? null;
         $this->outlook = $profileData[558] ?? null;
         $this->correo = $profileData[78] ?? null;
         $this->cloud = $profileData[77] ?? null;
-        $this->pais = $profileData[288] ?? null;
         $this->ubicacion = $profileData[53] ?? null;
         $this->area = $profileData[760] ?? null;
         $this->etiqueta = $profileData[50] ?? null;
-        $this->ingreso = $profileData[324] ?? null;
         $this->modalidad = $profileData[325] ?? null;
 
         // Cargar opciones de "etiqueta" desde la base de datos
@@ -81,6 +83,12 @@ class EditUser extends Component
         $this->tallaOptions = DB::connection('wordpress')
         ->table('dxv_bp_xprofile_data')
         ->where('field_id', 1000)
+        ->pluck('value', 'value')
+        ->toArray();
+
+        $this->generoOptions = DB::connection('wordpress')
+        ->table('dxv_bp_xprofile_data')
+        ->where('field_id', 2464)
         ->pluck('value', 'value')
         ->toArray();
 
@@ -133,6 +141,8 @@ class EditUser extends Component
             212 => $this->nacimiento,
             324 => $this->ingreso,
             325 => $this->modalidad,
+            2464 => $this->genero,
+            2471 => $this->direccion,
         ];
     
         foreach ($fields as $field_id => $value) {
@@ -232,6 +242,7 @@ public function limpiarPerfilesDuplicados()
             'tallaOptions' => $this->tallaOptions,
             'paisOptions' => $this->paisOptions,
             'perfilOptions' => $this->perfilOptions,
+            'generoOptions' => $this->generoOptions,
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <div class="p-10" id="tabla-gmail-corpo">
     <div class="w-full flex justify-between items-center p-1">
-        <h2 class="text-[#152B59] font-bold uppercase">Colaboradores que faltan por correo corporativo</h2>
+        <h2 class="text-[#152B59] font-bold uppercase text-center w-full">Colaboradores que faltan por correo corporativo</h2>
         <button wire:click="create" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center">
             <i class="fa-solid fa-plus mr-2"></i> Agregar
         </button>

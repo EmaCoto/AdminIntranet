@@ -60,9 +60,44 @@
                                 <label class="text-xs font-semibold uppercase">Nacimiento</label>
                                 <input type="date" wire:model="nacimiento" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
                             </div>
-                            <div class="col-span-2">
+                            <div>
                                 <label class="text-xs font-semibold uppercase">Correo personal</label>
                                 <input type="text" wire:model="personalCorreo" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">País</label>
+                                <select wire:model="pais" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona país</option>
+                                    @foreach($paisOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Talla</label>
+                                <select wire:model="talla" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona talla</option>
+                                    @foreach($tallaOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Dirección residencial</label>
+                                <input type="text" wire:model="direccion" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Género</label>
+                                <select wire:model="genero" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
+                                    <option value="">Selecciona genero</option>
+                                    @foreach($generoOptions as $value => $label)
+                                        <option value="{{ $value }}">{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold uppercase">Fecha de Ingreso</label>
+                                <input type="date" wire:model="ingreso" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
                             </div>
                         </div>
                     </div>
@@ -98,31 +133,9 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-xs font-semibold uppercase">Ingreso</label>
-                                <input type="date" wire:model="ingreso" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
-                            </div>
-                            <div>
-                                <label class="text-xs font-semibold uppercase">Talla</label>
-                                <select wire:model="talla" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
-                                    <option value="">Selecciona talla</option>
-                                    @foreach($tallaOptions as $value => $label)
-                                        <option value="{{ $value }}">{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs font-semibold uppercase">País</label>
-                                <select wire:model="pais" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
-                                    <option value="">Selecciona país</option>
-                                    @foreach($paisOptions as $value => $label)
-                                        <option value="{{ $value }}">{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-xs font-semibold uppercase">Ubicación</label>
+                                <label class="text-xs font-semibold uppercase">Oficina</label>
                                 <select wire:model="ubicacion" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
-                                    <option value="">Selecciona ubicación</option>
+                                    <option value="">Selecciona Oficina</option>
                                     @foreach($ubicacionOptions as $value => $label)
                                         <option value="{{ $value }}">{{ $label }}</option>
                                     @endforeach
@@ -137,7 +150,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-span-2">
+                            <div>
                                 <label class="text-xs font-semibold uppercase">Departamento</label>
                                 <select wire:model="etiqueta" class="w-full p-2 rounded bg-gray-300 focus:bg-white border focus:ring-[#11163D]">
                                     <option value="">Selecciona departamento</option>
