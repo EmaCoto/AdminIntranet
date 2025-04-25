@@ -20,6 +20,7 @@ class Grafico extends Component
     public $colombia, $estadosUnidos, $argentina, $mexico, $puertoRico, $costaRica;
     public $departments = [];
     public $ubicacion = [];
+    public $area = [];
 
     public function mount()
     {
@@ -81,7 +82,19 @@ class Grafico extends Component
         $this->ubicacion = DB::connection('wordpress')
             ->table('dxv_bp_xprofile_data')
             ->where('field_id', 53)
-            ->whereNotIn('value', ['Otro', ''])
+            ->whereNotIn('value', ['USUARIO DEPURADO','Otro', ''])
+            ->select('value', DB::raw('COUNT(DISTINCT user_id) as total'))
+            ->groupBy('value')
+            ->orderBy('value', 'asc')
+            ->get()
+            ->pluck('total', 'value')
+            ->toArray();
+
+        // Contar todos los valores del campo 760 excluyendo "USUARIOS DEPURADOS" y "Otro"
+        $this->area = DB::connection('wordpress')
+            ->table('dxv_bp_xprofile_data')
+            ->where('field_id', 760)
+            ->whereNotIn('value', ['USUARIO DEPURADO', 'Otro', ''])
             ->select('value', DB::raw('COUNT(DISTINCT user_id) as total'))
             ->groupBy('value')
             ->orderBy('value', 'asc')

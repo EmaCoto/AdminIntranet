@@ -91,9 +91,26 @@
         </div>
 
         <div class="p-4 shadow rounded-lg bg-white">
-          <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por Area</h3>
-          <div id="chart"></div>
-      </div>
+          <h3 class="text-base font-bold text-center mb-4 uppercase">Colaboradores por área</h3>
+          <div class="max-h-[375px] overflow-y-auto">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                <thead class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="py-3 px-6 text-left">Áreas</th>
+                        <th class="py-3 px-6 text-center">Colaboradores</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                  @foreach($area as $name => $count)
+                  <tr class="border-b border-gray-300 hover:bg-gray-100">
+                      <td class="py-3 px-6 text-left">{{ $name }}</td>
+                      <td class="py-3 px-6 text-center">{{ $count }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+            </table>
+          </div>
+        </div>
 
     </div>
     
