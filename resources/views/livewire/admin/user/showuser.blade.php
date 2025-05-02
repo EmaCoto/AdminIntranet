@@ -21,9 +21,31 @@
             <tbody>
                 @forelse ($users as $user)
                     <tr class="hover:bg-gray-200" wire:key="user-{{ $user->ID }}">
-                        <td class="px-4 py-2 text-center flex justify-center items-center">
-                            <img loading="lazy" src="https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff" alt="Foto de {{ $user->first_name }}" class="w-10 h-10 rounded-full border border-blue-800">
-                        </td>
+                        {{-- fotos de perfil --}}
+                        @php
+                        $extension = null;
+                        foreach (['png', 'jpg', 'jpeg', 'gif'] as $ext) {
+                            if (file_exists(public_path('wp-content/uploads/avatars/'.$user->ID.'/'.$user->ID.'-bpfull.'.$ext))) {
+                                $extension = $ext;
+                                break;
+                            }
+                        }
+                        // Si no encuentra ningún archivo, usa 'png' como predeterminado.
+                        $extension = $extension ?: 'png';
+                    @endphp
+                    
+                    <td class="px-4 py-2 text-center flex justify-center items-center">
+                        <img
+                            loading="lazy"
+                            src="https://intranet.immigrationsolutionusa.com/wp-content/uploads/avatars/{{ $user->ID }}/{{ $user->ID }}-bpfull.{{ $extension }}?{{ file_exists(public_path('wp-content/uploads/avatars/'.$user->ID.'/'.$user->ID.'-bpfull.' . $extension)) ? filemtime(public_path('wp-content/uploads/avatars/'.$user->ID.'/'.$user->ID.'-bpfull.' . $extension)) : time() }}"
+                            alt="Foto de {{ $user->first_name }}"
+                            class="w-10 h-10 rounded-full border border-blue-800"
+                            onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ urlencode($user->first_name . ' ' . $user->last_name) }}&background=fff';"
+                        >
+                    </td>
+                    
+                                                  
+                         
                         <td class="px-4 py-2 text-center">
                             <span class="font-bold text-sm">{{ $user->first_name }} {{ $user->last_name }}</span>
                         </td>
